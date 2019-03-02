@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import DaySelector from './DaySelector';
+import DaySelectorContainer from './../containers/DaySelectorContainer';
 
 class TimeSelector extends Component {
 	render() {
 		return (
 			<div>
-				<DaySelector />
+				<DaySelectorContainer />
 			</div>
 		);
 	}
 }
-
-TimeSelector.propTypes = {
-
-};
 
 export default TimeSelector;

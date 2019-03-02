@@ -4,7 +4,6 @@ import './DaySelector.scss';
 
 class DaySelector extends PureComponent {
 	static initialState = {
-		currentWeek: [],
 		selectedDay: null,
 		selectedSlot: null,
 	}
@@ -16,24 +15,16 @@ class DaySelector extends PureComponent {
 	}
 
 	componentDidMount() {
-		const weeks = [0, 1, 2, 3, 4, 5].map(num => {
-			const day = num === 0 ? 'Today': num === 1 ? 'Tomorrow' : moment().add(num, 'days').format('dddd');
-			const date = moment().add(num, 'days').format('DD-MM-YYYY');
-			return {
-				day,
-				date,
-			}
-		});
+		const { getDays } = this.props;
+		getDays();
 
-		this.setState({
-			currentWeek: weeks,
-		});
 	}
 
 	handleDaySelect(selectedDay) {
 		this.setState({
 			selectedDay,
 		});
+		this.props.getTiming();
 	}
 
 	removeSelectedDate() {
@@ -43,8 +34,8 @@ class DaySelector extends PureComponent {
 	}
 
 	renderDays() {
-		const { currentWeek } = this.state;
-		const days = currentWeek.map((elem, index) => {
+		const { days } = this.props;
+		const daysElem = days.map((elem, index) => {
 			return (
 				<div key={index} className="day">
 					<div className="day-tile" onClick={e=>this.handleDaySelect(elem)}>
@@ -55,14 +46,14 @@ class DaySelector extends PureComponent {
 		});
 		return (
 			<div className="day-selector__section__list">
-				{days}
+				{daysElem}
 			</div>
 		)
 	}
 
 	renderTimings() {
-		const slots = ['morning', 'afternoon', 'evening', 'late night'];
-		const slotElem = slots.map((slot, index) => {
+		const { timings } = this.props;
+		const slotElem = timings.map((slot, index) => {
 			return (
 				<div key={index} className="day">
 					<div className="day-tile">
@@ -87,7 +78,13 @@ class DaySelector extends PureComponent {
 		return (
 			<div className="bg-info day-selector__selected-day">
 					{selectedDay.day}
-					<button type="button" className="close" aria-label="Close" onClick={this.removeSelectedDate}><span aria-hidden="true">&times;</span></button>
+					<button
+					type="button"
+					className="close"
+					aria-label="Close"
+					onClick={this.removeSelectedDate}>
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
 		)
 	}
