@@ -1,0 +1,24 @@
+.header {
+	display: flex;
+    justify-content: space-around;
+	border-bottom: 1px solid #434343;
+	margin-bottom: 15px;
+
+	.header-timing,
+	.header-movie {
+		padding: 15px 10px;
+		font-size: 16px;
+		color: #FFF;
+		&:hover, &:focus {
+			text-decoration: none;
+		}
+		&.active {
+			border-bottom: 2px solid #b70a0a;
+		}
+
+		.title{
+			font-size: 14px;
+			padding-left: 10px;
+		}
+	}
+}
