@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getDays, getTiming } from './../stores/settings/settingsService';
-import DaySelector from './../components/DaySelector';
+import { getDays, getTiming } from '../stores/settings/settingsService';
+import ScreenSelector from '../components/ScreenSelector/ScreenSelector';
 
 const mapStateToProps = (state)=> ({
 	days: state.settings.days,
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
 	getTiming: bindActionCreators(getTiming, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DaySelector);
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenSelector);
