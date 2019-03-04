@@ -11,6 +11,10 @@
       "type": "string",
       "required": true
     },
+    "category_ids": {
+      "type": "array",
+      "required": true
+    },
     "price": {
       "type": "number",
       "required": true
@@ -19,18 +23,37 @@
       "type": "boolean",
       "required": true
     },
-    "images": {
-      "type": "array"
+    "manufacturer": {
+      "type": "string",
+      "required": false
     },
-    "description": {
+    "short_description": {
       "type": "string"
-    }
+    },
+    "long_description": {
+      "type": "string"
+    },
+    "landing_page_image": {
+      "type": "string"
+    },
+    "variants": [{
+      "sku": {
+        "type": "string",
+        "required": true
+      },
+      "attrs": {
+        "type": "array"
+      },
+      "images": {
+        "type": "array"
+      }
+    }]
   },
   "validations": [],
   "relations": {
-    "reviews": {
+    "category_ids": {
       "type": "hasMany",
-      "model": "Review",
+      "model": "Category",
       "foreignKey": ""
     }
   },

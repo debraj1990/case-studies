@@ -1,0 +1,16 @@
+@import '../../../static/styles/base/imports';
+.category-list {
+  .carousel-caption {
+    right: 0;
+    bottom: 0;
+    left: convert-to-rem(25px);
+    text-align: left;
+    @media #{$tablet} {
+      bottom: convert-to-rem(20px);
+      left: convert-to-rem(35px);
+    }
+    .cat-head {
+      @include font-size(20px)
+    }
+  }
+}
