@@ -5,4 +5,4 @@
 ### Data flow
 
 
-![Data Flow]()
+![Data Flow](https://github.com/XT-training/case-studies/blob/team-2/docs/data-flow.png)
