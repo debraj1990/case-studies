@@ -8,9 +8,17 @@ module.exports = {
 		res.send("eventEdit")
 	},
 	eventDelete: function (req, res, next) {
-		res.send("eventDelete")
+		const id = req.params.id;
+		Event.deleteOne({ _id: id }, function (err) {
+			if (err) return handleError(err);
+			res.send("DELETED!!!")
+		});
 	},
 	eventFilter: function (req, res, next) {
-		res.send("eventFilter")
+		const findIt = req.params.id ? {_id: id} : {};
+		Event.find(findIt, function (err, events) {
+			if (err) return handleError(err);
+			res.send(events)
+		})
 	}
 };

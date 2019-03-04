@@ -8,32 +8,41 @@ module.exports = {
 		//and add it to events
 		var rb = req.body;
 		console.log(JSON.stringify(rb))
-		// var movie = {
-		// 	"_theatreId": rb._theatreId,
-		// 	"movieName": rb.movieName,
-		// 	"movieRating": rb.movieRating,
-		// 	"dates": []
-		// }
-		// Movie(movie).save(function (err, movie) {
-		// 	if (err) return handleError(err);
-		// 	console.log(movie);
-		// 	var dates = {
-		// 		"date": "",
-		// 		"timing": [
-		// 			{
-		// 				"time": "",
-		// 				"hall": "",
-		// 				"seats_available": [],
-		// 				"total_seats": []
-		// 			}
-		// 		]
-		// 	}
-		// 	MovieDate(dates).save(function (err) {
-		// 		if (err) return handleError(err);
-		// 		res.json("dasdfasd")
-		// 	});
-		// });
-		res.send("movieCreate")
+		var movie = {
+			"_theatreId": rb._theatreId,
+			"movieName": rb.movieName,
+			"movieActors": rb.movie_Actors,
+			"movieGenre": rb.movie_Genre,
+			"movieLanguage": rb.movie_Language,
+			"moviePlot": rb.movie_Plot,
+			"moviePoster": rb.movie_Poster,
+			"movieRatings": rb.movie_Ratings ? JSON.parse(rb.movie_Ratings) : {}
+		}
+		Movie(movie).save(function (err, movie) {
+			if (err) return handleError(err);
+			// console.log(movie);
+			var dates = {
+				"_movieId": movie._id,
+				"dates": rb.dates
+			}
+			MovieDate(dates).save(function (err, date) {
+				if (err) return handleError(err);
+				// console.log(date);
+				var event = {
+					_theatreId: rb._theatreId,
+					_movieId: movie._id,
+					_dateId: date._id
+				}
+				Event(event).save(function (err, evt) {
+					if (err) return handleError(err);
+					res.json({
+						"movie": movie,
+						"dates": date,
+						"event": evt
+					})
+				});
+			});
+		});
 	},
 	movieEdit: function (req, res, next) {
 		//edit movie attributes(other than date) based on id

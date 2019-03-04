@@ -34,6 +34,7 @@ module.exports = function(app) {
     /* theatre REST API */
     app.get('/event/create', eventCreate);
     app.get('/event/edit', eventEdit);
+    app.delete('/event/delete/:id', eventDelete);
     app.get('/event/filter', eventFilter);
 
 };
