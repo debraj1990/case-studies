@@ -11,9 +11,25 @@
       "type": "string",
       "required": true
     },
+    "child_categories": {
+      "type": "array",
+      "required": false
+    },
+    "parent_categories": {
+      "type": "array",
+      "required": false
+    },
     "image": {
       "type": "string",
-      "required": false
+      "required": true
+    },
+    "is_root": {
+      "type": "boolean",
+      "required": true
+    },
+    "is_active": {
+      "type": "boolean",
+      "required": true
     }
   },
   "validations": [],
