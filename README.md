@@ -15,10 +15,10 @@ We've distributed the entire structure into three layers
 ![DB Flow](https://github.com/XT-training/case-studies/blob/team-2/docs/db-flow.jpg)
 
 ### Admin
-For adding and mapping theatres/movies/hall/dates/events
-- First you have to add Movies and Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/movie-theatre.html)
-- Map and create Hall List for Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/hall.html) 
-- ADD Date for Movie (Select Movie -> Select Theatre -> Select Hall -> Add Dates). [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/date.html)
+Steps for adding and mapping theatres/movies/hall/dates/events
+1. Add Movies and Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/movie-theatre.html)
+2. Map and create Hall List for Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/hall.html) 
+3. ADD Date for Movie (Select Movie -> Select Theatre -> Select Hall -> Add Dates). [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/date.html)
 
 ### Microservice endpoint APIs
 Get All Movies
