@@ -3,13 +3,13 @@
     "name": "db",
     "connector": "memory"
   },
-  "mongo": {
-    "host": "",
-    "port": 0,
-    "url": "mongodb://localhost/gift-it",
-    "database": "gift-it",
+  "gifts": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "giftdb",
     "password": "",
-    "name": "mongo",
+    "name": "gifts",
     "user": "",
     "connector": "mongodb"
   }
