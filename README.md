@@ -16,9 +16,9 @@ We've distributed the entire structure into three layers
 
 ### Admin
 Steps for adding and mapping theatres/movies/hall/dates/events
-1. Add Movies and Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/movie-theatre.html)
-2. Map and create Hall List for Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/hall.html) 
-3. ADD Date for Movie (Select Movie -> Select Theatre -> Select Hall -> Add Dates). [Here](https://github.com/XT-training/case-studies/blob/team-2/admin-api/date.html)
+1. Add Movies and Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin/movie-theatre.html)
+2. Map and create Hall List for Theatres. [Here](https://github.com/XT-training/case-studies/blob/team-2/admin/hall.html) 
+3. ADD Date for Movie (Select Movie -> Select Theatre -> Select Hall -> Add Dates). [Here](https://github.com/XT-training/case-studies/blob/team-2/admin/date.html)
 
 ### Microservice endpoint APIs
 Get All Movies
