@@ -21,14 +21,6 @@
     "dataSource": "gifts",
     "public": true
   },
-  "book": {
-    "dataSource": "gifts",
-    "public": true
-  },
-  "author": {
-    "dataSource": "gifts",
-    "public": true
-  },
   "user": {
     "dataSource": "gifts",
     "public": true
