@@ -24,13 +24,18 @@ Steps for adding and mapping theatres/movies/hall/dates/events
 
 - Get All Theatres
 http://localhost:4001/theatre/filter
+
 - Get Movies - based on theatre
 http://localhost:4001/movie/filter?theatre=<theatreId>
+
 - Search Movies - based on theatre
 http://localhost:4001/movie/filter?theatre=<theatreId>&search=<searchTerm>
 
-- Get Movies - based on theate and based on date (dd/mm/yyyy)
+- Get Movies - based on theate and based on date (mm/dd/yyyy)
+http://localhost:4001/movie/filter?theatre=<theatreId>&searchdate=<searchDate>
+
 - Get Movies - based on theatre/date/timeStart/timeEnd
+
 - Get Dates/Movie Details - based on theatre/
 - 
 

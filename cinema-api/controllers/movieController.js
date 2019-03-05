@@ -45,15 +45,38 @@ module.exports = {
 		const query = req.query;
 		const theatreId = query.theatre;
 		const searchTerm = query.search;
-		if (theatreId) {
+		const searchdate = query.searchdate;
+
+		if (theatreId && !searchdate) {
 			Event.find({ _theatreId: theatreId }, function (err, events) {
 				if (err) return handleError(err);
 				Movie.find({ '_id': { $in: events.map((v, i) => v._movieId) } }, function (err, movie) {
 					if(searchTerm){
 						res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
 					} else {
-					res.send(movie);
+						res.send(movie);
 					}
+				});
+			})
+		} else if (searchdate) {
+			Event.find({ _theatreId: theatreId }, function (err, events) {
+				if (err) return handleError(err);
+				MovieDate.find({ '_id': { $in: events.map((v, i) => v._dateId) } }, function (err, date) {
+					const datemap = date.map((v,i)=> {
+						return {
+							id: v._id,
+							date: v.dates.map((vv,i) => vv.date)
+						}
+					})
+					const filteredDate = datemap.filter(data => (data.date.indexOf(searchdate) != -1));
+					// res.send(filteredDate);
+					Event.find({ '_dateId': { $in: filteredDate.map((v, i) => v.id) } }, function (err, filterEvts) {
+						if (err) return handleError(err);
+						Movie.find({ '_id': { $in: filterEvts.map((v, i) => v._movieId) } }, function (err, movies) {
+							if (err) return handleError(err);
+							res.send(movies);
+						})
+					})
 				});
 			})
 		} else {
