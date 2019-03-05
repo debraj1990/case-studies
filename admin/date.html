@@ -12,6 +12,8 @@
     <title>ADD DATES</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="assets/datepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/datepicker.css"/>
     <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
@@ -48,7 +50,7 @@
     </style>
 </head>
 
-<body>
+<body onload="attachDatepicker()">
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -87,7 +89,7 @@
                 <div class="form-group">
                     <h3>Date0</h3>
                     <label class="col-md-4 control-label">date</label>
-                    <input name="dates[0][date]" type="text" placeholder="date">
+                    <input name="dates[0][date]" type="text" class="datepicker" placeholder="date">
                     <div class="timing-container">
                         <div>
                             <label class="col-md-4 control-label">[time]</label>
@@ -105,7 +107,7 @@
             </fieldset>
 
             <div class="form-buttons">
-                <input type="submit" value="Submit"><a href="javascript:;" id="add-new-date" class="add-new-date">Add!
+                <input id="form-submit-btn" type="submit" value="Submit"><a href="javascript:;" id="add-new-date" class="add-new-date">Add!
                     new date</a>
             </div>
         </fieldset>
@@ -193,7 +195,7 @@
             let template = `
                 <h3>Date${i}  <a href="javascript:;" id="removeDate${i}">Remove</a></h3>
                 <label class="col-md-4 control-label">date</label>
-                <input name="dates[${i}][date]" type="text" placeholder="date">
+                <input name="dates[${i}][date]" type="text" class="datepicker" placeholder="date">
                 <div class="timing-container">
                     <div>
                         <label class="col-md-4 control-label">[time]</label>
@@ -214,6 +216,7 @@
             removeDateTrigger.addEventListener('click', removeDate, false);
             let addTimeTrigger = document.getElementById(`add-new-time${i}`)
             addTimeTrigger.addEventListener('click', addTime, false);
+            attachDatepicker()
         }
         let addTimeTrigger = document.getElementById(`add-new-time0`)
         addTimeTrigger.addEventListener('click', addTime, false);
@@ -222,6 +225,12 @@
         document.getElementById('_theatreId').onchange = function (e) {
             ajax(`http://localhost:4001/theatre/audi/filter/${e.target.value}`, hallCallback, true)
         };
+        // document.getElementById('form-submit-btn').onfocus = function (e) {
+        //     const elems = document.body.querySelectorAll(".datepicker");
+        //     for(i=0; i<elems.length; i++){
+        //         elems[i].value = new Date(elems[i].value).getTime();
+        //     }
+        // };
         
     </script>
 

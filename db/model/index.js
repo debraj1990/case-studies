@@ -47,7 +47,7 @@ const dateSchema = Schema({
             date: String,
             timing: [
                 {
-                    time: String,
+                    time: Number,
                     seats_available: String,
                     total_seats: String
                 }

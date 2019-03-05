@@ -19,6 +19,9 @@ var {
     eventDelete,
     eventFilter
 } = require('../controllers/eventController');
+var {
+    cinemaFilter
+} = require('../controllers/cinemaController');
 
 module.exports = function(app) {
 
@@ -42,5 +45,8 @@ module.exports = function(app) {
     app.get('/event/edit', eventEdit);
     app.delete('/event/delete/:id', eventDelete);
     app.get('/event/filter', eventFilter);
+    
+    /* global REST API */
+    app.get('/cinema/filter', cinemaFilter);
 
 };

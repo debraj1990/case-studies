@@ -42,11 +42,27 @@ module.exports = {
 		//fetch id from movie collection
 		//fetch id of date and theatre & date
 		//return data for theatre and date
-		const id = req.params.id;
-		const findIt = id ? {_id: id} : {};
-		Movie.find(findIt, function (err, movies) {
-			if (err) return handleError(err);
-			res.send(movies)
-		})
+		const query = req.query;
+		const theatreId = query.theatre;
+		const searchTerm = query.search;
+		if (theatreId) {
+			Event.find({ _theatreId: theatreId }, function (err, events) {
+				if (err) return handleError(err);
+				Movie.find({ '_id': { $in: events.map((v, i) => v._movieId) } }, function (err, movie) {
+					if(searchTerm){
+						res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
+					} else {
+					res.send(movie);
+					}
+				});
+			})
+		} else {
+			const id = req.params.id;
+			const findIt = id ? { _id: id } : {};
+			Movie.find(findIt, function (err, movies) {
+				if (err) return handleError(err);
+				res.send(movies)
+			})
+		}
 	}
 };
