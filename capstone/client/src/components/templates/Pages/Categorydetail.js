@@ -11,7 +11,7 @@ const metaData = {
   isFooterLink: true
 };
 
-class Anniversary extends Component {
+class Categorydetail extends Component {
   render() {
     return (
       <div>
@@ -23,5 +23,5 @@ class Anniversary extends Component {
     )
   }
 }
-export default Anniversary;
+export default Categorydetail;
 export { metaData };
