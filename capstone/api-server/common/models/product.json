@@ -1,60 +1,80 @@
 {
   "name": "Product",
-  "plural": "products",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
+  },
+  "scope": {
+    "include": "categories"
   },
   "properties": {
     "name": {
       "type": "string",
       "required": true
     },
-    "category_ids": {
-      "type": "array",
-      "required": true
-    },
     "price": {
-      "type": "number",
+      "type": "object",
       "required": true
     },
-    "canBuy": {
-      "type": "boolean",
-      "required": true
-    },
-    "manufacturer": {
-      "type": "string",
-      "required": false
-    },
-    "short_description": {
+    "short_desc": {
       "type": "string"
     },
-    "long_description": {
+    "long_desc": {
       "type": "string"
     },
-    "landing_page_image": {
+    "prod_detail": {
+      "type": "object"
+    },
+    "subcategory": {
       "type": "string"
     },
-    "variants": [{
-      "sku": {
-        "type": "string",
-        "required": true
-      },
-      "attrs": {
-        "type": "array"
-      },
-      "images": {
-        "type": "array"
-      }
-    }]
+    "is_active": {
+      "type": "Boolean"
+    },
+    "date_created": {
+      "type": "date"
+    },
+    "date_updated": {
+      "type": "date"
+    },
+    "variants": {
+      "type": [
+        {
+          "attrs": {
+            "type": [
+              {
+                "name": "string",
+                "value": "string",
+                "isFilter": "Boolean"
+              }
+            ]
+          },
+          "sku": "string",
+          "isDefault": "Boolean",
+          "qty": "Number",
+          "images": [
+            {
+              "isDefault": "Boolean",
+              "path": "string"
+            }
+          ],
+          "thumbnail": "string",
+          "list_price": "number",
+          "sale_price": "number"
+        }
+      ]
+    }
   },
   "validations": [],
   "relations": {
-    "category_ids": {
-      "type": "hasMany",
+    "categories": {
+      "type": "hasAndBelongsToMany",
       "model": "Category",
-      "foreignKey": ""
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],

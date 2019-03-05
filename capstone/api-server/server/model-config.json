@@ -13,34 +13,28 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "db"
-  },
-  "AccessToken": {
-    "dataSource": "db",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "db",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "db",
-    "public": false,
-    "options": {
-      "strictObjectIDCoercion": true
-    }
-  },
-  "Role": {
-    "dataSource": "db",
-    "public": false
-  },
-  "Product": {
-    "dataSource": "mongo",
+  "Category": {
+    "dataSource": "gifts",
     "public": true
   },
-  "Category": {
-    "dataSource": "mongo",
+  "Product": {
+    "dataSource": "gifts",
+    "public": true
+  },
+  "book": {
+    "dataSource": "gifts",
+    "public": true
+  },
+  "author": {
+    "dataSource": "gifts",
+    "public": true
+  },
+  "user": {
+    "dataSource": "gifts",
+    "public": true
+  },
+  "cart": {
+    "dataSource": "gifts",
     "public": true
   }
 }

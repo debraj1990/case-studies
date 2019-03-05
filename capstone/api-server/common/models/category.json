@@ -1,38 +1,67 @@
 {
   "name": "Category",
-  "plural": "Categories",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
+  },
+  "scope": {
+    "include": "subCategories"
   },
   "properties": {
     "name": {
       "type": "string",
       "required": true
     },
-    "child_categories": {
-      "type": "array",
-      "required": false
-    },
-    "parent_categories": {
-      "type": "array",
-      "required": false
-    },
     "image": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
-    "is_root": {
-      "type": "boolean",
-      "required": true
+    "creation_date": {
+      "type": "date"
+    },
+    "last_modified_date": {
+      "type": "date"
     },
     "is_active": {
-      "type": "boolean",
-      "required": true
+      "type": "boolean"
+    },
+    "is_featured": {
+      "type": "boolean"
     }
   },
   "validations": [],
+  "relations": {
+    "parent_categories": {
+      "type": "hasMany",
+      "model": "category",
+      "foreignKey": "",
+      "scope": {
+        "include": "category"
+      }
+    },
+    "subCategories": {
+      "type": "hasMany",
+      "model": "Category",
+      "foreignKey": "categoryId",
+      "options": {
+        "nestRemoting": true
+      },
+      "scope": {
+        "fields": [
+          "id",
+          "categoryId"
+        ]
+      }
+    },
+    "products": {
+      "type": "hasAndBelongsToMany",
+      "model": "Product",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
