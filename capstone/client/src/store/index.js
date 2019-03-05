@@ -9,12 +9,9 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const intialState = {
-  yt_videos: [],
+
   loader: false,
-  isMenuCollapsed: true,
-  isMenuHidden: true,
-  twitter: false,
-  twitterFeeds: false
+  categories: []
 }
 
 const sagaMiddleware = createSagaMiddleware()
