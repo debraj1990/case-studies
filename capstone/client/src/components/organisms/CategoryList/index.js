@@ -9,31 +9,31 @@ class CategoryList extends Component {
       categories: [
         {
           'name': 'Anniversary',
-          'link': '/home',
+          'link': '/anniversary',
           'image': '/images/anniversary.jpg',
           'imageAlt': 'anniversary'
         },
         {
           'name': 'Valentine',
-          'link': '/home',
+          'link': '/valentine',
           'image': '/images/valentine.jpg',
           'imageAlt': 'valentine'
         },
         {
           'name': 'Birthday',
-          'link': '/home',
+          'link': '/birthday',
           'image': '/images/birthday.jpg',
           'imageAlt': 'birthday'
         },
         {
           'name': 'Wedding',
-          'link': '/home',
+          'link': '/wedding',
           'image': '/images/wedding.jpg',
           'imageAlt': 'wedding'
         },
         {
           'name': 'Christmas',
-          'link': '/home',
+          'link': '/christmas',
           'image': '/images/christmas.jpg',
           'imageAlt': 'christmas'
         }
