@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EDIT DATES</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .timing-container {
+            padding: 10px 0;
+        }
+
+        .timing-container>div {
+            padding-bottom: 10px;
+        }
+
+        .form-buttons>* {
+            padding: 20px;
+            display: inline-block;
+        }
+
+        h3 a {
+            font-size: 12px;
+        }
+        fieldset {
+            position: relative;
+        }
+        img#poster {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 140px;
+        }
+        #poster + .form-group, #poster + .form-group ~ .form-group {
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <h1>Map Dates for Movie</h1>
+    <form action="http://localhost:4001/event/create" method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Choose Date for Movie</legend>
+            <img id="poster" src="" />
+            <!-- Text input-->
+            
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="_movieId">Choose Movie</label>
+                <select id="_movieId" name="_movieId"></select>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="_theatreId">Choose Theatre</label>
+                    <select id="_theatreId" name="_theatreId">
+                    </select>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="_hallId">Choose Hall</label>
+                    <select id="_hallId" name="_hallId">
+                    </select>
+            </div>
+
+
+            <!-- Multiple Checkboxes (inline) -->
+            <fieldset id="dates-container">
+                <div class="form-group">
+                    <h3>Date0</h3>
+                    <label class="col-md-4 control-label">date</label>
+                    <input name="dates[0][date]" type="text" placeholder="date">
+                    <div class="timing-container">
+                        <div>
+                            <label class="col-md-4 control-label">[time]</label>
+                            <input name="dates[0][timing][0][time]" type="text" placeholder="time">
+                            <label class="col-md-4 control-label">[seats_available]</label>
+                            <input name="dates[0][timing][0][seats_available]" type="text"
+                                placeholder="seats_available">
+                            <label class="col-md-4 control-label">[total_seats]</label>
+                            <input name="dates[0][timing][0][total_seats]" type="text"
+                                placeholder="total_seats">
+                        </div>
+                    </div>
+                    <a href="javascript:;" id="add-new-time0" class="add-new-time">Add! new time</a>
+                </div>
+            </fieldset>
+
+            <div class="form-buttons">
+                <input type="submit" value="Submit"><a href="javascript:;" id="add-new-date" class="add-new-date">Add!
+                    new date</a>
+            </div>
+        </fieldset>
+    </form>
+    <script type="text/javascript">
+        let i = 0;
+        let j = 0;
+        const hallCallback =  function(response) {
+            let template = ``;
+            const resJSON = JSON.parse(response);
+            if(resJSON.length){
+                resJSON.map((v,i)=>{
+                    template += `<option value="${v._id}">${v.hall}</option>`
+                })
+                document.getElementById("_hallId").innerHTML = template;
+            } else {
+                document.getElementById("_hallId").innerHTML = `<option value="0">No theatres</option>`;
+            }
+        }
+        const movieCallback =  function(response) {
+            let template = ``;
+            const resJSON = JSON.parse(response);
+            if(resJSON.length){
+                resJSON.map((v,i)=>{
+                    template += `<option value="${v._id}">${v.movieName}</option>`
+                })
+                document.getElementById("_movieId").innerHTML = template;
+            } else {
+                document.getElementById("_movieId").innerHTML = `<option value="0">No theatres</option>`;
+            }
+        }
+        const theatreCallback =  function(response) {
+            let template = ``;
+            const resJSON = JSON.parse(response);
+            const theatreId = document.getElementById("_theatreId");
+            if(resJSON.length){
+                resJSON.map((v,i)=>{
+                    template += `<option value="${v._id}">${v.theatreName}</option>`
+                })
+                theatreId.innerHTML = template;
+                ajax(`http://localhost:4001/theatre/audi/filter/${theatreId.value}`, hallCallback, true)
+            } else {
+                theatreId.innerHTML = `<option value="0">No theatres</option>`;
+            }
+        }
+        const ajax = function (url, callback) {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+                    if (xmlhttp.status == 200) {
+                        callback(xmlhttp.responseText)
+                    }
+                    else if (xmlhttp.status == 400) {
+                        alert('There was an error 400');
+                    }
+                    else {
+                        alert('something else other than 200 was returned');
+                    }
+                }
+            };
+
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+        const removeDate = function (e) {
+            e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode)
+        };
+        const addTime = function (e) {
+            j++;
+            var container = e.target.previousElementSibling;
+            var template = `
+                <label class="col-md-4 control-label">[time]</label>
+                <input name="dates[${i}][timing][${i}${j}][time]" type="text" placeholder="time">
+                <label class="col-md-4 control-label">[seats_available]</label>
+                <input name="dates[${i}][timing][${i}${j}][seats_available]" type="text" placeholder="seats_available">
+                <label class="col-md-4 control-label">[total_seats]</label>
+                <input name="dates[${i}][timing][${i}${j}][total_seats]" type="text" placeholder="total_seats">`;
+            let div = document.createElement('div');
+            div.innerHTML = template;
+            container.appendChild(div);
+        };
+        document.getElementById('add-new-date').onclick = function () {
+            i++;
+            let template = `
+                <h3>Date${i}  <a href="javascript:;" id="removeDate${i}">Remove</a></h3>
+                <label class="col-md-4 control-label">date</label>
+                <input name="dates[${i}][date]" type="text" placeholder="date">
+                <div class="timing-container">
+                    <div>
+                        <label class="col-md-4 control-label">[time]</label>
+                        <input name="dates[${i}][timing][${i}${j}][time]" type="text" placeholder="time">
+                        <label class="col-md-4 control-label">[seats_available]</label>
+                        <input name="dates[${i}][timing][${i}${j}][seats_available]" type="text" placeholder="seats_available">
+                        <label class="col-md-4 control-label">[total_seats]</label>
+                        <input name="dates[${i}][timing][${i}${j}][total_seats]" type="text" placeholder="total_seats">
+                    </div>
+                </div>
+                <a href="javascript:;" id="add-new-time${i}" class="add-new-time">Add! new time</a>`;
+
+            let container = document.getElementById('dates-container');
+            let div = document.createElement('div');
+            div.innerHTML = template;
+            container.appendChild(div);
+            let removeDateTrigger = document.getElementById(`removeDate${i}`)
+            removeDateTrigger.addEventListener('click', removeDate, false);
+            let addTimeTrigger = document.getElementById(`add-new-time${i}`)
+            addTimeTrigger.addEventListener('click', addTime, false);
+        }
+        let addTimeTrigger = document.getElementById(`add-new-time0`)
+        addTimeTrigger.addEventListener('click', addTime, false);
+        ajax('http://localhost:4001/theatre/filter', theatreCallback, true)
+        ajax('http://localhost:4001/movie/filter', movieCallback, true)
+        document.getElementById('_theatreId').onchange = function (e) {
+            ajax(`http://localhost:4001/theatre/audi/filter/${e.target.value}`, hallCallback, true)
+        };
+        
+    </script>
+
+</body>
+
+</html>

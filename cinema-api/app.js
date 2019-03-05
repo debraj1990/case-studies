@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var initRoutes = require('./routes/routes');
 var { db } = require('../db')
 
-var swaggerUi = require('swagger-ui-express');
-var swaggerDocument = require('./swagger.json');
+// var swaggerUi = require('swagger-ui-express');
+// var swaggerDocument = require('./swagger.json');
 
 var app = express();
 
@@ -28,8 +28,8 @@ db.once('open', function () {
   app.use(express.static(path.join(__dirname, 'public')));
 
 
-  app.use('/api-doc', swaggerUi.serve);
-  app.get('/api-doc', swaggerUi.setup(swaggerDocument));
+  // app.use('/api-doc', swaggerUi.serve);
+  // app.get('/api-doc', swaggerUi.setup(swaggerDocument));
 
 
     initRoutes(app);

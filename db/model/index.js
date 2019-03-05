@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 
 const theatreSchema = Schema({
     _tid: Schema.Types.ObjectId,
-    _movieId: [{ type: Schema.Types.ObjectId, ref: 'Movie' }],
     theatreName: String,
     theatreAddress: String,
     location: {
