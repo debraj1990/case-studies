@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from 'react-icons-kit'
-import {calendar, fileMovieO} from 'react-icons-kit/fa'
+import {calendar, film} from 'react-icons-kit/fa'
 import './Header.scss';
 
 const Header = () => {
 	return (
 			<header className="header">
 				<NavLink exact to="/" className="header-movie">
-					<Icon icon={fileMovieO} />
+					<Icon icon={film} />
 					<span className="title">Title</span>
 				</NavLink>
 				<NavLink to="/screen-time" className="header-timing">
