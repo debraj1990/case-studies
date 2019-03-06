@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import Home, { metaData as homeInfo } from '../Pages/Home';
-import Categorydetail, { metaData as CategorydetailInfo } from '../Pages/Categorydetail';
+import Categorydetail from '../Pages/Categorydetail';
 
 const Content = () => (
     <div className="wwn-content">

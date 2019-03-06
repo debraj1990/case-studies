@@ -1,0 +1,7 @@
+@import '../../../static/styles/base/imports';
+.slick-prev,
+.slick-next {
+  &:before {
+    color: black;
+  }
+}

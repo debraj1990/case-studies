@@ -11,7 +11,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const intialState = {
 
   loader: false,
-  categories: []
+  categories: [],
+  products: []
 }
 
 const sagaMiddleware = createSagaMiddleware()
