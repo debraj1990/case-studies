@@ -32,5 +32,9 @@
   "wishlist": {
     "dataSource": "gifts",
     "public": true
+  },
+  "orders": {
+    "dataSource": "gifts",
+    "public": true
   }
 }

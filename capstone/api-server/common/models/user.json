@@ -42,6 +42,14 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "orders": {
+      "type": "hasMany",
+      "model": "orders",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],
