@@ -16,10 +16,15 @@ module.exports = {
 			}
 			Event(event).save(function (err, evt) {
 				if (err) return handleError(err);
-				res.json({
-					"dates": date,
-					"event": evt
-				})
+				Movie.findByIdAndUpdate(rb._movieId, { 
+					$push: { _theatreId: rb._theatreId, _dateId: date._id, _eventId: evt._id } 
+				}, {new: true}, function (err, movie) {
+					if (err) return handleError(err);
+					res.json({
+						"dates": date,
+						"event": evt
+					})
+				});
 			});
 		});
 	},

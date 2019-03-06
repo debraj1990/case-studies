@@ -15,6 +15,9 @@ const theatreSchema = Schema({
 
 const movieSchema = Schema({
     _mid: Schema.Types.ObjectId,
+    _theatreId: [{ type: Schema.Types.ObjectId, ref: 'Theatre' }],
+    _dateId: [{ type: Schema.Types.ObjectId, ref: 'Date' }],
+    _eventId: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
     movieName: String,
     movieActors: String,
     movieGenre: String,

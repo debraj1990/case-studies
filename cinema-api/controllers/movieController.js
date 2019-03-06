@@ -27,7 +27,17 @@ module.exports = {
 		//if date editting date based on movie id
 		//fetch date id from events 
 		//find date from date collection and edit it accordingly.
-		res.send("movieEdit")
+		const movie = {
+			"_hallId": [],
+			"_dateId": [],
+			"_eventId": [],
+			"_theatreId": []
+		}
+		// const id = req.params.id;
+		Movie.findByIdAndUpdate('5c7d5b8644218bef7315259b', movie, {new: true}, function(err, model){
+			if (err) return handleError(err);
+			res.send(model)
+		});
 	},
 	movieDelete: function (req, res, next) {
 		//get movie id
@@ -51,7 +61,7 @@ module.exports = {
 			Event.find({ _theatreId: theatreId }, function (err, events) {
 				if (err) return handleError(err);
 				Movie.find({ '_id': { $in: events.map((v, i) => v._movieId) } }, function (err, movie) {
-					if(searchTerm){
+					if (searchTerm) {
 						res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
 					} else {
 						res.send(movie);
@@ -62,20 +72,17 @@ module.exports = {
 			Event.find({ _theatreId: theatreId }, function (err, events) {
 				if (err) return handleError(err);
 				MovieDate.find({ '_id': { $in: events.map((v, i) => v._dateId) } }, function (err, date) {
-					const datemap = date.map((v,i)=> {
+					const datemap = date.map((v, i) => {
+						const id = v._id
 						return {
-							id: v._id,
-							date: v.dates.map((vv,i) => vv.date)
+							id,
+							date: v.dates.map((vv, i) => vv.date).join('|'),
+							event: events.filter((data) => (data._dateId.toString() == v._id.toString()))
 						}
 					})
-					const filteredDate = datemap.filter(data => (data.date.indexOf(searchdate) != -1));
-					// res.send(filteredDate);
-					Event.find({ '_dateId': { $in: filteredDate.map((v, i) => v.id) } }, function (err, filterEvts) {
+					Movie.find({ '_id': { $in: datemap.map((v, i) => v.event[0]._movieId) } }, function (err, movies) {
 						if (err) return handleError(err);
-						Movie.find({ '_id': { $in: filterEvts.map((v, i) => v._movieId) } }, function (err, movies) {
-							if (err) return handleError(err);
-							res.send(movies);
-						})
+						res.send(movies);
 					})
 				});
 			})
