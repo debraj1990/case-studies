@@ -50,11 +50,13 @@ module.exports = function (Cart) {
     });
   });
 
+  //should be removed, redundant
   Cart.afterRemote('replaceById', function (context, cart, next) {
     populateCartProducts(cart, function () {
       next();
     });
   });
+
 
   Cart.afterRemote('findById', function (context, cart, next) {
     populateCartProducts(cart, function () {

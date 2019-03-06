@@ -34,6 +34,7 @@ var populateProducts = function (dataObj, cb) {
 
 module.exports = function (Wishlist) {
 
+  //should be removed, redundant
   Wishlist.afterRemote('replaceById', function (context, wishlist, next) {
     populateProducts(wishlist, function () {
       next();

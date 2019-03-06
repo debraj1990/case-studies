@@ -5,6 +5,12 @@
   "options": {
     "validateUpsert": true
   },
+  "scope": {
+    "include": [
+      "carts",
+      "wishlists"
+    ]
+  },
   "hidden": [
     "password"
   ],
