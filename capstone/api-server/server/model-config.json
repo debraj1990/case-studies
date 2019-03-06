@@ -28,5 +28,9 @@
   "cart": {
     "dataSource": "gifts",
     "public": true
+  },
+  "wishlist": {
+    "dataSource": "gifts",
+    "public": true
   }
 }

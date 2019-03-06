@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "hidden": [
+    "password"
+  ],
   "properties": {
     "fullName": {
       "type": "string"
@@ -25,11 +28,16 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "wishlists": {
+      "type": "hasOne",
+      "model": "wishlist",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],
-  "methods": {},
-  "hidden": [
-    "password"
-  ]
+  "methods": {}
 }

@@ -29,6 +29,9 @@
     "subcategory": {
       "type": "string"
     },
+    "is_trending": {
+      "type": "Boolean"
+    },
     "is_active": {
       "type": "Boolean"
     },
