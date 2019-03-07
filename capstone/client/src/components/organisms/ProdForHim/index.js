@@ -32,19 +32,13 @@ class ProdForHim extends Component {
   }
   componentDidMount() {
     let { catId, actions } = this.props;
-    let subCatName = 'men'
     actions.loadProducts(catId);
 
   }
   renderProducts(products) {
     return products.map((val, idx) => {
-      // debugger;
       let imgObj = val.variants[0].images.filter((image) => image.isDefault);
-      debugger;
       let imgName = imgObj[0].path.split('/').pop();
-      console.log(val);
-      window.images = images;
-      console.log(images.val);
 
       return (
         <div key={idx}>
@@ -60,10 +54,12 @@ class ProdForHim extends Component {
   render() {
     let { products } = this.props;
     let { carouselSettings } = this.state;
-    products = products.filter((product) => product.subcategory.toLowerCase() === 'men')
+    let subCatName = 'men'
+    let productsArr = products.filter((product) => product.subcategory.toLowerCase() === subCatName)
+    let slides = this.renderProducts(productsArr);
     return (
       <div>
-        <Carousel heading="For Him" settingParam={carouselSettings} carouselSlides={this.renderProducts(products)} />
+        {slides ? <Carousel heading="For Him" settingParam={carouselSettings} carouselSlides={slides} /> : ''}
       </div>
     )
   }

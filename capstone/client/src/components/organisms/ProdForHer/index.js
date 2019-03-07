@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux'
 import { loadProducts } from '../../../actions/products'
 import './index.scss'
 import Carousel from '../Carousel';
-class ProdForHer extends Component {
+
+import { images } from '../../../utilities/imgimport'
+class ProdForHim extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,18 +30,36 @@ class ProdForHer extends Component {
       }
     }
   }
-
   componentDidMount() {
     let { catId, actions } = this.props;
     actions.loadProducts(catId);
+
+  }
+  renderProducts(products) {
+    return products.map((val, idx) => {
+      let imgObj = val.variants[0].images.filter((image) => image.isDefault);
+      let imgName = imgObj[0].path.split('/').pop();
+
+      return (
+        <div key={idx}>
+          <img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '100%' }} />
+          <div className="carousel-caption">
+            <p className="cat-head">{val.name}</p>
+            {/* <p className="cat-head">{val.price}</p> */}
+          </div>
+        </div>
+      )
+    })
   }
   render() {
     let { products } = this.props;
     let { carouselSettings } = this.state;
-    products = products.filter((product) => product.subcategory.toLowerCase() === 'women')
+    let subCatName = 'women'
+    let productsArr = products.filter((product) => product.subcategory.toLowerCase() === subCatName)
+    let slides = this.renderProducts(productsArr);
     return (
       <div>
-        <Carousel heading="For Her" products={products} settingParam={carouselSettings} />
+        {slides ? <Carousel heading="For Her" settingParam={carouselSettings} carouselSlides={slides} /> : ''}
       </div>
     )
   }
@@ -58,5 +78,5 @@ const connectToStore = connect(
   mapDispatchToProps
 )
 
-export default connectToStore(ProdForHer);
+export default connectToStore(ProdForHim);
 
