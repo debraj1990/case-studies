@@ -5,7 +5,7 @@ export default class BackButton extends Component {
     let { tgtUrl } = this.props;
     tgtUrl = tgtUrl ? tgtUrl : '#';
     return (
-      <a href={tgtUrl} class="previous round">&#8249;</a>
+      <a href={tgtUrl} className="previous round">&#8249;</a>
     )
   }
 }

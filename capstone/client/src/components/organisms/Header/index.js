@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <div>
         <BackButton tgtUrl="/home" />
-        <h1>Header</h1>
+        {/* <h1>Header</h1> */}
       </div>
     )
   }

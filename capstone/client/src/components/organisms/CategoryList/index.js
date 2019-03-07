@@ -7,43 +7,6 @@ import Category from '../../atoms/Category';
 import './index.scss';
 
 class CategoryList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [
-        {
-          'name': 'Anniversary',
-          'link': '/anniversary',
-          'image': '/images/anniversary.jpg',
-          'imageAlt': 'anniversary'
-        },
-        {
-          'name': 'Valentine',
-          'link': '/valentine',
-          'image': '/images/valentine.jpg',
-          'imageAlt': 'valentine'
-        },
-        {
-          'name': 'Birthday',
-          'link': '/birthday',
-          'image': '/images/birthday.jpg',
-          'imageAlt': 'birthday'
-        },
-        {
-          'name': 'Wedding',
-          'link': '/wedding',
-          'image': '/images/wedding.jpg',
-          'imageAlt': 'wedding'
-        },
-        {
-          'name': 'Christmas',
-          'link': '/christmas',
-          'image': '/images/christmas.jpg',
-          'imageAlt': 'christmas'
-        }
-      ]
-    }
-  }
   componentDidMount() {
     let { actions } = this.props;
     actions.loadCategories();

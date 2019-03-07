@@ -1,0 +1,28 @@
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './index.scss'
+
+export default class Carousel extends Component {
+  render() {
+    let defaultSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+    let { settingParam, heading, carouselSlides } = this.props;
+    let settings = settingParam ? settingParam : defaultSettings;
+
+    return (
+      <div>
+        <h2>{heading}</h2>
+        <Slider {...settings}>
+          {carouselSlides}
+        </Slider>
+      </div>
+    );
+  }
+}

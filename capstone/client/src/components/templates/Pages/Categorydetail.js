@@ -13,12 +13,14 @@ const metaData = {
 
 class Categorydetail extends Component {
   render() {
+    let { history } = this.props;
+    let catId = history.location.pathname.split('/').pop();
     return (
       <div>
         <Header />
-        <ProdForHer />
-        <ProdForHim />
-        <Trending />
+        <ProdForHer catId={catId} />
+        <ProdForHim catId={catId} />
+        <Trending catId={catId} />
       </div>
     )
   }

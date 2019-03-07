@@ -3,7 +3,6 @@ import './Tweet.scss';
 import YTIcon from '../../atoms/YTIcon';
 
 const Tweet = ({ displayName, isVerified, text, username, type, videoId }) => {
-    console.log(type, videoId);
     if (type === 'yt') {
         return (
             <div className="wwn-yt-video col-md-4">
