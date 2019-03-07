@@ -1,5 +1,5 @@
 {
-  "name": "cart",
+  "name": "wishlist",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -14,8 +14,7 @@
         {
           "product": "string",
           "sku": "string",
-          "productDetails": "object",
-          "qty": "number"
+          "productDetails": "object"
         }
       ]
     }
