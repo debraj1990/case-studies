@@ -1,4 +1,4 @@
-var { Theatre, Movie, MovieDate, Event } = require('../../db/model')
+const { Theatre, Movie, MovieDate, Event } = require('../../db/model')
 
 module.exports = {
 	eventCreate: function (req, res, next) {
@@ -51,11 +51,15 @@ module.exports = {
 			if (err) return handleError(err);
 			MovieDate.find(findIt, function (err, dates) {
 				if (err) return handleError(err);
-				res.send({
-					event: events,
-					date: dates
-				})
+				res.send(events)
 			})
+		})
+	},
+	dateFilter: function (req, res, next) {
+		const findIt = req.params.id ? {_id: id} : {};
+		MovieDate.find({ 'dates': {$elemMatch: {date: findIt}} }, function (err, dates) {
+			if (err) return handleError(err);
+			res.send(dates)
 		})
 	}
 };

@@ -1,10 +1,10 @@
-var {
+const {
     movieCreate,
     movieEdit,
     movieDelete,
     movieFilter
 } = require('../controllers/movieController');
-var {
+const {
     theatreCreate,
     hallCreate,
     theatreEdit,
@@ -13,40 +13,43 @@ var {
     theatreFilter,
     hallFilter
 } = require('../controllers/theatreController');
-var {
+const {
     eventCreate,
     eventEdit,
     eventDelete,
-    eventFilter
+    eventFilter,
+    dateFilter
 } = require('../controllers/eventController');
-var {
+const {
     cinemaFilter
 } = require('../controllers/cinemaController');
+const apiURL = '/api/v1';
 
 module.exports = function(app) {
 
     /* theatre REST API */
-    app.post('/theatre/create', theatreCreate);
-    app.patch('/theatre/edit/:id', theatreEdit);
-    app.delete('/theatre/delete/:id', theatreDelete);
-    app.get('/theatre/filter', theatreFilter);
-    app.post('/theatre/audi/create', hallCreate);
-    app.delete('/theatre/audi/delete/:id', hallDelete);
-    app.get('/theatre/audi/filter/:id', hallFilter);
+    app.post(`${apiURL}/theatre/create`, theatreCreate);
+    app.patch(`${apiURL}/theatre/edit/:id`, theatreEdit);
+    app.delete(`${apiURL}/theatre/delete/:id`, theatreDelete);
+    app.get(`${apiURL}/theatre/filter`, theatreFilter);
+    app.post(`${apiURL}/theatre/audi/create`, hallCreate);
+    app.delete(`${apiURL}/theatre/audi/delete/:id`, hallDelete);
+    app.get(`${apiURL}/theatre/audi/filter/:id`, hallFilter);
 
     /* movie REST API */
-    app.post('/movie/create', movieCreate);
-    app.get('/movie/edit', movieEdit);
-    app.delete('/movie/delete/:id', movieDelete);
-    app.get('/movie/filter', movieFilter);
+    app.post(`${apiURL}/movie/create`, movieCreate);
+    app.get(`${apiURL}/movie/edit`, movieEdit);
+    app.delete(`${apiURL}/movie/delete/:id`, movieDelete);
+    app.get(`${apiURL}/movie/filter`, movieFilter);
 
     /* theatre REST API */
-    app.post('/event/create', eventCreate);
-    app.get('/event/edit', eventEdit);
-    app.delete('/event/delete/:id', eventDelete);
-    app.get('/event/filter', eventFilter);
+    app.post(`${apiURL}/event/create`, eventCreate);
+    app.get(`${apiURL}/event/edit`, eventEdit);
+    app.delete(`${apiURL}/event/delete/:id`, eventDelete);
+    app.get(`${apiURL}/event/filter`, eventFilter);
+    app.get(`${apiURL}/date/filter`, dateFilter);
     
     /* global REST API */
-    app.get('/cinema/filter', cinemaFilter);
+    app.get(`${apiURL}/cinema/filter`, cinemaFilter);
 
 };

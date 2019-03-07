@@ -1,5 +1,5 @@
-var { Theatre, Movie, MovieDate, Event, Hall } = require('../../db/model')
-var { handleError } = require('../utils')
+const { Theatre, Movie, MovieDate, Event, Hall } = require('../../db/model')
+const { handleError } = require('../utils')
 
 module.exports = {
 	cinemaFilter: function (req, res, next) {

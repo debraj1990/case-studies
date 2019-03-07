@@ -1,13 +1,13 @@
-var { Theatre, Movie, MovieDate, Event } = require('../../db/model')
-var { handleError } = require('../utils')
+const { Theatre, Movie, MovieDate, Event } = require('../../db/model')
+const { handleError } = require('../utils')
 
 module.exports = {
 	movieCreate: function (req, res, next) {
 		//if creating movie - take movie id with associated theatre
 		//movie id map with date
 		//and add it to events
-		var rb = req.body;
-		var movie = {
+		const rb = req.body;
+		const movie = {
 			"movieName": rb.movieName,
 			"movieActors": rb.movie_Actors,
 			"movieGenre": rb.movie_Genre,
@@ -23,7 +23,6 @@ module.exports = {
 	},
 	movieEdit: function (req, res, next) {
 		//edit movie attributes(other than date) based on id
-
 		//if date editting date based on movie id
 		//fetch date id from events 
 		//find date from date collection and edit it accordingly.
@@ -34,7 +33,7 @@ module.exports = {
 			"_theatreId": []
 		}
 		// const id = req.params.id;
-		Movie.findByIdAndUpdate('5c7d5b8644218bef7315259b', movie, {new: true}, function(err, model){
+		Movie.findByIdAndUpdate('5c7d5b8644218bef7315259b', movie, { new: true }, function (err, model) {
 			if (err) return handleError(err);
 			res.send(model)
 		});
@@ -58,34 +57,27 @@ module.exports = {
 		const searchdate = query.searchdate;
 
 		if (theatreId && !searchdate) {
-			Event.find({ _theatreId: theatreId }, function (err, events) {
+			Movie.find({ '_theatreId': { $in: theatreId } }, function (err, movie) {
+				if (searchTerm) {
+					res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
+				} else {
+					res.send(movie);
+				}
+			});
+		} else if (theatreId && searchdate) {
+			MovieDate.find({
+				'dates': { $elemMatch: { date: searchdate } }
+			}, function (err, dates) {
+				const dateIds = dates.map((v, i) => v.id);
 				if (err) return handleError(err);
-				Movie.find({ '_id': { $in: events.map((v, i) => v._movieId) } }, function (err, movie) {
-					if (searchTerm) {
-						res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
-					} else {
-						res.send(movie);
-					}
-				});
-			})
-		} else if (searchdate) {
-			Event.find({ _theatreId: theatreId }, function (err, events) {
-				if (err) return handleError(err);
-				MovieDate.find({ '_id': { $in: events.map((v, i) => v._dateId) } }, function (err, date) {
-					const datemap = date.map((v, i) => {
-						const id = v._id
-						return {
-							id,
-							date: v.dates.map((vv, i) => vv.date).join('|'),
-							event: events.filter((data) => (data._dateId.toString() == v._id.toString()))
-						}
-					})
-					Movie.find({ '_id': { $in: datemap.map((v, i) => v.event[0]._movieId) } }, function (err, movies) {
-						if (err) return handleError(err);
-						res.send(movies);
-					})
-				});
-			})
+				Movie.find({
+					'_theatreId': { $in: theatreId },
+					'_dateId': { $in: dateIds }
+				}, function (err, docs) {
+					if (err) return handleError(err);
+					res.send(docs)
+				})
+			});
 		} else {
 			const id = req.params.id;
 			const findIt = id ? { _id: id } : {};

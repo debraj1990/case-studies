@@ -22,21 +22,29 @@ Steps for adding and mapping theatres/movies/hall/dates/events
 
 ### Microservice endpoint APIs
 
+- Get All Movie  
+`/api/v1/movie/filter`
+
 - Get All Theatres  
-`http://localhost:4001/theatre/filter`
+`/api/v1/theatre/filter`
 
 - Get Movies - based on theatre  
-`http://localhost:4001/movie/filter?theatre=<theatreId>`
+`/api/v1/movie/filter?theatre=<theatreId>`
 
 - Search Movies - based on theatre  
-`http://localhost:4001/movie/filter?theatre=<theatreId>&search=<searchTerm>`
+`/api/v1/movie/filter?theatre=<theatreId>&search=<searchTerm>`
 
 - Get Movies - based on theate and based on date (mm/dd/yyyy)  
-`http://localhost:4001/movie/filter?theatre=<theatreId>&searchdate=<searchDate>`
+`/api/v1/movie/filter?theatre=<theatreId>&searchdate=<searchDate>`
 
 - Get Movies - based on theatre/date/timeStart/timeEnd
 
 - Get Dates/Movie Details - based on theatre/
-- 
 
 
+
+
+
+
+Mongo Restore  
+mongodump  --db cinema-experience -o ~/Desktop/mongo-backup
