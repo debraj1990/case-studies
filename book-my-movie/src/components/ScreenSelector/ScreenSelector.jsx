@@ -130,7 +130,7 @@ class ScreenSelector extends PureComponent {
 	}
 
 	renderSelectedSlot() {
-		const {selectedSlot} = this.state;
+		const { selectedSlot } = this.state;
 
 		return (
 			<div className="bg-info day-selector__selected-day">
