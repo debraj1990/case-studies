@@ -6,11 +6,11 @@ import './ScreenSelector.scss';
  * SLOT SELECTOR COMPONENT
  * @param {*} param0 
  */
-const SlotSelector = ({ timings }) => {
+const SlotSelector = ({ timings, handleSlotSelect }) => {
 	const slotElem = timings.map((slot, index) => {
 		return (
 			<div key={index} className="day">
-				<div className="day-tile">
+				<div className="day-tile" onClick={e => handleSlotSelect(slot)}>
 					{slot}
 				</div>
 			</div>
@@ -26,6 +26,7 @@ const SlotSelector = ({ timings }) => {
 
 SlotSelector.propTypes = {
 	timings: PropTypes.array.isRequired,
+	handleSlotSelect: PropTypes.func.isRequired,
 }
 
 
@@ -54,6 +55,7 @@ const DaySelector = ({ days, handleDaySelect }) => {
 
 DaySelector.propTypes = {
 	days: PropTypes.array.isRequired,
+	handleDaySelect: PropTypes.func,
 };
 
 /**
@@ -73,7 +75,9 @@ class ScreenSelector extends PureComponent {
 		super();
 		this.state = ScreenSelector.initialState;
 		this.handleDaySelect = this.handleDaySelect.bind(this);
+		this.handleSlotSelect = this.handleSlotSelect.bind(this);
 		this.removeSelectedDate = this.removeSelectedDate.bind(this);
+		this.removeSelectedSlot = this.removeSelectedSlot.bind(this);
 	}
 
 	componentDidMount() {
@@ -88,9 +92,21 @@ class ScreenSelector extends PureComponent {
 		this.props.getTiming();
 	}
 
+	handleSlotSelect(selectedSlot) {
+		this.setState({
+			selectedSlot,
+		});
+	}
+
 	removeSelectedDate() {
 		this.setState({
 			selectedDay: null,
+		});
+	}
+
+	removeSelectedSlot() {
+		this.setState({
+			selectedSlot: null,
 		});
 	}
 
@@ -113,16 +129,34 @@ class ScreenSelector extends PureComponent {
 		);
 	}
 
+	renderSelectedSlot() {
+		const {selectedSlot} = this.state;
+
+		return (
+			<div className="bg-info day-selector__selected-day">
+				{selectedSlot}
+				<button
+				type="button"
+				className="close"
+				aria-label="Close"
+				onClick={this.removeSelectedSlot}>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		);
+	}
+
 	render() {
-		const { selectedDay } =this.state;
+		const { selectedDay, selectedSlot } =this.state;
 		const { timings, days } = this.props;
 
 		return (
 			<div className="day-selector">
 				{this.renderSelectedDay()}
+				{selectedSlot && this.renderSelectedSlot()}
 				<div className="day-selector__section">
 					{(selectedDay)
-						? <SlotSelector timings={timings} />
+						? !selectedSlot && <SlotSelector timings={timings} handleSlotSelect={this.handleSlotSelect} />
 						: <DaySelector days={days} handleDaySelect={this.handleDaySelect}/>
 					}
 				</div>
