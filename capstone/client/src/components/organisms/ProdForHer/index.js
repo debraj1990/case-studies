@@ -15,7 +15,7 @@ class ProdForHim extends Component {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: false,
         responsive: [

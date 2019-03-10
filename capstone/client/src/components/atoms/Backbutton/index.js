@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 
 export default class BackButton extends Component {
+  handleClick() {
+    let { history } = this.props;
+    if (history) {
+      history.history.goBack();
+    }
+  }
   render() {
-    let { tgtUrl } = this.props;
-    tgtUrl = tgtUrl ? tgtUrl : '#';
+
+
     return (
-      <a href={tgtUrl} className="previous round">&#8249;</a>
+      <button className="previous round" onClick={(e) => this.handleClick(e)}>&#8249;</button>
     )
   }
 }

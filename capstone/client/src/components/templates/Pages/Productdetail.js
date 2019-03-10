@@ -6,24 +6,22 @@ import Header from '../../organisms/Header';
 
 
 const metaData = {
-  title: 'Category Listing',
-  link: '/category/:id',
+  title: 'Product Detail',
+  link: '/product/:id',
   isFooterLink: true
 };
 
-class Categorydetail extends Component {
+class Productdetail extends Component {
   render() {
     let { history } = this.props;
-    let catId = history.location.pathname.split('/').pop();
+    let prodId = history.location.pathname.split('/').pop();
     return (
       <div>
         <Header history={history} />
-        <ProdForHer catId={catId} />
-        <ProdForHim catId={catId} />
-        <Trending catId={catId} />
+        Hello {prodId}
       </div>
     )
   }
 }
-export default Categorydetail;
+export default Productdetail;
 export { metaData };
