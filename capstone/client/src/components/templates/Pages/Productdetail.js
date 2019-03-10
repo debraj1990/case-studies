@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import ProdForHer from '../../organisms/ProdForHer';
-import ProdForHim from '../../organisms/ProdForHim';
-import Trending from '../../organisms/Trending';
 import Header from '../../organisms/Header';
 
 
