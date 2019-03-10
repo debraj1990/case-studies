@@ -35,18 +35,24 @@ class ProdForHim extends Component {
     actions.loadProducts(catId);
 
   }
+  toggleLiked() {
+
+  }
   renderProducts(products) {
     return products.map((val, idx) => {
+      console.log(val);
       let imgObj = val.variants[0].images.filter((image) => image.isDefault);
       let imgName = imgObj[0].path.split('/').pop();
 
       return (
-        <div key={idx}>
-          <img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '100%' }} />
-          <div className="carousel-caption">
-            <p className="cat-head">{val.name}</p>
-            {/* <p className="cat-head">{val.price}</p> */}
-          </div>
+        <div key={idx} className="p-3">
+          <button onClick={(e) => { this.toggleLiked() }}><i className="far fa-heart float-right"></i></button>
+          <a href={'/product/' + val.id}><img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '60%' }} />
+            <div className="carousel-caption">
+              <p className="cat-head">{val.name}</p>
+              {/* <p className="cat-head">{val.price}</p> */}
+            </div>
+          </a>
         </div>
       )
     })
@@ -56,6 +62,7 @@ class ProdForHim extends Component {
     let { carouselSettings } = this.state;
     let subCatName = 'men'
     let productsArr = products.filter((product) => product.subcategory.toLowerCase() === subCatName)
+    // debugger;
     let slides = this.renderProducts(productsArr);
     return (
       <div>
