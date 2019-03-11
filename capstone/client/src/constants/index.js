@@ -13,3 +13,4 @@ export const FETCHED_TWITTER_FEED = 'FETCHING_TWITTER_FEED';
 
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';

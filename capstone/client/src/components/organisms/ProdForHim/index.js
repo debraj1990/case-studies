@@ -6,7 +6,7 @@ import { loadProducts } from '../../../actions/products'
 import './index.scss'
 import Carousel from '../Carousel';
 
-import { images } from '../../../utilities/imgimport'
+import { images } from '../../../utilities/imgimport';
 class ProdForHim extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +51,6 @@ class ProdForHim extends Component {
             <div className="carousel-caption">
               <p className="cat-head">{val.name}</p>
               {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
-              {/* <p className="cat-head">{val.price}</p> */}
             </div>
           </a>
         </div>
@@ -66,7 +65,7 @@ class ProdForHim extends Component {
     let slides = this.renderProducts(productsArr);
     return (
       <div>
-        {slides ? <Carousel heading="For Him" settingParam={carouselSettings} carouselSlides={slides} /> : ''}
+        {slides ? <Carousel classes="for-h" heading="For Him" settingParam={carouselSettings} carouselSlides={slides} /> : ''}
       </div>
     )
   }
