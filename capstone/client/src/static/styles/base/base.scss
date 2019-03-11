@@ -1,4 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '../vendor/style.css';
 @import 'fonts';
 @import 'imports';
 // Text node resets
@@ -11,7 +12,7 @@ $text-elements:('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'b', 'i', 'div', 'span'
 }
 
 %basefontfamily {
-  font-family: $ff-futura;
+  font-family: $ff-icomoon;
 }
 
 @each $element in $text-elements {

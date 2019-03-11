@@ -19,8 +19,8 @@ export default class Carousel extends Component {
     let settings = settingParam ? settingParam : defaultSettings;
 
     return (
-      <div className={"mt-5 " + classes}>
-        <h2>{heading}</h2>
+      <div className={"mt-2 " + classes}>
+        {heading ? <h2>{heading}</h2> : ''}
         <Slider {...settings}  >
           {carouselSlides}
         </Slider>
