@@ -8,6 +8,9 @@ const Api = {
   },
   loadProducts(catId) {
     return axios.get(`${apiHost}Categories/${catId}/products`);
+  },
+  loadProductById(pid) {
+    return axios.get(`${apiHost}products/${pid}`);
   }
 }
 

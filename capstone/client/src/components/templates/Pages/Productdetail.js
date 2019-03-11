@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../../organisms/Header';
+import ProductSlider from '../../organisms/ProductSlider';
+import ProdDetail from '../../organisms/ProdDetail';
 
 
 const metaData = {
@@ -15,7 +17,8 @@ class Productdetail extends Component {
     return (
       <div>
         <Header history={history} />
-        Hello {prodId}
+        {/* <ProductSlider pid={prodId} /> */}
+        <ProdDetail pid={prodId}></ProdDetail>
       </div>
     )
   }

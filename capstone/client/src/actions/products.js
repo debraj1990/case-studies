@@ -1,5 +1,5 @@
 
-import { LOAD_PRODUCTS } from '../constants'
+import { LOAD_PRODUCTS, LOAD_PRODUCT_Detail } from '../constants'
 import Api from '../Api'
 
 export function loadProducts(catId) {
@@ -18,4 +18,21 @@ export function loadProducts(catId) {
       })
   }
 
+}
+
+export function loadProductById(pId) {
+  // thunk
+  return function (dispatch) {
+    dispatch({ type: 'REQUEST_BEGIN', message: 'Loading Products..' })
+    Api.loadProductById(pId)
+      .then(response => response.data)
+      .then(productObj => {
+        // log
+        dispatch({ type: 'REQUEST_FINISH', message: '' })
+        dispatch({ type: LOAD_PRODUCT_Detail, productObj }) // async action
+      })
+      .catch(error => {
+        dispatch({ type: 'REQUEST_ERROR', message: 'Error while loading Products' })
+      })
+  }
 }
