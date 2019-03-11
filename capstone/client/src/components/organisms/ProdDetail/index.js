@@ -11,6 +11,7 @@ class ProdDetail extends Component {
     super(props);
     this.state = {
       qty: 1,
+      totalPrice: 0,
       carouselSettings: {
         dots: true,
         infinite: true,
@@ -77,28 +78,42 @@ class ProdDetail extends Component {
     }
   }
 
+  handleQtyChange(e, price) {
+    console.log(e.target.value);
+    let { priceRef } = this.refs;
+    let newPrice = price * e.target.value;
+    this.setState({ 'totalPrice': newPrice })
+  }
+
   render() {
-    let { qty, carouselSettings } = this.state;
+    let { qty, carouselSettings, totalPrice } = this.state;
     let { product } = this.props;
     let slides = this.renderThumbnails(product.variants);
     let productSlides = this.renderProductSlides(product.variants);
 
+    let price = product.variants ? product.variants[0].sale_price : 0;
+    // this.setState({ totalPrice: price });
     return (
-      <div className="row">
-        <div className="col-sm-12"><h2>{product.name}</h2></div>
+      <div className="row product-detail-wrap">
+        <div className="col-sm-12"><h3>{product.name}</h3></div>
         <div className="col-sm-6 ">
           {productSlides ? <Carousel settingParam={carouselSettings} carouselSlides={productSlides} /> : ''}
           {/* {slides ? <Carousel settingParam={carouselSettings} carouselSlides={slides} /> : ''} */}
         </div >
         <div className="col-sm-6 ">
+
           <form className="mt-5">
             <div className="row">
               <div className="form-group col">
-                <label for="usr">Name:</label>
-                <input type="text" className="form-control" id="usr" />
+                <div className="row">
+                  <label className="w-100">Select a color:</label>
+                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'red', border: '1px solid grey', cursor: 'pointer' }}></div>
+                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'green', border: '1px solid grey', cursor: 'pointer' }}></div>
+                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'yellow', border: '1px solid grey', cursor: 'pointer' }}></div>
+                </div>
               </div>
               <div className="form-group col">
-                <label for="size">Size:</label>
+                <label htmlFor="size">Select Size:</label>
                 <select className="form-control " id="size">
                   <option value="small">small</option>
                   <option value="medium">medium</option>
@@ -108,8 +123,8 @@ class ProdDetail extends Component {
             </div>
             <div className="row">
               <div className="form-group col">
-                <label for="qty">Qunatity:</label>
-                <select className="form-control " id="qty">
+                <label htmlFor="qty">Qunatity:</label>
+                <select className="form-control" ref="qty" id="qty" onChange={(e) => this.handleQtyChange(e, price)} >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -120,6 +135,7 @@ class ProdDetail extends Component {
             </div>
             <div className="row">
               <div className="form-group col">
+                <p className="mb-3 text-right"><strong>Total Cost:</strong> &#8377; <span ref="price">{totalPrice}</span></p>
                 <button className="btn btn-primary w-100 d-block m-auto" style={{ maxWidth: '300px' }}>Add to cart</button>
               </div>
             </div>
