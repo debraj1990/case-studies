@@ -15,6 +15,12 @@ const Api = {
   updateCart(catId, cartObj) {
     return axios.put(`${apiHost}Carts/${catId}`, cartObj);
   },
+  getWishlist(wishlistId) {
+    return axios.get(`${apiHost}wishlists/${wishlistId}`);
+  },
+  updateWishlist(wishlistId, wishlistObj) {
+    return axios.put(`${apiHost}wishlists/${wishlistId}`, wishlistObj);
+  },
   getUser(userId) {
     return axios.get(`${apiHost}users/${userId}`);
   }

@@ -85,6 +85,10 @@ body {
     [class*="col-"] {
         @include padding-left(15px);
         @include padding-right(15px);
+        @media #{$mobile} {
+            @include padding-left(10px);
+            @include padding-right(10px);
+        }
     }
 }
 

@@ -16,6 +16,9 @@ const intialState = {
   cart: {
     products: []
   },
+  wishlist: {
+    products: []
+  },
   user: {
     carts: {
       products: []

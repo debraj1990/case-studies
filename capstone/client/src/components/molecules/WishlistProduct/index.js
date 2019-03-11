@@ -1,0 +1,30 @@
+import React, { Component } from 'react'
+import './index.scss';
+import { images } from '../../../utilities/imgimport'
+import AddToWishlist from '../../atoms/AddToWishlist';
+
+class WishlistProduct extends Component {
+  render() {
+
+    let { product } = this.props;
+    let tgtUrl = `/product/${product.id}`;
+    let variant = product.variants[0];
+    let imgUrl = variant.images[0].path.split('/').pop();
+    let prodObj = {
+      product: product.id,
+      sku: variant.sku
+    }
+    return (
+      <div className="col-6 col-sm-3 wishlist-prod">
+        <div className="wishlist-prod-container">
+          <a href={tgtUrl}>
+            <img src={images[imgUrl]} className="img-responsive" style={{ width: '100%', height: '100%' }} />
+          </a>
+          <p>{product.name}</p>
+          <p>&#x20b9; {variant.sale_price}</p>
+        </div>
+      </div>
+    )
+  }
+}
+export default WishlistProduct
