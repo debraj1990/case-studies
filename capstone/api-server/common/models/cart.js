@@ -33,7 +33,7 @@ var populateCartProducts = function (cart, cb) {
 
 module.exports = function (Cart) {
 
-  Cart.beforeRemote('replaceById', function (context, user, next) {
+  /*Cart.beforeRemote('replaceById', function (context, user, next) {
     var userId = context.req.body.userId;
     var productObj = context.req.body.products[0];
     // get cart by user id
@@ -48,7 +48,7 @@ module.exports = function (Cart) {
         console.log("cart for user does not exist");
       }
     });
-  });
+  });*/
 
   //should be removed, redundant
   Cart.afterRemote('replaceById', function (context, cart, next) {
@@ -64,7 +64,7 @@ module.exports = function (Cart) {
     });
   });
 
-  Cart.removeProduct = function (id, data, cb) {
+  /*Cart.removeProduct = function (id, data, cb) {
     var productId = data.productId;
     Cart.findById(id, function (err, cart) {
       if (!err) {
@@ -84,14 +84,14 @@ module.exports = function (Cart) {
         cb(null, { 'error': 'cart not found' });
       }
     });
-  }
+}*/
 
-  Cart.remoteMethod('removeProduct', {
+  /*Cart.remoteMethod('removeProduct', {
     accepts: [
       { arg: 'id', type: 'string', required: true },
       { arg: 'data', type: 'object', http: { source: 'body' }, default: '{"userId": "string", "producId":"string"}' }
     ],
     returns: { arg: 'res', type: 'object', http: { source: 'res' } },
     http: { 'verb': 'post', 'path': '/:id/removeProduct' }
-  });
-};
+  });*/
+}

@@ -12,7 +12,18 @@ const intialState = {
 
   loader: false,
   categories: [],
-  products: []
+  products: [],
+  cart: {
+    products: []
+  },
+  user: {
+    carts: {
+      products: []
+    },
+    wishlists: {
+      products: []
+    }
+  }
 }
 
 const sagaMiddleware = createSagaMiddleware()
