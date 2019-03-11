@@ -35,18 +35,25 @@ class ProdForHim extends Component {
     actions.loadProducts(catId);
 
   }
+  toggleLiked() {
+
+  }
   renderProducts(products) {
     return products.map((val, idx) => {
       let imgObj = val.variants[0].images.filter((image) => image.isDefault);
       let imgName = imgObj[0].path.split('/').pop();
-
+      let listPrice = val.variants[0].list_price;
+      let salePrice = val.variants[0].sale_price;
       return (
-        <div key={idx}>
-          <img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '100%' }} />
-          <div className="carousel-caption">
-            <p className="cat-head">{val.name}</p>
-            {/* <p className="cat-head">{val.price}</p> */}
-          </div>
+        <div key={idx} className=" prod-box">
+          <button className="float-right" onClick={(e) => { this.toggleLiked() }}><i className="far fa-heart float-right"></i></button>
+          <a href={'/product/' + val.id}><img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '60%' }} />
+            <div className="carousel-caption">
+              <p className="cat-head">{val.name}</p>
+              {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
+              {/* <p className="cat-head">{val.price}</p> */}
+            </div>
+          </a>
         </div>
       )
     })
@@ -55,7 +62,7 @@ class ProdForHim extends Component {
     let { products } = this.props;
     let { carouselSettings } = this.state;
     let subCatName = 'men'
-    let productsArr = products.filter((product) => product.subcategory.toLowerCase() === subCatName)
+    let productsArr = products.filter((product) => product.subcategory.toLowerCase() === subCatName);
     let slides = this.renderProducts(productsArr);
     return (
       <div>

@@ -3,9 +3,10 @@ import BackButton from '../../atoms/Backbutton';
 
 class Header extends Component {
   render() {
+    let history = this.props;
     return (
       <div>
-        <BackButton tgtUrl="/home" />
+        <BackButton history={history} />
         {/* <h1>Header</h1> */}
       </div>
     )
