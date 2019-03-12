@@ -9,9 +9,25 @@ const Api = {
   loadProducts(catId) {
     return axios.get(`${apiHost}Categories/${catId}/products`);
   },
+  loadCart(catId) {
+    return axios.get(`${apiHost}Carts/${catId}`);
+  },
+  updateCart(catId, cartObj) {
+    return axios.put(`${apiHost}Carts/${catId}`, cartObj);
+  },
+  getWishlist(wishlistId) {
+    return axios.get(`${apiHost}wishlists/${wishlistId}`);
+  },
+  updateWishlist(wishlistId, wishlistObj) {
+    return axios.put(`${apiHost}wishlists/${wishlistId}`, wishlistObj);
+  },
+  getUser(userId) {
+    return axios.get(`${apiHost}users/${userId}`);
+  },
   loadProductById(pid) {
     return axios.get(`${apiHost}products/${pid}`);
   }
+
 }
 
 export default Api;

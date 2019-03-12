@@ -7,6 +7,7 @@ import './index.scss'
 import Carousel from '../Carousel';
 
 import { images } from '../../../utilities/imgimport';
+import AddToWishlist from '../../atoms/AddToWishlist';
 class ProdForHim extends Component {
   constructor(props) {
     super(props);
@@ -44,9 +45,10 @@ class ProdForHim extends Component {
       let imgName = imgObj[0].path.split('/').pop();
       let listPrice = val.variants[0].list_price;
       let salePrice = val.variants[0].sale_price;
+      let wishlistProdObj = { product: val.id, sku: val.variants[0].sku };
       return (
         <div key={idx} className=" prod-box">
-          <button className="float-right" onClick={(e) => { this.toggleLiked() }}><i className="far fa-heart float-right"></i></button>
+          <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
           <a href={'/product/' + val.id}><img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '60%' }} />
             <div className="carousel-caption">
               <p className="cat-head">{val.name}</p>

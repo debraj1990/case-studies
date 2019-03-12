@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { addToCart } from '../../../actions/cart';
+import { updateCart } from '../../../actions/cart';
 import { loadProductById } from '../../../actions/products'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -24,9 +24,6 @@ class ProdDetail extends Component {
     }
   }
   addToCart(e, item) {
-    let { actions } = this.props;
-    actions.addToCart(item, 1);
-
   }
   incQty() {
     let { qty } = this.state;
@@ -158,7 +155,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   // ... normally is an object full of action creators
-  actions: bindActionCreators({ addToCart, loadProductById }, dispatch)
+  actions: bindActionCreators({ updateCart, loadProductById }, dispatch)
 })
 
 // `connect` returns a new function that accepts the component to wrap:

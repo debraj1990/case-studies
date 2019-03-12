@@ -1,61 +1,43 @@
-import { ADD_TO_CART, LOAD_CART } from '../constants'
 
+import { LOAD_CART, UPDATE_CART, UPDATE_USER_CART } from '../constants'
 import Api from '../Api'
 
-function fetchFromStorage(key) {
-  let item = localStorage.getItem(key);
-  if (item) {
-    try {
-      return JSON.parse(item);
-    } catch (e) {
-      return item;
-    }
-  }
-}
-
-function storeInStorage(key, val) {
-  localStorage.removeItem(key);
-  localStorage.setItem(key, JSON.stringify(val));
-}
-
-export function addToCart(item, qty) {
+export function loadCart(cartId) {
+  console.log("LOAD CART called");
+  // thunk
   return function (dispatch) {
-    dispatch({ type: 'REQUEST_BEGIN', message: 'Adding to cart..' });
-    item.qty = qty;
-    let itemsInCart = fetchFromStorage('cartItems') || [];
-    if (itemsInCart.length) {
-      let itemArr = [];
-      let existingItem = itemsInCart.filter((val) => val.productId === item.productId);
-      if (existingItem.length) {
-        itemsInCart.map((val, idx) => {
-          if (val.productId === item.productId) {
-            val.qty = val.qty + qty;
-          }
-          itemArr.push(val);
-        })
-        itemsInCart = [...itemArr];
-      } else {
-        itemsInCart.push(item);
-      }
-    } else {
-      itemsInCart.push(item);
-    }
-    storeInStorage('cartItems', itemsInCart);
-    let timer = setTimeout(() => {
-      dispatch({ type: 'REQUEST_FINISH', message: 'Request finished...' })
-      clearTimeout(timer);
-    }, 1000);
-    return { type: 'ADD_TO_CART', cart: itemsInCart }
-
+    dispatch({ type: 'REQUEST_BEGIN', message: 'Loading Cart..' })
+    Api.loadCart(cartId)
+      .then(response => response.data)
+      .then(cart => {
+        // log
+        console.log(cart);
+        dispatch({ type: 'REQUEST_FINISH', message: '' })
+        dispatch({ type: LOAD_CART, cart }) // async action
+      })
+      .catch(error => {
+        dispatch({ type: 'REQUEST_ERROR', message: 'Error while loading cart' })
+      })
   }
+
 }
 
-export function loadCart(user) {
-  let itemsInCart = fetchFromStorage('cartItems') || [];
-  return { type: 'LOAD_CART', cart: itemsInCart }
-}
+export function updateCart(cartId, cartObj) {
+  console.log("Add to cart/remove CART called");
+  return function (dispatch) {
+    dispatch({ type: 'REQUEST_BEGIN', message: 'Adding to Cart..' })
+    Api.updateCart(cartId, cartObj)
+      .then(response => response.data)
+      .then(cart => {
+        // log
+        dispatch({ type: 'REQUEST_FINISH', message: 'product added to cart' })
+        dispatch({ type: UPDATE_CART, cart }) // async action
+        cartObj.id = cart.id;
+        dispatch({ type: UPDATE_USER_CART, cart: cartObj })
+      })
+      .catch(error => {
+        dispatch({ type: 'REQUEST_ERROR', message: 'Error while adding to cart' })
+      })
+  }
 
-export function loadCartLength() {
-  let itemsInCart = fetchFromStorage('cartItems') || [];
-  return { type: 'LOAD_CART_LENGTH', cart: itemsInCart }
 }
