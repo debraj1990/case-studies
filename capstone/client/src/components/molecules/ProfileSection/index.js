@@ -1,6 +1,14 @@
 import React from 'react';
 import EditButton from '../../atoms/EditButton';
+import LogoutButton from '../../atoms/LogoutButton';
 import './ProfileSection.scss';
+
+const metaData = {
+    title: 'Profile',
+    link: '/profile',
+    isFooterLink: true
+  };
+  
 
 const ProfileSection = ({ title, children }) => (
     <div className="wwn-profile-section">
@@ -11,7 +19,12 @@ const ProfileSection = ({ title, children }) => (
         <div className="wwn-profile-section-content">
             {children}
         </div>
+        <a className="signout-btn">
+            <i className="fa fa-fw fa-power-off"></i> Sign Out
+        </a>
+        <LogoutButton />
     </div>
 );
 
 export default ProfileSection;
+export { metaData };

@@ -1,4 +1,5 @@
-@import '../../../main/imports';
+// @import '../../../main/imports';
+@import '../../../static/styles/base/_imports.scss';
 .wwn-edit {
     @include width(25px);
     display: inline-block;

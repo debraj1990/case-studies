@@ -13,3 +13,12 @@ export const FETCHED_TWITTER_FEED = 'FETCHING_TWITTER_FEED';
 
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+// Initialize Firebase
+export const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",
+    authDomain: "capstone-232408.firebaseapp.com",
+    databaseURL: "https://capstone-232408.firebaseio.com",
+    projectId: "capstone-232408",
+    storageBucket: "capstone-232408.appspot.com",
+    messagingSenderId: "417901996740"
+};
