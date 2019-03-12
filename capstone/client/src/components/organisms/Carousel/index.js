@@ -11,15 +11,17 @@ export default class Carousel extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+      variableWidth: false
     };
-    let { settingParam, heading, carouselSlides } = this.props;
+    let { settingParam, heading, carouselSlides, classes } = this.props;
     let settings = settingParam ? settingParam : defaultSettings;
 
     return (
-      <div>
-        <h2>{heading}</h2>
-        <Slider {...settings}>
+      <div className={"mt-2 " + classes}>
+        {heading ? <h2>{heading}</h2> : ''}
+        <Slider {...settings}  >
           {carouselSlides}
         </Slider>
       </div>

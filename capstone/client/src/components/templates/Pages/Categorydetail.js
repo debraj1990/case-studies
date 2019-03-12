@@ -6,8 +6,8 @@ import Header from '../../organisms/Header';
 
 
 const metaData = {
-  title: 'Anniversary',
-  link: '/anniversary',
+  title: 'Category Listing',
+  link: '/category/:id',
   isFooterLink: true
 };
 
@@ -17,7 +17,7 @@ class Categorydetail extends Component {
     let catId = history.location.pathname.split('/').pop();
     return (
       <div>
-        <Header />
+        <Header history={history} />
         <ProdForHer catId={catId} />
         <ProdForHim catId={catId} />
         <Trending catId={catId} />

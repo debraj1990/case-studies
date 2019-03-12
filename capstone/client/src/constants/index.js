@@ -20,3 +20,4 @@ export const UPDATE_WISHLIST = 'UPDATE_WISHLIST';
 export const UPDATE_USER_CART = 'UPDATE_USER_CART';
 export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
+export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';

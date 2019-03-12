@@ -6,40 +6,54 @@ import { updateWishlist } from '../../../actions/wishlist'
 import './index.scss';
 
 class AddToWishlist extends Component {
-    addToWishlist() {
-        let { actions, user, wishlistObj } = this.props;
+    constructor(props) {
+        super(props);
+        let isAlreadyAdded = this.isProductInWishlist();
+        this.state = {
+            isAlreadyAdded: isAlreadyAdded
+        }
+    }
+    componentDidMount() {
+
+    }
+    isProductInWishlist() {
+        let { user, wishlistObj } = this.props;
         let wishlist = JSON.parse(JSON.stringify(user.wishlists));
-        let wishlistId = wishlist.id;
         let isAlreadyAdded = false;
-        console.log(wishlistObj);
-        wishlist.products = wishlist.products.filter((value, key) => {
+        wishlist.products.forEach((value, key) => {
             console.log(value);
             if (value.product === wishlistObj.product) {
                 isAlreadyAdded = true;
-                return false;
-            } else {
-                return true;
             }
         });
-        /*cart.products.map((product) => {
-            if (product.productDetails) {
-                delete product.productDetails;
-            }
-            return product;
-        });*/
+        return isAlreadyAdded;
+
+    }
+    addToWishlist() {
+        let { actions, user, wishlistObj } = this.props;
+        let { isAlreadyAdded } = this.state;
+        let wishlist = JSON.parse(JSON.stringify(user.wishlists));
+        let wishlistId = wishlist.id;
+        console.log(wishlistObj);
         if (!isAlreadyAdded) {
             wishlist.products.push(wishlistObj);
+        } else {
+            wishlist.products = wishlist.products.filter((value, key) => {
+                return value.product !== wishlistObj.product;
+            });
         }
-
-        //cart.userId = user.id;
+        this.setState({ isAlreadyAdded: !isAlreadyAdded });
         delete wishlist.id;
         console.log("=========wishlist====");
         console.log(wishlist);
         actions.updateWishlist(wishlistId, wishlist);
     }
     render() {
+        let { isAlreadyAdded } = this.state;
+        console.log("product in wishlist");
+        console.log(isAlreadyAdded);
         return (
-            <button className="btn btn-danger" onClick={(e) => this.addToWishlist()}>+</button>
+            <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right " + (isAlreadyAdded ? 'fas' : 'far')}></i></button>
         );
     }
 }

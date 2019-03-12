@@ -17,6 +17,7 @@ class WishlistProduct extends Component {
     return (
       <div className="col-6 col-sm-3 wishlist-prod">
         <div className="wishlist-prod-container">
+          <div className="float-right"><AddToWishlist wishlistObj={prodObj} /></div>
           <a href={tgtUrl}>
             <img src={images[imgUrl]} className="img-responsive" style={{ width: '100%', height: '100%' }} />
           </a>

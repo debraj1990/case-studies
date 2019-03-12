@@ -1,4 +1,4 @@
-import { UPDATE_USER_CART, GET_USER } from '../constants'
+import { UPDATE_USER_CART, GET_USER, UPDATE_USER_WISHLIST } from '../constants'
 export function userReducer(state = {}, action) {
     //
     switch (action.type) {
@@ -13,6 +13,14 @@ export function userReducer(state = {}, action) {
             let newState = Object.assign({}, state);
             newState.carts = updatedCart;
 
+            return newState;
+        }
+        case UPDATE_USER_WISHLIST: {
+            let { wishlist } = action;
+
+            let updatedWishlist = JSON.parse(JSON.stringify(wishlist));
+            let newState = Object.assign({}, state);
+            newState.wishlists = updatedWishlist;
             return newState;
         }
         default:

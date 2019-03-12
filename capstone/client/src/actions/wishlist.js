@@ -33,7 +33,7 @@ export function updateWishlist(wishlistId, wishlistObj) {
                 dispatch({ type: 'REQUEST_FINISH', message: 'product added to wishlist' })
                 dispatch({ type: UPDATE_WISHLIST, wishlist }) // async action
                 wishlistObj.id = wishlist.id;
-                dispatch({ type: UPDATE_USER_WISHLIST, cart: wishlistObj })
+                dispatch({ type: UPDATE_USER_WISHLIST, wishlist: wishlistObj })
             })
             .catch(error => {
                 dispatch({ type: 'REQUEST_ERROR', message: 'Error while adding to wishlist' })
