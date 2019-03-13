@@ -1,5 +1,8 @@
 
 pipeline {
+  tools {
+    nodejs "node"
+  }
   node {       
    def workspace = pwd() 
   }
@@ -13,9 +16,7 @@ pipeline {
     CI = 'true' 
   }
 
-  tools {
-    nodejs "node"
-  }
+  
 
   stages {
     
