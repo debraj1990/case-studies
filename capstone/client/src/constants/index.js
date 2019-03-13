@@ -13,6 +13,15 @@ export const FETCHED_TWITTER_FEED = 'FETCHING_TWITTER_FEED';
 
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+export const LOAD_CART = 'LOAD_CART';
+export const UPDATE_CART = 'UPDATE_CART';
+export const GET_WISHLIST = 'GET_WISHLIST';
+export const UPDATE_WISHLIST = 'UPDATE_WISHLIST';
+export const UPDATE_USER_CART = 'UPDATE_USER_CART';
+export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
+export const GET_USER = 'GET_USER';
+export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
+//export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 // Initialize Firebase
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",

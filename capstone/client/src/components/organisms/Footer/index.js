@@ -12,7 +12,7 @@ class Footer extends Component {
       },
       {
         name: 'Liked',
-        target: '/liked',
+        target: '/wishlist',
         classes: 'far fa-heart'
       },
       {

@@ -1,0 +1,48 @@
+
+pipeline {
+  
+  agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true' 
+    }
+
+  tools {
+    nodejs "node"
+  }
+
+
+
+  stages {
+    
+    stage('Checkout') {
+      steps {
+        git 'https://github.com/XT-training/case-studies.git'
+      }
+    }
+
+    stage('server dependencies install') {
+      steps {
+        def workspace = pwd()
+        dir('${workspace}@script/capstone/api-server') {
+          sh 'npm install'
+        }
+      }
+    }
+
+    stage('server run') {
+      steps {
+        def workspace = pwd()
+        dir('${workspace}@script/capstone/api-server') {
+          sh 'npm start'
+        }
+      }
+    }
+  }
+}
+    
+     

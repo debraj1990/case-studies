@@ -15,13 +15,13 @@ export default class Carousel extends Component {
       adaptiveHeight: false,
       variableWidth: false
     };
-    let { settingParam, heading, carouselSlides } = this.props;
+    let { settingParam, heading, carouselSlides, classes } = this.props;
     let settings = settingParam ? settingParam : defaultSettings;
 
     return (
-      <div className="mt-5">
-        <h2>{heading}</h2>
-        <Slider {...settings}>
+      <div className={"mt-2 " + classes}>
+        {heading ? <h2>{heading}</h2> : ''}
+        <Slider {...settings}  >
           {carouselSlides}
         </Slider>
       </div>

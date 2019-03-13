@@ -1,4 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '../vendor/all.css';
+@import '../vendor/style.css';
 @import 'fonts';
 @import 'imports';
 // Text node resets
@@ -11,7 +13,7 @@ $text-elements:('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'b', 'i', 'div', 'span'
 }
 
 %basefontfamily {
-  font-family: $ff-futura;
+  font-family: $ff-icomoon;
 }
 
 @each $element in $text-elements {
@@ -63,13 +65,17 @@ body {
   background-color: $bg-body; // height: 100vh;
 }
 
+.wwn-app {
+  @include padding-bottom(100px);
+}
+
 .wwn-container {
-  @include padding-left(15px);
-  @include padding-right(15px);
   max-width: 100%;
   margin: 0 auto;
   @media #{$tablet} {
     @include max-width(1920px);
+    @include padding-left(15px);
+    @include padding-right(15px);
   }
 }
 
@@ -81,6 +87,10 @@ body {
   [class*="col-"] {
     @include padding-left(15px);
     @include padding-right(15px);
+    @media #{$mobile} {
+      @include padding-left(10px);
+      @include padding-right(10px);
+    }
   }
 }
 
@@ -112,4 +122,8 @@ nav {
 .wwn-social-img {
   max-width: 100%;
   padding-left: 10%;
+}
+
+.prod-box {
+  box-shadow: 5px 5px 30px #d3d3d3;
 }
