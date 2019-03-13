@@ -13,7 +13,8 @@ class Cart extends Component {
         // console.log("Render cart");
         return (
             <div className="container cart-container">
-                <h3 className="cart-heading">Your Cart</h3>
+                <h3 className="cart-heading mb-3">Your Cart</h3>
+                <hr />
                 <CartProducts />
                 <CartFooter />
             </div>

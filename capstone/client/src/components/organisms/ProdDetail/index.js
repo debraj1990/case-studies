@@ -41,10 +41,7 @@ class ProdDetail extends Component {
     }
     this.setState({ 'qty': updatedQty });
   }
-  handleQtyChange(e) {
-    let val = e.target.value;
-    this.setState({ 'qty': val });
-  }
+
   componentDidMount() {
     // let { qty } = this.state;
     let { actions, pid } = this.props;
@@ -80,7 +77,7 @@ class ProdDetail extends Component {
 
   handleQtyChange(e, price) {
     // console.log(e.target.value);
-    let { priceRef } = this.refs;
+    // let { priceRef } = this.refs;
     let selectedQty = e.target.value;
     let newPrice = price * selectedQty;
     this.setState({ 'totalPrice': newPrice, 'qty': selectedQty })
@@ -89,7 +86,7 @@ class ProdDetail extends Component {
   render() {
     let { qty, carouselSettings, totalPrice } = this.state;
     let { product } = this.props;
-    let slides = this.renderThumbnails(product.variants);
+    // let thumbSlides = this.renderThumbnails(product.variants);
     let productSlides = this.renderProductSlides(product);
 
     let price = product.variants ? product.variants[0].sale_price : 0;
@@ -131,7 +128,7 @@ class ProdDetail extends Component {
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
-                  <option value="5">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>

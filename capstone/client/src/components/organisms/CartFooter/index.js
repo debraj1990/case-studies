@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import './index.scss';
 
 class CartFooter extends Component {
@@ -21,11 +21,12 @@ class CartFooter extends Component {
         return (
             <div className="cart-footer row">
                 <div className="col-9">
-                    <button className="btn btn-danger">Checkout</button>
+
                 </div>
-                <div className="col-3">
+                <div className="col-1">
                     <span className="cart-total-amnt">Total: &#x20b9;{this.calculateCartTotal()}</span>
                 </div>
+                <div className="col-2 text-center"><button className="btn btn-danger">Checkout</button></div>
             </div>
         )
     }
