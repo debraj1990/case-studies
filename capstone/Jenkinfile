@@ -1,8 +1,5 @@
-#!/usr/bin/groovy
-// by Naga
 
 pipeline {
-  // agent any
   agent any
 
 
@@ -10,7 +7,8 @@ pipeline {
     
     stage('Checkout') {
       steps {
-        git 'https://github.com/XT-training/case-studies/tree/team-3'
+        //git 'https://github.com/XT-training/case-studies/tree/team-3'
+        echo 'checking out'
       }
     }
   }
