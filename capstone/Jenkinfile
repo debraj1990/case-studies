@@ -3,9 +3,9 @@ pipeline {
   tools {
     nodejs "node"
   }
-  node {       
-   def workspace = pwd() 
-  }
+  //node {       
+   //def workspace = pwd() 
+  //}
   agent {
     docker {
       image 'node:6-alpine'
