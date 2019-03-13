@@ -28,7 +28,7 @@ pipeline {
     stage('server dependencies install') {
       steps {
         //def workspace = pwd()
-        dir('api-server') {
+        dir('${pwd()}@script/api-server') {
           sh 'npm install'
         }
       }
@@ -37,7 +37,7 @@ pipeline {
     stage('server run') {
       steps {
         //def workspace = pwd()
-        dir('api-server') {
+        dir('${pwd()}@script/api-server') {
           sh 'npm start'
         }
       }
