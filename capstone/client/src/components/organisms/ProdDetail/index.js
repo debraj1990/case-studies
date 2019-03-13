@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { images } from '../../../utilities/imgimport';
 import Carousel from '../Carousel';
+import AddToWishlist from '../../atoms/AddToWishlist';
 
 class ProdDetail extends Component {
   constructor(props) {
@@ -61,13 +62,17 @@ class ProdDetail extends Component {
       })
     }
   }
-  renderProductSlides(variants) {
-    if (variants) {
-      return variants[0].images.map((val, idx) => {
+  renderProductSlides(product) {
+    if (product && product.variants) {
+      debugger;
+      let wishlistProdObj = { product: product.id, sku: product.variants[0].sku };
+      return product.variants[0].images.map((val, idx) => {
         let imgName = val.path.split('/').pop();
+        debugger;
+
         return (
           <div key={idx} className="prod-box">
-            <button className="float-right" onClick={(e) => { this.toggleLiked() }}><i className="far fa-heart float-right"></i></button>
+            <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
             <img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '100%' }} />
           </div>
         );
@@ -76,7 +81,7 @@ class ProdDetail extends Component {
   }
 
   handleQtyChange(e, price) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let { priceRef } = this.refs;
     let newPrice = price * e.target.value;
     this.setState({ 'totalPrice': newPrice })
@@ -86,7 +91,7 @@ class ProdDetail extends Component {
     let { qty, carouselSettings, totalPrice } = this.state;
     let { product } = this.props;
     let slides = this.renderThumbnails(product.variants);
-    let productSlides = this.renderProductSlides(product.variants);
+    let productSlides = this.renderProductSlides(product);
 
     let price = product.variants ? product.variants[0].sale_price : 0;
     // this.setState({ totalPrice: price });

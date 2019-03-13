@@ -13,7 +13,7 @@ class CartProducts extends Component {
     }
     renderCartProducts() {
         let { cart } = this.props;
-        console.log(cart);
+        // console.log(cart);
         return cart.products.map((val, idx) => {
             return (
                 <div key={idx}>

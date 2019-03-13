@@ -10,8 +10,8 @@ class RemoveFromCartBtn extends Component {
         let { actions, user, productObj } = this.props;
         let cart = JSON.parse(JSON.stringify(user.carts));
         let cartId = cart.id;
-        console.log("remove from cart called");
-        console.log(cart);
+        // console.log("remove from cart called");
+        // console.log(cart);
         /*cart.products.map((product) => {
             if (product.productDetails) {
                 delete product.productDetails;
@@ -21,7 +21,7 @@ class RemoveFromCartBtn extends Component {
         cart.products = cart.products.filter(function (item) {
             return item.product !== productObj.product;
         });
-        console.log(cart);
+        // console.log(cart);
         delete cart.id;
         actions.updateCart(cartId, cart);
     }
