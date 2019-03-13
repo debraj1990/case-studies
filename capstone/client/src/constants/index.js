@@ -22,7 +22,7 @@ export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
 export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
 
-// Initialize Firebase
+// Initialize Firebase (SECRET KEY)
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",
     authDomain: "capstone-232408.firebaseapp.com",
