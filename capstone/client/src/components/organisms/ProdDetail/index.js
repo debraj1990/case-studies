@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { images } from '../../../utilities/imgimport';
 import Carousel from '../Carousel';
 import AddToWishlist from '../../atoms/AddToWishlist';
+import AddToCartBtn from '../../atoms/AddToCartBtn';
 
 class ProdDetail extends Component {
   constructor(props) {
@@ -64,12 +65,9 @@ class ProdDetail extends Component {
   }
   renderProductSlides(product) {
     if (product && product.variants) {
-      debugger;
       let wishlistProdObj = { product: product.id, sku: product.variants[0].sku };
       return product.variants[0].images.map((val, idx) => {
         let imgName = val.path.split('/').pop();
-        debugger;
-
         return (
           <div key={idx} className="prod-box">
             <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
@@ -83,8 +81,9 @@ class ProdDetail extends Component {
   handleQtyChange(e, price) {
     // console.log(e.target.value);
     let { priceRef } = this.refs;
-    let newPrice = price * e.target.value;
-    this.setState({ 'totalPrice': newPrice })
+    let selectedQty = e.target.value;
+    let newPrice = price * selectedQty;
+    this.setState({ 'totalPrice': newPrice, 'qty': selectedQty })
   }
 
   render() {
@@ -94,6 +93,7 @@ class ProdDetail extends Component {
     let productSlides = this.renderProductSlides(product);
 
     let price = product.variants ? product.variants[0].sale_price : 0;
+    let prodObj = product.variants ? { product: product.id, sku: product.variants[0].sku, qty: qty } : {};
     // this.setState({ totalPrice: price });
     return (
       <div className="row product-detail-wrap">
@@ -138,7 +138,7 @@ class ProdDetail extends Component {
             <div className="row">
               <div className="form-group col">
                 <p className="mb-3 text-right"><strong>Total Cost:</strong> &#8377; <span ref="price">{totalPrice}</span></p>
-                <button className="btn btn-primary w-100 d-block m-auto" style={{ maxWidth: '300px' }}>Add to cart</button>
+                <AddToCartBtn productObj={prodObj} />
               </div>
             </div>
           </form>
