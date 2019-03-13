@@ -23,22 +23,22 @@ class ProfileSection extends Component {
         this.onLoggedout = this.onLoggedout.bind(this);
     }
 
-    // Listen to the Firebase Auth state and set the local state.
-    componentDidMount() {
-      this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-          (user) => {console.log(user);
-                    if(!user)
-                        this.props.history.push(`/login`); //user logged out
-            //     } else {
-            //       this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
-                }
-      );
-    }
+    // // Listen to the Firebase Auth state and set the local state.
+    // componentDidMount() {
+    //   this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+    //       (user) => {console.log(user);
+    //                 if(!user)
+    //                 console.log(this.props.history); this.props.history.push(`/login`); //user logged out
+    //         //     } else {
+    //         //       this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
+    //             }
+    //   );
+    // }
     
-    // Make sure we un-register Firebase observers when the component unmounts.
-    componentWillUnmount() {
-      this.unregisterAuthObserver();
-    }
+    // // Make sure we un-register Firebase observers when the component unmounts.
+    // componentWillUnmount() {
+    //   this.unregisterAuthObserver();
+    // }
   
     // componentDidMount() {
 
