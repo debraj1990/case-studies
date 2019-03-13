@@ -7,8 +7,7 @@ pipeline {
     
     stage('Checkout') {
       steps {
-        //git 'https://github.com/XT-training/case-studies/tree/team-3'
-        echo 'checking out'
+        git 'https://github.com/XT-training/case-studies.git'
       }
     }
   }
