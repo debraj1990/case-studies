@@ -18,23 +18,22 @@ class AddToWishlist extends Component {
     }
     isProductInWishlist() {
         let { user, wishlistObj } = this.props;
-        let wishlist = JSON.parse(JSON.stringify(user.wishlists));
+        let wishlist = user.wishlists ? JSON.parse(JSON.stringify(user.wishlists)) : { "products": [] };
         let isAlreadyAdded = false;
         wishlist.products.forEach((value, key) => {
-            console.log(value);
+            // console.log(value);
             if (value.product === wishlistObj.product) {
                 isAlreadyAdded = true;
             }
         });
         return isAlreadyAdded;
-
     }
     addToWishlist() {
         let { actions, user, wishlistObj } = this.props;
         let { isAlreadyAdded } = this.state;
-        let wishlist = JSON.parse(JSON.stringify(user.wishlists));
+        let wishlist = user.wishlists ? JSON.parse(JSON.stringify(user.wishlists)) : { "products": [] };
         let wishlistId = wishlist.id;
-        console.log(wishlistObj);
+        // console.log(wishlistObj);
         if (!isAlreadyAdded) {
             wishlist.products.push(wishlistObj);
         } else {
@@ -44,14 +43,14 @@ class AddToWishlist extends Component {
         }
         this.setState({ isAlreadyAdded: !isAlreadyAdded });
         delete wishlist.id;
-        console.log("=========wishlist====");
-        console.log(wishlist);
+        // console.log("=========wishlist====");
+        // console.log(wishlist);
         actions.updateWishlist(wishlistId, wishlist);
     }
     render() {
         let { isAlreadyAdded } = this.state;
-        console.log("product in wishlist");
-        console.log(isAlreadyAdded);
+        // console.log("product in wishlist");
+        // console.log(isAlreadyAdded);
         return (
             <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right " + (isAlreadyAdded ? 'fas' : 'far')}></i></button>
         );

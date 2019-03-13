@@ -7,8 +7,8 @@ class CartFooter extends Component {
 
     calculateCartTotal() {
         let { cart } = this.props;
-        console.log("Cart footer");
-        console.log(cart);
+        // console.log("Cart footer");
+        // console.log(cart);
         let totalAmount = 0;
         for (var i = 0; i < cart.products.length; i++) {
             let productPrice = parseFloat(cart.products[i].productDetails.variants[0].sale_price);

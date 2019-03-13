@@ -3,7 +3,7 @@ import { GET_WISHLIST, UPDATE_WISHLIST, UPDATE_USER_WISHLIST } from '../constant
 import Api from '../Api'
 
 export function getWishlist(wishlistId) {
-    console.log("get wishlist called");
+    // console.log("get wishlist called");
     // thunk
     return function (dispatch) {
         dispatch({ type: 'REQUEST_BEGIN', message: 'Loading wishlist..' })
@@ -11,7 +11,7 @@ export function getWishlist(wishlistId) {
             .then(response => response.data)
             .then(wishlist => {
                 // log
-                console.log(wishlist);
+                // console.log(wishlist);
                 dispatch({ type: 'REQUEST_FINISH', message: '' })
                 dispatch({ type: GET_WISHLIST, wishlist }) // async action
             })
@@ -23,7 +23,7 @@ export function getWishlist(wishlistId) {
 }
 
 export function updateWishlist(wishlistId, wishlistObj) {
-    console.log("Add to wishlist/remove CART called");
+    // console.log("Add to wishlist/remove CART called");
     return function (dispatch) {
         dispatch({ type: 'REQUEST_BEGIN', message: 'Adding to wishlist..' })
         Api.updateWishlist(wishlistId, wishlistObj)

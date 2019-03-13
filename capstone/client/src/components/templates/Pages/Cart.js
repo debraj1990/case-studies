@@ -10,7 +10,7 @@ const metaData = {
 
 class Cart extends Component {
     render() {
-        console.log("Render cart");
+        // console.log("Render cart");
         return (
             <div className="container cart-container">
                 <h3 className="cart-heading">Your Cart</h3>
