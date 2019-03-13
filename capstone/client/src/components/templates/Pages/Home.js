@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
+import React, { Component } from 'react'
 import CategoryList from '../../organisms/CategoryList';
 
+
+// import AddToCartBtn from '../../atoms/AddToCartBtn';
+// import AddToWishlist from '../../atoms/AddToWishlist';
+// import RemoveFromCartBtn from '../../atoms/RemoveFromCartBtn';
 
 const metaData = {
   title: 'Home',
@@ -11,32 +14,19 @@ const metaData = {
 
 class Home extends Component {
 
-  // Listen to the Firebase Auth state and set the local state.
-  // componentDidMount() {
-  //   //we need to try implementing this logic somewhere in routing to be applied on all pages except login as reverse needs to be applied there
-  //   this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-  //       (user) => {console.log(user);
-  //                 if(!user){
-  //                     this.props.history.push(`/login`); //user logged out
-  //               } else {
-  //                 // Logic to check for record in mongoDB and save a new record if not found
-  //                 // this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
-  //               }
-  //             }
-  //   );
-  // }
-  
-  // // Make sure we un-register Firebase observers when the component unmounts.
-  // componentWillUnmount() {
-  //   this.unregisterAuthObserver();
-  // }
   render() {
+    // let prodObj = { product: "5c7bf86aa67be71fd06fabe4", sku: "buckle_bag_frey", qty: 1 };
+    // let wishlistProdObj = { product: "5c7bf75fa67be71fd06fabe3", sku: "snadals_blue" };
     return (
       <div>
         <CategoryList />
+        {/* <AddToCartBtn productObj={prodObj} />
+        <RemoveFromCartBtn productObj={prodObj} />
+        <AddToWishlist wishlistObj={wishlistProdObj} /> */}
       </div>
     )
   }
 }
+
 export default Home;
 export { metaData };

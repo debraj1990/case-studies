@@ -18,8 +18,8 @@ class Categorydetail extends Component {
     return (
       <div>
         <Header history={history} />
-        <ProdForHer catId={catId} />
         <ProdForHim catId={catId} />
+        <ProdForHer catId={catId} />
         <Trending catId={catId} />
       </div>
     )
