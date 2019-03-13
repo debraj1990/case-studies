@@ -10,6 +10,22 @@ pipeline {
         git 'https://github.com/XT-training/case-studies.git'
       }
     }
+
+    stage('server dependencies install') {
+      steps {
+        dir('capstone/api-server') {
+          sh 'npm install'
+        }
+      }
+    }
+
+    stage('server run') {
+      steps {
+        dir('capstone/api-server') {
+          sh 'npm start'
+        }
+      }
+    }
   }
 }
     
