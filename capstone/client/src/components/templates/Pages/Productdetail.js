@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../../organisms/Header';
-import ProductSlider from '../../organisms/ProductSlider';
+// import ProductSlider from '../../organisms/ProductSlider';
 import ProdDetail from '../../organisms/ProdDetail';
 
 

@@ -8,7 +8,7 @@ class CartProduct extends Component {
     let { product } = this.props;
     let tgtUrl = `/product/${product.id}`;
     let variant = product.variants[0];
-    let imgUrl = variant.images[0].path.split('/').pop();
+    let imgUrl = variant.thumbnail.split('/').pop();
     let prodObj = {
       product: product.id,
       sku: variant.sku,
@@ -18,12 +18,12 @@ class CartProduct extends Component {
       <div className="row cart-prod">
         <div className="col-3 col-sm-3">
           <a href={tgtUrl}>
-            <img src={images[imgUrl]} className="img-responsive" style={{ width: '100%', height: '100%' }} />
+            <img src={images[imgUrl]} alt={product.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
           </a>
         </div>
         <div className="col-6 col-sm-6">
           <a href={tgtUrl}>
-            <p className="prod-name">{product.name}</p>
+            <p className="prod-name font-weight-bold">{product.name}</p>
           </a>
           <p className="prod-desc">{product.short_desc}</p>
           <p className='prod-attrs'>
@@ -40,10 +40,13 @@ class CartProduct extends Component {
               <span className='prod-attr-value' > {variant.qty}</span>
             </span>
           </p>
-          <RemoveFromCartBtn productObj={prodObj} />
+
         </div>
-        <div className="col-3 col-sm-3">
+        <div className="col-2 col-sm-2">
           &#x20b9; {variant.sale_price}
+        </div>
+        <div className="col-1 col-sm-1">
+          <RemoveFromCartBtn productObj={prodObj} />
         </div>
       </div >
 

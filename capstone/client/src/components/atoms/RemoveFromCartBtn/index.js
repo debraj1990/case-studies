@@ -27,7 +27,7 @@ class RemoveFromCartBtn extends Component {
     }
     render() {
         return (
-            <p className="remove-from-cart" onClick={(e) => this.removeFromCart()}>Remove from cart <span className="oi oi-circle-x"></span></p>
+            <button onClick={(e) => this.removeFromCart()}> <i className="fas fa-trash-alt" style={{ fontSize: '16px' }}></i></button>
         );
     }
 }
