@@ -21,7 +21,7 @@ export const UPDATE_USER_CART = 'UPDATE_USER_CART';
 export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
 export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
-//export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+
 // Initialize Firebase
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",
