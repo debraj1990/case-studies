@@ -28,7 +28,7 @@ pipeline {
 
     stage('server dependencies install') {
       steps {  
-        sh 'cd ${workspace}@script/capstone/api-server && npm install'    
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm install'    
         //dir('${workspace}@script/capstone/api-server') {
           //sh 'npm install'
         //}
@@ -40,7 +40,7 @@ pipeline {
         //dir('${workspace}@script/capstone/api-server') {
           //sh 'npm start'
         //}
-        sh 'cd ${workspace}@script/capstone/api-server && npm start'    
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm start'    
       }
     }
   }
