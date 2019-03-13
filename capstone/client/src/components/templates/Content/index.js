@@ -18,7 +18,7 @@ const Content = () => (
                 <Route exact path={cartInfo.link} component={() => <OnBeforeLoad><Cart /></OnBeforeLoad>} />
                 <Route exact path={wishlistInfo.link} component={() => <OnBeforeLoad><Wishlist /></OnBeforeLoad>} />
                 <Route exact path={catInfo.link} render={(props) => <OnBeforeLoad {...props} ><Categorydetail {...props} /></OnBeforeLoad>} />
-                <Route exact path={prodInfo.link} component={Productdetail} />
+                <Route exact path={prodInfo.link} render={(props) => <OnBeforeLoad {...props} ><Productdetail {...props} /></OnBeforeLoad>} />
 
             </Switch>
         </div>
