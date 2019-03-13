@@ -1,5 +1,6 @@
 
 pipeline {
+  def workspace = pwd()
   agent {
         docker {
             image 'node:6-alpine'
@@ -26,7 +27,7 @@ pipeline {
 
     stage('server dependencies install') {
       steps {
-        dir('capstone/api-server') {
+        dir('${workspace}@script/capstone/api-server') {
           sh 'npm install'
         }
       }
@@ -34,7 +35,7 @@ pipeline {
 
     stage('server run') {
       steps {
-        dir('capstone/api-server') {
+        dir('${workspace}@script/capstone/api-server') {
           sh 'npm start'
         }
       }
