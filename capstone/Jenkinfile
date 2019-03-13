@@ -27,18 +27,20 @@ pipeline {
     }
 
     stage('server dependencies install') {
-      steps {      
-        dir('${workspace}@script/capstone/api-server') {
-          sh 'npm install'
-        }
+      steps {  
+        sh 'cd ${workspace}@script/capstone/api-server && npm install'    
+        //dir('${workspace}@script/capstone/api-server') {
+          //sh 'npm install'
+        //}
       }
     }
 
     stage('server run') {
       steps {
-        dir('${workspace}@script/capstone/api-server') {
-          sh 'npm start'
-        }
+        //dir('${workspace}@script/capstone/api-server') {
+          //sh 'npm start'
+        //}
+        sh 'cd ${workspace}@script/capstone/api-server && npm start'    
       }
     }
   }
