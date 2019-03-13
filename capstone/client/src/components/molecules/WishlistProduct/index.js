@@ -7,8 +7,8 @@ class WishlistProduct extends Component {
   render() {
 
     let { product } = this.props;
-    let tgtUrl = `/product/${product.id}`;
-    let variant = product.variants[0];
+    let tgtUrl = product ? `/product/${product.id}` : '/';
+    let variant = product ? product.variants[0] : {};
     let imgUrl = variant.images[0].path.split('/').pop();
     let prodObj = {
       product: product.id,
