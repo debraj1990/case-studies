@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "gifts": {
-    "host": "hardcore_greider",
+    "host": "jolly_tu",
     "port": 27017,
     "url": "",
     "database": "giftdb",
