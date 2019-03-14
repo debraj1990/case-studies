@@ -1,19 +1,47 @@
-#!/usr/bin/groovy
-// by Naga
-
 pipeline {
-  // agent any
-  agent any
+  tools {
+    nodejs "node"
+  }
+  //node {       
+   //def workspace = pwd() 
+  //}
+  agent {
+    docker {
+      image 'node:6-alpine'
+      args '-p 3000:3000'
+    }
+  }
+  environment {
+    CI = 'true' 
+  }
 
+  
 
   stages {
     
     stage('Checkout') {
       steps {
-        git 'https://github.com/XT-training/case-studies/tree/team-3'
+        git 'https://github.com/XT-training/case-studies.git'
+      }
+    }
+
+    stage('server dependencies install') {
+      steps {  
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm install'    
+        //dir('${workspace}@script/capstone/api-server') {
+          //sh 'npm install'
+        //}
+      }
+    }
+
+    stage('server run') {
+      steps {
+        //dir('${workspace}@script/capstone/api-server') {
+          //sh 'npm start'
+        //}
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm start'    
       }
     }
   }
 }
     
-     
