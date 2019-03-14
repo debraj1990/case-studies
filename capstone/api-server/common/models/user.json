@@ -50,6 +50,11 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "events": {
+      "type": "hasMany",
+      "model": "Event",
+      "foreignKey": ""
     }
   },
   "acls": [],
