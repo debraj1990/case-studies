@@ -1,7 +1,7 @@
 pipeline {
-  tools {
-    nodejs "node"
-  }
+  //tools {
+    //nodejs "node"
+  //}
   //node {       
    //def workspace = pwd() 
   //}
