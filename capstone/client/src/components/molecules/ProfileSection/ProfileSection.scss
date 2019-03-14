@@ -1,4 +1,5 @@
-@import '../../../main/imports';
+// @import '../../../main/imports';
+@import '../../../static/styles/base/_imports.scss';
 .wwn-profile-section {
     @include padding(20px);
     @include margin-bottom(20px);
@@ -13,5 +14,8 @@
     }
     &-content {
         @include padding(20px 0);
+    }
+    .signout-btn {
+        cursor: pointer;
     }
 }

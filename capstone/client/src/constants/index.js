@@ -21,3 +21,13 @@ export const UPDATE_USER_CART = 'UPDATE_USER_CART';
 export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
 export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
+
+// Initialize Firebase (SECRET KEY)
+export const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",
+    authDomain: "capstone-232408.firebaseapp.com",
+    databaseURL: "https://capstone-232408.firebaseio.com",
+    projectId: "capstone-232408",
+    storageBucket: "capstone-232408.appspot.com",
+    messagingSenderId: "417901996740"
+};
