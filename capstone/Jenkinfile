@@ -27,19 +27,19 @@ pipeline {
 
     stage('Client dependencies install') {
       steps {  
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm install'    
+        sh 'cd /var/jenkins_home/workspace/Capstone/capstone/client && npm install'    
       }
     }
 
     stage('Client run') {
       steps {
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm start'    
+        sh 'cd /var/jenkins_home/workspace/Capstone/capstone/client && npm start'    
       }
     }
     
     stage('server dependencies install') {
       steps {  
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm install'    
+        sh 'cd /var/jenkins_home/workspace/Capstone/capstone/api-server && npm install'    
         //dir('${workspace}@script/capstone/api-server') {
           //sh 'npm install'
         //}
@@ -51,7 +51,7 @@ pipeline {
         //dir('${workspace}@script/capstone/api-server') {
           //sh 'npm start'
         //}
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm start'    
+        sh 'cd /var/jenkins_home/workspace/Capstone/capstone/api-server && npm start'    
       }
     }
   }
