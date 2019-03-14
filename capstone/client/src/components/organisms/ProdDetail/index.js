@@ -22,7 +22,8 @@ class ProdDetail extends Component {
         slidesToScroll: 1,
         autoplay: false,
         arrows: false
-      }
+      },
+      selectedVariant: undefined
     }
   }
   addToCart(e, item) {
@@ -61,9 +62,13 @@ class ProdDetail extends Component {
     }
   }
   renderProductSlides(product) {
+    let { selectedVariant } = this.state;
     if (product && product.variants) {
-      let wishlistProdObj = { product: product.id, sku: product.variants[0].sku };
-      return product.variants[0].images.map((val, idx) => {
+      if (!selectedVariant) {
+        selectedVariant = product.variants[0];
+      }
+      let wishlistProdObj = { product: product.id, sku: selectedVariant.sku };
+      return selectedVariant.images.map((val, idx) => {
         let imgName = val.path.split('/').pop();
         return (
           <div key={idx} className="prod-box">
@@ -82,16 +87,47 @@ class ProdDetail extends Component {
     let newPrice = price * selectedQty;
     this.setState({ 'totalPrice': newPrice, 'qty': selectedQty })
   }
+  handleVariantChange(e, variant) {
+    this.setState({ selectedVariant: variant });
+  }
+  renderColorVariants() {
+    let { product } = this.props;
+    if (product && product.variants) {
+      debugger;
+      return product.variants.map((val, idx) => {
+
+        return val.attrs.map((attrVal, idx1) => {
+
+          let attrName = attrVal.name;
+          let attrValue = attrVal.value;
+
+          // if (idx1 === 0) {
+          //   this.setState({ selectedVariant: prodSku });
+          // }
+          if (attrName === 'color') {
+            return (
+              <div onClick={(e) => this.handleVariantChange(e, val)} className="col m-2" key={idx1} style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: attrValue, border: '1px solid grey', cursor: 'pointer' }}></div>
+            )
+          }
+        })
+      })
+    }
+  }
 
   render() {
-    let { qty, carouselSettings, totalPrice } = this.state;
+
+    let { qty, carouselSettings, totalPrice, selectedVariant } = this.state;
     let { product } = this.props;
     // let thumbSlides = this.renderThumbnails(product.variants);
     let productSlides = this.renderProductSlides(product);
 
-    let price = product.variants ? product.variants[0].sale_price : 0;
-    let prodObj = product.variants ? { product: product.id, sku: product.variants[0].sku, qty: qty } : {};
-    // this.setState({ totalPrice: price });
+    if (!selectedVariant && product.variants) {
+      selectedVariant = product.variants[0];
+    }
+    let price = product.variants ? selectedVariant.sale_price : 0;
+    let prodObj = product.variants ? { product: product.id, sku: selectedVariant.sku, qty: qty } : {};
+
+
     return (
       <div className="row product-detail-wrap">
         <div className="col-sm-12"><h3>{product.name}</h3></div>
@@ -106,10 +142,9 @@ class ProdDetail extends Component {
               <div className="form-group col">
                 <div className="row">
                   <label className="w-100">Select a color:</label>
-                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'red', border: '1px solid grey', cursor: 'pointer' }}></div>
-                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'green', border: '1px solid grey', cursor: 'pointer' }}></div>
-                  <div className="col m-2" style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: 'yellow', border: '1px solid grey', cursor: 'pointer' }}></div>
+                  {this.renderColorVariants()}
                 </div>
+
               </div>
               <div className="form-group col">
                 <label htmlFor="size">Select Size:</label>
