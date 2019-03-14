@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "gifts": {
-    "host": "http://3.17.9.210",
+    "host": "localhost",
     "port": 27017,
     "url": "",
     "database": "giftdb",
