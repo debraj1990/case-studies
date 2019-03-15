@@ -13,7 +13,7 @@ class WishlistProducts extends Component {
     }
     renderWishlistProducts() {
         let { wishlist } = this.props;
-        // console.log(wishlist);
+        
         return wishlist.products.map((val, idx) => {
             return (
                 <WishlistProduct key={idx} product={val.productDetails} />

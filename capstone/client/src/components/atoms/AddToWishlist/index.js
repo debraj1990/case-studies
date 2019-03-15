@@ -16,6 +16,7 @@ class AddToWishlist extends Component {
     componentDidMount() {
 
     }
+
     isProductInWishlist() {
         let { user, wishlistObj } = this.props;
         let wishlist = user.wishlists ? JSON.parse(JSON.stringify(user.wishlists)) : { "products": [] };
@@ -48,11 +49,8 @@ class AddToWishlist extends Component {
         actions.updateWishlist(wishlistId, wishlist);
     }
     render() {
-        let { isAlreadyAdded } = this.state;
-        // console.log("product in wishlist");
-        // console.log(isAlreadyAdded);
         return (
-            <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right " + (isAlreadyAdded ? 'fas' : 'far')}></i></button>
+            <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right " + (this.isProductInWishlist() ? 'fas' : 'far')}></i></button>
         );
     }
 }
