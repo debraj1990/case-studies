@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
 } from 'react-router-dom';
-
+import OnBeforeLoad from '../../hoc/OnBeforeLoad';
 class PrivateRoute extends Component {
     constructor(props) {
         super(props);
@@ -16,30 +16,34 @@ class PrivateRoute extends Component {
         }
     }
     // Listen to the Firebase Auth state and set the local state.
-    componentDidMount() { console.log('cat');
+    componentDidMount() {
+        console.log('cat');
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-            (user) => {console.log(user); console.log('bat');
-                this.setState({isAuthenticated: !!user});
-                if(!user){ console.log(this.props.history)
+            (user) => {
+                console.log(user); console.log('bat');
+                this.setState({ isAuthenticated: !!user });
+                if (!user) {
+                    console.log(this.props.history)
                     this.props.history.push(`/login`); //user logged out
                 }
             }
         ); console.log('mat');
     }
-    
+
     // Make sure we un-register Firebase observers when the component unmounts.
     componentWillUnmount() {
-      this.unregisterAuthObserver();
+        this.unregisterAuthObserver();
     }
 
     render() {
+
         const { component: Component, ...rest } = this.props;
-        console.log(this.state);
-        if(this.state.isAuthenticated){
+        console.log('===', this.props);
+        if (this.state.isAuthenticated) {
             return (
                 <Route {...rest} render={(props) => (
-                    <Component {...props} />
-                  )} />
+                    <OnBeforeLoad {...props}><Component {...props} /></OnBeforeLoad>
+                )} />
             );
         }
         return (<div></div>)

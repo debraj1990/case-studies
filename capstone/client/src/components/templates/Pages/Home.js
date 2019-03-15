@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CategoryList from '../../organisms/CategoryList';
+import Header from '../../organisms/Header';
 
 
 // import AddToCartBtn from '../../atoms/AddToCartBtn';
@@ -19,6 +20,7 @@ class Home extends Component {
     // let wishlistProdObj = { product: "5c7bf75fa67be71fd06fabe3", sku: "snadals_blue" };
     return (
       <div>
+        <Header/>
         <CategoryList />
         {/* <AddToCartBtn productObj={prodObj} />
         <RemoveFromCartBtn productObj={prodObj} />
