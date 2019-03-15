@@ -9,6 +9,7 @@ import Productdetail, { metaData as prodInfo } from '../Pages/Productdetail';
 import Cart, { metaData as cartInfo } from '../Pages/Cart';
 import Wishlist, { metaData as wishlistInfo } from '../Pages/Wishlist';
 import OnBeforeLoad from '../../hoc/OnBeforeLoad';
+import Searchpage, { metaData as searchInfo } from '../Pages/Searchpage';
 
 const Content = () => (
     <div className="wwn-content">
@@ -23,6 +24,7 @@ const Content = () => (
                 <PrivateRoute exact path={catInfo.link} component={Categorydetail} />
                 <PrivateRoute exact path={prodInfo.link} component={Productdetail} />
                 <PrivateRoute exact path={profileInfo.link} component={ProfileSection} />
+				<PrivateRoute exact path={searchInfo.link} component={Searchpage} />
 
             </Switch>
         </div>
