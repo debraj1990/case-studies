@@ -17,7 +17,7 @@ class CartProducts extends Component {
         return cart.products.map((val, idx) => {
             return (
                 <div key={idx}>
-                    <CartProduct product={val.productDetails} />
+                    <CartProduct product={val} />
                     <hr />
                 </div>
             )
