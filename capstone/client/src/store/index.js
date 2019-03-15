@@ -13,6 +13,8 @@ const intialState = {
   loader: false,
   categories: [],
   products: [],
+  search:[],
+  searchresult:[],
   cart: {
     products: []
   },
