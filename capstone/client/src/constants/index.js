@@ -22,6 +22,8 @@ export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
 export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
 
+export const LOAD_EVENT = 'LOAD_EVENT';
+
 // Initialize Firebase (SECRET KEY)
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",

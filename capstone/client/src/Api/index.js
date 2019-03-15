@@ -26,8 +26,10 @@ const Api = {
   },
   loadProductById(pid) {
     return axios.get(`${apiHost}products/${pid}`);
-  }
-
+  },
+  loadEvents(userId) {
+    return axios.get(`${apiHost}users/${userId}/events`);
+  },
 }
 
 export default Api;
