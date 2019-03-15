@@ -27,13 +27,13 @@ pipeline {
 
     stage('Client dependencies install') {
       steps {  
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm install'    
+        //sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm install'    
       }
     }
 
     stage('Client run') {
       steps {
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm start'    
+        //sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm start'    
       }
     }
     
