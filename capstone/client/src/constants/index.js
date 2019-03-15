@@ -21,6 +21,8 @@ export const UPDATE_USER_CART = 'UPDATE_USER_CART';
 export const UPDATE_USER_WISHLIST = 'UPDATE_USER_WISHLIST';
 export const GET_USER = 'GET_USER';
 export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
+export const SEARCH_RESULTS = 'SEARCH_RESULTS';
 
 // Initialize Firebase (SECRET KEY)
 export const FIREBASE_CONFIG = {
