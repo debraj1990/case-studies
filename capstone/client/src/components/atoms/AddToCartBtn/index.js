@@ -12,7 +12,22 @@ class AddToCartBtn extends Component {
         let cart = JSON.parse(JSON.stringify(user.carts));
         let cartId = cart.id;
 
-        cart.products.push(productObj);
+        let isProductInCart = false,
+            prodIndex = 0;
+
+        cart.products.forEach((element, index) => {
+            if (element.product === productObj.product && element.sku === productObj.sku) {
+                isProductInCart = true;
+                prodIndex = index;
+            }
+        });
+
+        if (isProductInCart) {
+            cart.products[prodIndex] = productObj;
+        } else {
+            cart.products.push(productObj);
+        }
+
         //cart.userId = user.id;
         delete cart.id;
         actions.updateCart(cartId, cart);
