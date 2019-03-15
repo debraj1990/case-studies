@@ -4,105 +4,105 @@ import { searchProducts } from '../../../actions/search';
 
 
 const metaData = {
-  title: 'Search Page',
-  link: '/search',
-  isFooterLink: true
+    title: 'Search Page',
+    link: '/search',
+    isFooterLink: true
 };
 
 class Search extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            search:[],
-            showSuggestionList:false
+            search: [],
+            showSuggestionList: false
         }
     }
 
-    handleItemClick(item){
+    handleItemClick(item) {
         window.location = "/search?search=" + item.name;
     }
 
-    getSearchSuggestions(){
-        var searchbox = document.getElementById( 'searchInput' ); 
+    getSearchSuggestions() {
+        var searchbox = document.getElementById('searchInput');
         let { search } = this.state;
         let set = new Set();
-        search.map( ( item )=>{
-            set.add( item.subcategory );
+        search.map((item) => {
+            set.add(item.subcategory);
         });
 
         // return Array.from( set ).map( ( item,index )=>{
         //     return <button className="list-group-item" key={index}>{searchbox.value + ' for ' + item }</button>
         // });
 
-        return search.map( ( item,index )=>{
-            return <button onClick={()=>this.handleItemClick( item )} className="list-group-item" key={index}>{item.name + ' for ' + item.subcategory }</button>
+        return search.map((item, index) => {
+            return <button onClick={() => this.handleItemClick(item)} className="list-group-item" key={index}>{item.name + ' for ' + item.subcategory}</button>
         });
     }
 
-    getSearchSuggestionCategory(){
+    getSearchSuggestionCategory() {
         let { search } = this.state;
         let set = new Set();
-        search.map( ( item )=>{
-            item.categories.map(( innerObj )=>{
-                set.add( innerObj.name );
+        search.map((item) => {
+            item.categories.map((innerObj) => {
+                set.add(innerObj.name);
             })
         });
-        
-        return Array.from( set ).map( ( item,index )=>{
+
+        return Array.from(set).map((item, index) => {
             return <button className="list-group-item" key={index}>{item}</button>
         });
     }
 
-    searchBoxKeyupHandler( event ){   
-        var searchbox = document.getElementById( 'searchInput' ); 
+    searchBoxKeyupHandler(event) {
+        var searchbox = document.getElementById('searchInput');
         const keycode = event.keyCode;
-        if( keycode == 13 ){// enter
-            this.setState({showSuggestionList:false});
+        if (keycode == 13) {// enter
+            this.setState({ showSuggestionList: false });
             window.location = '/search?search=' + searchbox.value;
         }
-        else{            
-            if( searchbox.value.length > 2 ){
-                this.setState({showSuggestionList:true});
-                let action = searchProducts( searchbox.value );
-                store.dispatch( action );
+        else {
+            if (searchbox.value.length > 2) {
+                this.setState({ showSuggestionList: true });
+                let action = searchProducts(searchbox.value);
+                store.dispatch(action);
             }
-            else{
-                this.setState({showSuggestionList:false});
+            else {
+                this.setState({ showSuggestionList: false });
             }
         }
-      }
-    
-      searchButtonClickHandler(){
-        var searchbox = document.getElementById( 'searchInput' );
-        this.setState({showSuggestionList:false}); 
-        if( searchbox.value.trim().length > 2 ){
-            window.location = '/search?search=' + searchbox.value;
-        }
-      }
-
-      getSearchItems(){
-        let {showSuggestionList} = this.state;
-        if( !showSuggestionList ){
-            return null;
-        }
-        return ( <div className="search-suggestion-list">
-                    <ul className="list-group">
-                        {this.getSearchSuggestions()}
-                        {/* <span>{ this.state.search.length> 0 ? 'Categories' : ''}</span>
-                        {this.getSearchSuggestionCategory()} */}
-                    </ul>
-            </div> )
-      }
-
-    componentDidMount(){
-        this.unsubscribe = store.subscribe( ()=>{
-            let search = store.getState().search;
-            this.setState( {search} ); 
-        } );
     }
 
-    componentWillUnmount(){
+    searchButtonClickHandler() {
+        var searchbox = document.getElementById('searchInput');
+        this.setState({ showSuggestionList: false });
+        if (searchbox.value.trim().length > 2) {
+            window.location = '/search?search=' + searchbox.value;
+        }
+    }
+
+    getSearchItems() {
+        let { showSuggestionList } = this.state;
+        if (!showSuggestionList) {
+            return null;
+        }
+        return (<div className="search-suggestion-list">
+            <ul className="list-group">
+                {this.getSearchSuggestions()}
+                {/* <span>{ this.state.search.length> 0 ? 'Categories' : ''}</span>
+                        {this.getSearchSuggestionCategory()} */}
+            </ul>
+        </div>)
+    }
+
+    componentDidMount() {
+        this.unsubscribe = store.subscribe(() => {
+            let search = store.getState().search;
+            this.setState({ search });
+        });
+    }
+
+    componentWillUnmount() {
         this.unsubscribe();
     }
 
@@ -110,14 +110,14 @@ class Search extends Component {
         let { history } = this.props;
         return (
             <div>
-                <div className="input-group input-group-lg">
-                    <input id="searchInput" onChange={(e)=>this.searchBoxKeyupHandler( e )}
-                    type="text" className="form-control"
+                <div className="input-group input-group-mg">
+                    <input id="searchInput" onChange={(e) => this.searchBoxKeyupHandler(e)}
+                        type="text" className="form-control w-50"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Type here to search" aria-label="Type here to search"/>
+                        placeholder="Type here to search" aria-label="Type here to search" />
                     <div className="input-group-append">
-                        <button  onClick={()=>this.searchButtonClickHandler()} className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                        <button onClick={() => this.searchButtonClickHandler()} className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                     </div>
                 </div>
                 {this.getSearchItems()}

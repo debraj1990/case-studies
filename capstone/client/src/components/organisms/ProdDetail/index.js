@@ -81,8 +81,6 @@ class ProdDetail extends Component {
   }
 
   handleQtyChange(e, price) {
-    // console.log(e.target.value);
-    // let { priceRef } = this.refs;
     let selectedQty = e.target.value;
     let newPrice = price * selectedQty;
     this.setState({ 'totalPrice': newPrice, 'qty': selectedQty })
@@ -93,20 +91,13 @@ class ProdDetail extends Component {
   renderColorVariants() {
     let { product } = this.props;
     if (product && product.variants) {
-      debugger;
       return product.variants.map((val, idx) => {
-
         return val.attrs.map((attrVal, idx1) => {
-
           let attrName = attrVal.name;
           let attrValue = attrVal.value;
-
-          // if (idx1 === 0) {
-          //   this.setState({ selectedVariant: prodSku });
-          // }
           if (attrName === 'color') {
             return (
-              <div onClick={(e) => this.handleVariantChange(e, val)} className="col m-2" key={idx1} style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: attrValue, border: '1px solid grey', cursor: 'pointer' }}></div>
+              <div onClick={(e) => this.handleVariantChange(e, val)} className="col mr-2" key={idx1} style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: attrValue, border: '1px solid grey', cursor: 'pointer' }}></div>
             )
           }
         })
@@ -135,47 +126,46 @@ class ProdDetail extends Component {
           {productSlides ? <Carousel settingParam={carouselSettings} carouselSlides={productSlides} /> : ''}
           {/* {slides ? <Carousel settingParam={carouselSettings} carouselSlides={slides} /> : ''} */}
         </div >
-        <div className="col-sm-6 ">
-
-          <form className="mt-5">
-            <div className="row">
-              <div className="form-group col">
-                <div className="row">
-                  <label className="w-100">Select a color:</label>
+        <div className="col-sm-6 border-left">
+          <div className="row pl-3 pr-3">
+            <div className="col">
+              <p className="font-weight-bold">{product.short_desc}</p>
+              <p>&#8377;{price}</p>
+            </div>
+          </div>
+          <form >
+            <div className="row pl-3 pr-3">
+              <div className="form-group col-sm-6">
+                <div className="row pl-3 pr-3">
+                  <label className="d-block w-100 mt-2 font-weight-bold">Select a color:</label>
                   {this.renderColorVariants()}
+                  <label htmlFor="size" className="d-block w-100 mt-2 font-weight-bold">Select Size:</label>
+                  <select className="form-control " id="size">
+                    <option value="small">small</option>
+                    <option value="medium">medium</option>
+                    <option value="large">large</option>
+                  </select>
+                  <label htmlFor="qty" className="font-weight-bold">Qunatity:</label>
+                  <select className="form-control" ref="qty" id="qty" onChange={(e) => this.handleQtyChange(e, price)} >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
                 </div>
 
               </div>
-              <div className="form-group col">
-                <label htmlFor="size">Select Size:</label>
-                <select className="form-control " id="size">
-                  <option value="small">small</option>
-                  <option value="medium">medium</option>
-                  <option value="large">large</option>
-                </select>
-              </div>
+
             </div>
-            <div className="row">
+            <div className="row pl-3 pr-3">
               <div className="form-group col">
-                <label htmlFor="qty">Qunatity:</label>
-                <select className="form-control" ref="qty" id="qty" onChange={(e) => this.handleQtyChange(e, price)} >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <p className="mb-3 text-right"><strong>Total Cost:</strong> &#8377; <span ref="price">{totalPrice}</span></p>
                 <AddToCartBtn productObj={prodObj} />
               </div>
             </div>
           </form>
         </div>
-        <div className="row m-3">
+        <div className="row pl-3 pr-3 m-3">
           <h3>Product Description</h3>
           <p className="mt-3">{product.long_desc}. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           <p className="mt-3">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>

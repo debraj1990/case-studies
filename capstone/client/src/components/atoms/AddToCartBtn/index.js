@@ -6,31 +6,32 @@ import { updateCart } from '../../../actions/cart'
 import './index.scss';
 
 class AddToCartBtn extends Component {
-    addToCart() {
+    addToCart(e) {
+        e.preventDefault();
         let { actions, user, productObj } = this.props;
         let cart = JSON.parse(JSON.stringify(user.carts));
         let cartId = cart.id;
-        /*cart.products.map((product) => {
-            if (product.productDetails) {
-                delete product.productDetails;
-            }
-            return product;
-        });*/
+
         cart.products.push(productObj);
         //cart.userId = user.id;
         delete cart.id;
         actions.updateCart(cartId, cart);
     }
     render() {
+        let { loader } = this.props;
         return (
-            <button className="btn btn-danger" onClick={(e) => this.addToCart()}>Add to cart</button>
+            <div>
+                {loader ? <div className="loader"></div> : ''}
+                <button className="btn btn-danger" onClick={(e) => this.addToCart(e)}>Add to cart</button>
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) => ({
     // ... computed data from state and optionally ownProps
-    user: state.user
+    user: state.user,
+    loader: state.loader
 })
 const mapDispatchToProps = dispatch => ({
     // ... normally is an object full of action creators
