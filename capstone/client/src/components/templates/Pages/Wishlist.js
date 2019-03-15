@@ -13,7 +13,8 @@ class Wishlist extends Component {
         // console.log("Render Wishlist");
         return (
             <div className="container cart-container">
-                <h3 className="cart-heading">Liked</h3>
+                <h3 className="cart-heading mb-3">Liked</h3>
+                <hr />
                 <WishlistProducts />
 
             </div>
