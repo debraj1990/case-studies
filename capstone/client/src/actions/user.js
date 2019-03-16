@@ -10,18 +10,21 @@ export function getUser(userEmailId, userDataObj) {
         Api.getUserByEmail(userEmailId)
             .then(response => response.data)
             .then(user => {
-                console.log('::After Get User::');console.log(user);
+                console.log('::After Get User::');//console.log(user);
+                let userDataObjForState = {};
                 if(user.length === 0) {
                     Api.addUser(userDataObj)
                     .then(response => response.data)
                     .then(user => {
-                        console.log('::After Add User::');console.log(user);
+                        console.log('::After Add User::');//console.log(user);
+                        userDataObjForState = user[0]; //console.log(userDataObjForState);
                         dispatch({ type: 'REQUEST_FINISH', message: '' })
-                        dispatch({ type: GET_USER, user }) // async action
+                        dispatch({ type: GET_USER, userDataObjForState }) // async action
                     })
                 } else {
+                    userDataObjForState = user[0]; //console.log(userDataObjForState);
                     dispatch({ type: 'REQUEST_FINISH', message: '' })
-                    dispatch({ type: GET_USER, user }) // async action
+                    dispatch({ type: GET_USER, userDataObjForState }) // async action
                 }
             })
             .catch(error => {

@@ -5,10 +5,9 @@ import { getUser } from '../../../actions/user';
 
 class OnBeforeLoad extends Component {
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
         // console.log('I am firing');
         let { actions, userEmailId, userDataObj } = this.props;
-        // actions.getUser('5c7d35c3574832258003a93f');
         actions.getUser(userEmailId, userDataObj);
     }
     render() {
