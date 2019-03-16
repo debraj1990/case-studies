@@ -24,11 +24,11 @@ class Search extends Component {
     }
 
     getSearchSuggestions() {
-        var searchbox = document.getElementById('searchInput');
+        // var searchbox = document.getElementById('searchInput');
         let { search } = this.state;
         let set = new Set();
         search.map((item) => {
-            set.add(item.subcategory);
+            return set.add(item.subcategory);
         });
 
         // return Array.from( set ).map( ( item,index )=>{
@@ -44,8 +44,8 @@ class Search extends Component {
         let { search } = this.state;
         let set = new Set();
         search.map((item) => {
-            item.categories.map((innerObj) => {
-                set.add(innerObj.name);
+            return item.categories.map((innerObj) => {
+                return set.add(innerObj.name);
             })
         });
 
@@ -57,7 +57,7 @@ class Search extends Component {
     searchBoxKeyupHandler(event) {
         var searchbox = document.getElementById('searchInput');
         const keycode = event.keyCode;
-        if (keycode == 13) {// enter
+        if (keycode === 13) {// enter
             this.setState({ showSuggestionList: false });
             window.location = '/search?search=' + searchbox.value;
         }
@@ -107,13 +107,13 @@ class Search extends Component {
     }
 
     render() {
-        let { history } = this.props;
+        // let { history } = this.props;
+        // console.log(history);
         return (
-            <div>
+            <div className="col">
                 <div className="input-group input-group-mg">
                     <input id="searchInput" onChange={(e) => this.searchBoxKeyupHandler(e)}
                         type="text" className="form-control w-50"
-                        aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-lg"
                         placeholder="Type here to search" aria-label="Type here to search" />
                     <div className="input-group-append">

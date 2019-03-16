@@ -100,6 +100,7 @@ class ProdDetail extends Component {
               <div onClick={(e) => this.handleVariantChange(e, val)} className="col mr-2" key={idx1} style={{ width: '30px', height: '30px', maxWidth: '30px', maxHeight: '30px', background: attrValue, border: '1px solid grey', cursor: 'pointer' }}></div>
             )
           }
+          return '';
         })
       })
     }
@@ -107,7 +108,7 @@ class ProdDetail extends Component {
 
   render() {
 
-    let { qty, carouselSettings, totalPrice, selectedVariant } = this.state;
+    let { qty, carouselSettings, selectedVariant } = this.state;
     let { product } = this.props;
     // let thumbSlides = this.renderThumbnails(product.variants);
     let productSlides = this.renderProductSlides(product);
