@@ -13,8 +13,8 @@ const metaData = {
     title: 'Profile',
     link: '/profile',
     isFooterLink: true
-  };
-  
+};
+
 
 // const ProfileSection = ({ title, children }) => (
 class ProfileSection extends Component {
@@ -34,12 +34,12 @@ class ProfileSection extends Component {
     //             }
     //   );
     // }
-    
+
     // // Make sure we un-register Firebase observers when the component unmounts.
     // componentWillUnmount() {
     //   this.unregisterAuthObserver();
     // }
-  
+
     // componentDidMount() {
 
     //     // Get saved userAuthInfo from sessionStorage
@@ -50,7 +50,7 @@ class ProfileSection extends Component {
     //       this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
     //     }
     // }
-    
+
     onLoggedout(e) {
         firebase.auth().signOut();
         // Remove saved sessionKey from sessionStorage
@@ -63,20 +63,20 @@ class ProfileSection extends Component {
     render() {
         const { title, children } = this.props;
         return (
-        <div className="wwn-profile-section">
-            <div className="wwn-profile-section-heading clearfix">
-                <h2 className="brewing-head float-left">{title}</h2>
-                <EditButton className="wwn-edit float-left float-md-right" />
-            </div>
-            <div className="wwn-profile-section-content">
-                {children}
-            </div>
-            {/* onClick={e => this.onLoggedout()} */}
-            <a className="signout-btn" onClick={e => this.onLoggedout()}>
-                <i className="fa fa-fw fa-power-off"></i> Sign Out
+            <div className="wwn-profile-section">
+                <div className="wwn-profile-section-heading clearfix">
+                    <h2 className="brewing-head float-left">{title}</h2>
+                    <EditButton className="wwn-edit float-left float-md-right" />
+                </div>
+                <div className="wwn-profile-section-content">
+                    {children}
+                </div>
+                {/* onClick={e => this.onLoggedout()} */}
+                <a href="/" className="signout-btn" onClick={e => this.onLoggedout()}>
+                    <i className="fa fa-fw fa-power-off"></i> Sign Out
             </a>
-            <LogoutButton />
-        </div>
+                <LogoutButton />
+            </div>
         );
     }
 }
