@@ -5,6 +5,7 @@ import Calendar from 'react-calendar'
 
 import { loadEvents } from '../../../actions/event'
 import { addEvent, deleteEvent } from '../../../actions/event'
+import Event from '../Event'
 
 import './index.scss';
 
@@ -42,6 +43,7 @@ class EventCalendar extends Component {
     }
     renderForm() {
         let { isOpen, date } = this.state;
+        let { categories } = this.props;
         if (!isOpen) return (<button onClick={e => this.toggleForm()} className="btn btn-info btn-sm"><span className="fa fa-plus"> Event</span></button>)
         else return (
             <div className="card card-default">
@@ -54,8 +56,7 @@ class EventCalendar extends Component {
                         <div className="form-group">
                             <select className="form-control" ref="type">
                                 <option key=''>Type of Event</option>
-                                <option key='birthday'>Birthday</option>
-                                <option key='wedding'>Wedding</option>
+                                {categories.map((category, idx) => <option key={category.id}>{category.name}</option>)}
                             </select>
                         </div>
                         <div className="form-group">
@@ -86,6 +87,7 @@ class EventCalendar extends Component {
                     <hr />
                     <p><span>{event.title}</span></p>
                 </div>
+                <Event />
             </div>
           )
         })
@@ -111,7 +113,8 @@ class EventCalendar extends Component {
 const mapStateToProps = (state, ownProps) => ({
     // ... computed data from state and optionally ownProps
     user: state.user,
-    events: state.events
+    events: state.events,
+    categories: state.categories
 })
 const mapDispatchToProps = dispatch => ({
     // ... normally is an object full of action creators
