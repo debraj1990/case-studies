@@ -21,7 +21,7 @@ class PrivateRoute extends Component {
     componentDidMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
             (user) => {
-                console.log(user); console.log('bat');
+                // console.log(user); console.log('bat');
                 if(user) {
                     this.setState(
                         {
@@ -49,7 +49,7 @@ class PrivateRoute extends Component {
     render() {
 
         const { component: Component, ...rest } = this.props;
-        console.log('===', this.props);
+        // console.log('===', this.props);
         if (this.state.isAuthenticated) {
             return (
                 <Route {...rest} render={(props) => (
