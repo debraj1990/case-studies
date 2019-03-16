@@ -9,7 +9,7 @@ import Productdetail, { metaData as prodInfo } from '../Pages/Productdetail';
 import Cart, { metaData as cartInfo } from '../Pages/Cart';
 import Calendar, { metaData as eventInfo } from '../Pages/Calendar';
 import Wishlist, { metaData as wishlistInfo } from '../Pages/Wishlist';
-import OnBeforeLoad from '../../hoc/OnBeforeLoad';
+// import OnBeforeLoad from '../../hoc/OnBeforeLoad';
 import Searchpage, { metaData as searchInfo } from '../Pages/Searchpage';
 
 const Content = () => (
@@ -18,7 +18,7 @@ const Content = () => (
             {Productdetail.link}
             <Switch>
                 <Route exact path="/" component={Login} />
-                <Route exact path={loginInfo.link}  component={Login} />
+                <Route exact path={loginInfo.link} component={Login} />
                 <PrivateRoute exact path={homeInfo.link} component={Home} />
                 <PrivateRoute exact path={cartInfo.link} component={Cart} />
                 <PrivateRoute exact path={wishlistInfo.link} component={Wishlist} />
@@ -26,7 +26,7 @@ const Content = () => (
                 <PrivateRoute exact path={prodInfo.link} component={Productdetail} />
                 <PrivateRoute exact path={profileInfo.link} component={ProfileSection} />
                 <PrivateRoute exact path={eventInfo.link} component={Calendar} />
-				<PrivateRoute exact path={searchInfo.link} component={Searchpage} />
+                <PrivateRoute exact path={searchInfo.link} component={Searchpage} />
             </Switch>
         </div>
     </div>

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import {
-    BrowserRouter as Router,
+    //BrowserRouter as Router,
     Route,
-    Link,
-    Redirect,
     withRouter
 } from 'react-router-dom';
 import OnBeforeLoad from '../../hoc/OnBeforeLoad';
@@ -22,7 +20,7 @@ class PrivateRoute extends Component {
             (user) => {
                 // console.log(user); console.log('bat');
                 this.setState(
-                    { 
+                    {
                         isAuthenticated: !!user,
                         user: {
                             "fullName": user.displayName,

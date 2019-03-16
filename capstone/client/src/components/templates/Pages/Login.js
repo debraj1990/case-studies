@@ -21,11 +21,11 @@ const uiConfig = {
 };
 
 const metaData = {
-    title: 'Login',
-    link: '/login',
-    isFooterLink: false
-  };
-  
+  title: 'Login',
+  link: '/login',
+  isFooterLink: false
+};
+
 
 class Login extends Component {
   render() {
@@ -33,17 +33,11 @@ class Login extends Component {
       <div>
         <h1>Capstone: Gift-It</h1>
         <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );
   }
 }
-// const Login = () => (
-//     <div>
-//         <input type="text" name="userName" placeholder="User Name"/>
-//         <input type="text" name="password" placeholder="Password"/>
-//         <button type="submit">Log IN</button>
-//     </div>
-//   );
-  export default Login;
-  export { metaData };
+
+export default Login;
+export { metaData };
