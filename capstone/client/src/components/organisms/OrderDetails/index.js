@@ -22,7 +22,6 @@ class OrderDetails extends Component {
                     <p><span>Total Amount: </span><span>&#x20b9;{val.totalAmount}</span></p>
                     <hr />
                     <OrderProducts products={val.products} />
-                    <hr />
                 </div>
             )
         })

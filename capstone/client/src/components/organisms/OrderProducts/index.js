@@ -8,7 +8,7 @@ class OrderProducts extends Component {
         let { products } = this.props;
         return products.map((val, idx) => {
             return (
-                <div key={idx}>
+                <div key={idx} className="order-product">
                     <OrderProduct product={val} />
                     <hr />
                 </div>

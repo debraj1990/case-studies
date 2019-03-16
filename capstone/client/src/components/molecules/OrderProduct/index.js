@@ -12,7 +12,7 @@ class OrderProduct extends Component {
     let imgUrl = variant.thumbnail.split('/').pop();
 
     return (
-      <div className="row cart-prod">
+      <div className="row">
         <div className="col-3 col-sm-3">
           <Link to={tgtUrl}>
             <img src={images[imgUrl]} alt={productDetails.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
@@ -39,7 +39,7 @@ class OrderProduct extends Component {
           </p>
 
         </div>
-        <div className="col-2 col-sm-2">
+        <div className="col-3 col-sm-3">
           &#x20b9; {variant.sale_price}
         </div>
       </div >

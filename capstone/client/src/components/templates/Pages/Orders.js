@@ -10,8 +10,9 @@ class Orders extends Component {
 
     render() {
         return (
-            <div className="container checkout-container">
-                <h3>My Orders</h3>
+            <div >
+                <h5>My Orders</h5>
+                <hr />
                 <OrderDetails />
             </div>
         )
