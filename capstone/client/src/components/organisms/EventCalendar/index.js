@@ -19,6 +19,7 @@ class EventCalendar extends Component {
     }
     componentDidMount() {
         let { actions, user } = this.props;
+        console.log("user->",user)
         actions.loadEvents(user.id);
     }
     onDateChange = date => this.setState({ date })
@@ -63,7 +64,7 @@ class EventCalendar extends Component {
                             <input readOnly className="form-control" value={date.toDateString()} />
                         </div>
                         <div className="form-group">
-                            <input className="form-control" ref="time" />
+                            <input className="form-control" ref="time" placeholder="Time (optional)" />
                         </div>
                         <button className="btn btn-sm btn-primary">Create</button>
                         <button onClick={e => this.toggleForm()} type="button" className="btn btn-sm btn-danger">cancel</button>
@@ -79,17 +80,9 @@ class EventCalendar extends Component {
     renderEvents() {
         let { events } = this.props;
         return events.map((event, idx) => {
-          return (
-            <div className="col-8 col-sm-12 col-md-12" key={idx}>
-                <div className="alert alert-info">
-                    <span className="badge">{event.type}</span> &mdash; <span>{event.date}</span>
-                    <i onClick={e => this.deleteEvent(event.id)} className="fa fa-times-circle float-right"></i>
-                    <hr />
-                    <p><span>{event.title}</span></p>
-                </div>
-                <Event />
-            </div>
-          )
+            return (
+                <Event key={idx} event={event} />
+            )
         })
     }
     render() {
@@ -119,7 +112,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
     // ... normally is an object full of action creators
     actions: bindActionCreators({ loadEvents, addEvent, deleteEvent }, dispatch)
-  })
+})
 // `connect` returns a new function that accepts the component to wrap:
 const connectToStore = connect(
     mapStateToProps,
