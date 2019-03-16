@@ -73,7 +73,7 @@ class EventCalendar extends Component {
             </div>
         )
     }
-    deleteEvent(eventId) {
+    onDelete(eventId) {
         let { actions } = this.props;
         actions.deleteEvent(eventId);
     }
@@ -81,7 +81,7 @@ class EventCalendar extends Component {
         let { events } = this.props;
         return events.map((event, idx) => {
             return (
-                <Event key={idx} event={event} />
+                <Event key={idx} event={event} onDelete={id => this.onDelete(id)} />
             )
         })
     }
