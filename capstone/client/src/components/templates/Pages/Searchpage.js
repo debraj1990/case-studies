@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../organisms/Header';
 import { searchResults } from '../../../actions/search';
 import store from '../../../store';
@@ -48,12 +49,12 @@ class Searchpage extends Component {
       return (
         <div key={index} className=" prod-box">
           <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
-          <a href={'/product/' + item.id}><img src={images[imgName]} alt={item.name} className="img-responsive" style={{ maxWidth: '60%' }} />
+          <Link to={'/product/' + item.id}><img src={images[imgName]} alt={item.name} className="img-responsive" style={{ maxWidth: '60%' }} />
             <div className="carousel-caption">
               <p className="cat-head">{item.name}</p>
               {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
             </div>
-          </a>
+          </Link>
         </div>
       )
     })

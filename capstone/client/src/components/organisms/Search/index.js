@@ -107,8 +107,8 @@ class Search extends Component {
     }
 
     render() {
-        let { history } = this.props;
-        console.log(history);
+        // let { history } = this.props;
+        // console.log(history);
         return (
             <div className="col">
                 <div className="input-group input-group-mg">

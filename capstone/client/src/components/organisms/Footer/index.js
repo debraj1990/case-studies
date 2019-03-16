@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 class Footer extends Component {
@@ -40,10 +41,10 @@ class Footer extends Component {
       let appliedClass = 'mt-2 d-block h-100 ' + activeClass;
       return (
         <div className="col" key={idx}>
-          <a href={val.target} className={appliedClass}>
+          <Link to={val.target} className={appliedClass}>
             <i className={val.classes}></i><br />
             {val.name}
-          </a>
+          </Link>
         </div>
       )
     })

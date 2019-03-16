@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { images } from '../../../utilities/imgimport'
 import RemoveFromCartBtn from '../../atoms/RemoveFromCartBtn';
@@ -18,14 +19,14 @@ class CartProduct extends Component {
     return (
       <div className="row cart-prod">
         <div className="col-3 col-sm-3">
-          <a href={tgtUrl}>
+          <Link to={tgtUrl}>
             <img src={images[imgUrl]} alt={productDetails.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
-          </a>
+          </Link>
         </div>
         <div className="col-6 col-sm-6">
-          <a href={tgtUrl}>
+          <Link to={tgtUrl}>
             <p className="prod-name font-weight-bold">{productDetails.name}</p>
-          </a>
+          </Link>
           <p className="prod-desc">{productDetails.short_desc}</p>
           <p className='prod-attrs'>
             {
