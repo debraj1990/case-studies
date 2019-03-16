@@ -54,12 +54,5 @@ class Login extends Component {
     );
   }
 }
-// const Login = () => (
-//     <div>
-//         <input type="text" name="userName" placeholder="User Name"/>
-//         <input type="text" name="password" placeholder="Password"/>
-//         <button type="submit">Log IN</button>
-//     </div>
-//   );
   export default Login;
   export { metaData };

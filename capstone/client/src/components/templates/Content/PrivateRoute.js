@@ -13,23 +13,27 @@ class PrivateRoute extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAuthenticated: false
+            isAuthenticated: false,
+            user: {}
         }
     }
     // Listen to the Firebase Auth state and set the local state.
     componentDidMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
             (user) => {
-                // console.log(user); console.log('bat');
-                this.setState(
-                    { 
-                        isAuthenticated: !!user,
-                        user: {
-                            "fullName": user.displayName,
-                            "email": user.email
+                console.log(user); console.log('bat');
+                if(user) {
+                    this.setState(
+                        {
+                            isAuthenticated: !!user,
+                            user: {
+                                "fullName": user.displayName,
+                                "email": user.email
+                            }
                         }
-                    });
-                if (!user) {
+                    );
+                }
+                else {
                     // console.log(this.props.history)
                     this.props.history.push(`/login`); //user logged out
                 }
