@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
-import {  BrowserRouter as Router, Link } from 'react-router-dom';
 
 class Footer extends Component {
   constructor(props) {
