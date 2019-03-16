@@ -6,7 +6,7 @@ pipeline {
     }
   }
     environment {
-        DOCKER_IMAGE_NAME = "shashmca/client"
+        DOCKER_IMAGE_NAME = "shashmca/clientapp"
     }
     // tools {nodejs "node"}
     stages {
@@ -14,7 +14,6 @@ pipeline {
              steps {
               dir('capstone/client') {
                 sh 'npm install'
-                // sh 'npm test'
               }
             }
         }
