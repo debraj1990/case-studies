@@ -21,23 +21,38 @@ const uiConfig = {
 };
 
 const metaData = {
-  title: 'Login',
-  link: '/login',
-  isFooterLink: false
-};
-
+    title: 'Login',
+    link: '/login',
+    isFooterLink: false
+  };
+  
 
 class Login extends Component {
+  // Listen to the Firebase Auth state and set the local state.
+  componentDidMount() {
+      this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+          (user) => {
+              if (user) {
+                  // console.log(this.props.history)
+                  this.props.history.push(`/home`); //user logged in
+              }
+          }
+      );
+  }
+
+  // Make sure we un-register Firebase observers when the component unmounts.
+  componentWillUnmount() {
+      this.unregisterAuthObserver();
+  }
   render() {
     return (
       <div>
         <h1>Capstone: Gift-It</h1>
         <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
       </div>
     );
   }
 }
-
-export default Login;
-export { metaData };
+  export default Login;
+  export { metaData };
