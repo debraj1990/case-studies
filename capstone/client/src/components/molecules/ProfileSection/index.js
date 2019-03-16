@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 // import { FIREBASE_CONFIG } from '../../../constants';
@@ -72,9 +73,9 @@ class ProfileSection extends Component {
                     {children}
                 </div>
                 {/* onClick={e => this.onLoggedout()} */}
-                <a href="/" className="signout-btn" onClick={e => this.onLoggedout()}>
+                <Link to="/" className="signout-btn" onClick={e => this.onLoggedout()}>
                     <i className="fa fa-fw fa-power-off"></i> Sign Out
-            </a>
+            </Link>
                 <LogoutButton />
             </div>
         );

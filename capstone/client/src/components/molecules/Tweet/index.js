@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Tweet.scss';
 import YTIcon from '../../atoms/YTIcon';
 
@@ -25,7 +26,7 @@ const Tweet = ({ displayName, isVerified, text, username, type, videoId }) => {
                                 <div className="Icon Icon--twitter" />
                             </div>
                             <div className="timeline-Tweet-author">
-                                <div className="TweetAuthor"><a className="TweetAuthor-link" href="#channel"> </a><span className="TweetAuthor-avatar">
+                                <div className="TweetAuthor"><Link className="TweetAuthor-link" href="#channel"> </Link><span className="TweetAuthor-avatar">
                                     <div className="Avatar"> </div></span><span className="TweetAuthor-name">{displayName} </span><span className="Icon Icon--verified"> </span><span className="TweetAuthor-screenName">{`@${username}`} </span></div>
                             </div>
                             <div className="timeline-Tweet-text">{text}</div>
@@ -48,7 +49,7 @@ const Tweet = ({ displayName, isVerified, text, username, type, videoId }) => {
                             <div className="Icon Icon--twitter" />
                         </div>
                         <div className="timeline-Tweet-author">
-                            <div className="TweetAuthor"><a className="TweetAuthor-link" href="#channel"> </a><span className="TweetAuthor-avatar">
+                            <div className="TweetAuthor"><Link className="TweetAuthor-link" href="#channel"> </Link><span className="TweetAuthor-avatar">
                                 <div className="Avatar"> </div></span><span className="TweetAuthor-name">{displayName} </span><span className="TweetAuthor-screenName">{`@${username}`} </span></div>
                         </div>
                         <div className="timeline-Tweet-text">{text}</div>

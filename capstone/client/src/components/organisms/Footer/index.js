@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import {  BrowserRouter as Router, Link } from 'react-router-dom';
 
