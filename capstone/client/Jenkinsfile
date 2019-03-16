@@ -9,7 +9,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "shashmca/clientapp"
     }
     // tools {nodejs "node"}
-    stage('Checkout') {
+    stages('Checkout') {
 
       steps {
 
