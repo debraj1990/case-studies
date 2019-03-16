@@ -24,6 +24,12 @@ const Api = {
   getUser(userId) {
     return axios.get(`${apiHost}users/${userId}`);
   },
+  getUserByEmail(userEmailId) {
+    return axios.get(`${apiHost}users/?filter[where][email]=${userEmailId}`);
+  },
+  addUser(userData) {
+    return axios.post(`${apiHost}users`, userData);
+  },
   loadProductById(pid) {
     return axios.get(`${apiHost}products/${pid}`);
   },

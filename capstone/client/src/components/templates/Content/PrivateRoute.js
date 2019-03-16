@@ -8,6 +8,7 @@ import {
     withRouter
 } from 'react-router-dom';
 import OnBeforeLoad from '../../hoc/OnBeforeLoad';
+
 class PrivateRoute extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +22,14 @@ class PrivateRoute extends Component {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
             (user) => {
                 console.log(user); console.log('bat');
-                this.setState({ isAuthenticated: !!user });
+                this.setState(
+                    { 
+                        isAuthenticated: !!user,
+                        user: {
+                            "fullName": user.displayName,
+                            "email": user.email
+                        }
+                    });
                 if (!user) {
                     console.log(this.props.history)
                     this.props.history.push(`/login`); //user logged out
@@ -42,7 +50,7 @@ class PrivateRoute extends Component {
         if (this.state.isAuthenticated) {
             return (
                 <Route {...rest} render={(props) => (
-                    <OnBeforeLoad {...props}><Component {...props} /></OnBeforeLoad>
+                    <OnBeforeLoad userEmailId={this.state.user.email} userDataObj={this.state.user} {...props}><Component {...props} /></OnBeforeLoad>
                 )} />
             );
         }
