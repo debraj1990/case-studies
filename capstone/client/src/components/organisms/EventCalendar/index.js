@@ -26,14 +26,14 @@ class EventCalendar extends Component {
         e.preventDefault()
         let { title, type, time } = this.refs;
         let { date } = this.state;
-        let { actions } = this.props;
+        let { actions, user } = this.props;
         let newEvent = {
             title: title.value,
             type: type.value,
             date: date,
             time: time.value
         }
-        actions.addEvent('5c7d35c3574832258003a93f', newEvent);
+        actions.addEvent(user.id, newEvent);
         this.toggleForm();
     }
     toggleForm() {
