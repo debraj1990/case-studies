@@ -21,14 +21,21 @@ const intialState = {
   wishlist: {
     products: []
   },
+  // user: {
+  //   carts: {
+  //     products: []
+  //   },
+  //   wishlists: {
+  //     products: []
+  //   }
+  // }
   user: {
-    carts: {
-      products: []
-    },
-    wishlists: {
-      products: []
+      fullName: "",
+      email: "",
+      id: "",
+      carts: {},
+      wishlists: {}
     }
-  }
 }
 
 const sagaMiddleware = createSagaMiddleware()
