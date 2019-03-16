@@ -33,7 +33,7 @@ pipeline {
 
     stage('Client run') {
       steps {
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm start'    
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/client && npm run build'    
       }
     }
     
@@ -51,7 +51,7 @@ pipeline {
         //dir('${workspace}@script/capstone/api-server') {
           //sh 'npm start'
         //}
-        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm start'    
+        sh 'cd /var/jenkins_home/workspace/Capstone@script/capstone/api-server && npm run build'    
       }
     }
   }
