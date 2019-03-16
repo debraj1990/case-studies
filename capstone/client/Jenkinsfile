@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "shashmca/client"
     }
-    tools {nodejs "node"}
+    // tools {nodejs "node"}
     stages {
         stage('Build') {
              steps {
