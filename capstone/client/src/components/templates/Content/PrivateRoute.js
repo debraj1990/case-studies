@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import {
-    //BrowserRouter as Router,
+    BrowserRouter as Router,
     Route,
+    Link,
+    Redirect,
     withRouter
 } from 'react-router-dom';
 import OnBeforeLoad from '../../hoc/OnBeforeLoad';
@@ -11,7 +13,8 @@ class PrivateRoute extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAuthenticated: false
+            isAuthenticated: false,
+            user: {}
         }
     }
     // Listen to the Firebase Auth state and set the local state.
@@ -19,15 +22,18 @@ class PrivateRoute extends Component {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
             (user) => {
                 // console.log(user); console.log('bat');
-                this.setState(
-                    {
-                        isAuthenticated: !!user,
-                        user: {
-                            "fullName": user.displayName,
-                            "email": user.email
+                if(user) {
+                    this.setState(
+                        {
+                            isAuthenticated: !!user,
+                            user: {
+                                "fullName": user.displayName,
+                                "email": user.email
+                            }
                         }
-                    });
-                if (!user) {
+                    );
+                }
+                else {
                     // console.log(this.props.history)
                     this.props.history.push(`/login`); //user logged out
                 }
@@ -43,7 +49,7 @@ class PrivateRoute extends Component {
     render() {
 
         const { component: Component, ...rest } = this.props;
-        console.log('===', this.props);
+        // console.log('===', this.props);
         if (this.state.isAuthenticated) {
             return (
                 <Route {...rest} render={(props) => (
