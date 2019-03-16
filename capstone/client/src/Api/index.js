@@ -30,6 +30,12 @@ const Api = {
   loadEvents(userId) {
     return axios.get(`${apiHost}users/${userId}/events`);
   },
+  addEvent(userId, eventObj) {
+    return axios.post(`${apiHost}users/${userId}/events`, eventObj);
+  },
+  deleteEvent(eventId) {
+    return axios.delete(`${apiHost}Events/${eventId}`);
+  }
 }
 
 export default Api;

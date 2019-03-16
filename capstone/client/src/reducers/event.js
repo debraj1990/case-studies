@@ -10,13 +10,11 @@ export function eventsReducer(state = [], action) {
     }
     case CREATE_EVENT: {
         let { event } = action;
-        let { events } = state;
-        let allEvents = [...events, event]
-        return Object.assign({}, state, { [events]: allEvents })
+        return [...state, event]
     }
     case DELETE_EVENT: {
-        let { events } = action
-        return [...events]
+        console.log(action)
+        return state.filter(event => event.id !== action.id)
     }
     default:
       return state;

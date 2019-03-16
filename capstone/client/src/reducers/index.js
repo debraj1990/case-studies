@@ -5,6 +5,7 @@ import { productReducer, productDetailReducer } from './product'
 import { cartReducer } from './cart'
 import { wishlistReducer } from './wishlist'
 import { userReducer } from './user'
+import { eventsReducer } from './event'
 import { searchReducer, searchResultReducer } from './search';
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user: userReducer,
   productObj: productDetailReducer,
   search:searchReducer,
-  searchresult:searchResultReducer
+  searchresult:searchResultReducer,
+  events: eventsReducer
 });
 
 

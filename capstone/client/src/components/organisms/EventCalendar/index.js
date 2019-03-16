@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Calendar from 'react-calendar'
 
 import { loadEvents } from '../../../actions/event'
+import { addEvent, deleteEvent } from '../../../actions/event'
 
 import './index.scss';
 
@@ -16,8 +17,8 @@ class EventCalendar extends Component {
         }
     }
     componentDidMount() {
-        let { actions } = this.props;
-        actions.loadEvents('5c7d35c3574832258003a93f');
+        let { actions, user } = this.props;
+        actions.loadEvents(user.id);
     }
     onDateChange = date => this.setState({ date })
 
@@ -25,13 +26,15 @@ class EventCalendar extends Component {
         e.preventDefault()
         let { title, type, time } = this.refs;
         let { date } = this.state;
+        let { actions } = this.props;
         let newEvent = {
             title: title.value,
             type: type.value,
             date: date,
             time: time.value
         }
-        console.log(newEvent);
+        actions.addEvent('5c7d35c3574832258003a93f', newEvent);
+        this.toggleForm();
     }
     toggleForm() {
         let { isOpen } = this.state;
@@ -68,14 +71,21 @@ class EventCalendar extends Component {
             </div>
         )
     }
+    deleteEvent(eventId) {
+        let { actions } = this.props;
+        actions.deleteEvent(eventId);
+    }
     renderEvents() {
-        let { events } = this.state;
-        console.log(events)
-        if (!events) return;
-        return events.map((val, idx) => {
+        let { events } = this.props;
+        return events.map((event, idx) => {
           return (
-            <div className="col-sm-3 mb-3 col-6" key={idx}>
-              <span>{val.title}</span>
+            <div className="col-8 col-sm-12 col-md-12" key={idx}>
+                <div className="alert alert-info">
+                    <span className="badge">{event.type}</span> &mdash; <span>{event.date}</span>
+                    <i onClick={e => this.deleteEvent(event.id)} className="fa fa-times-circle float-right"></i>
+                    <hr />
+                    <p><span>{event.title}</span></p>
+                </div>
             </div>
           )
         })
@@ -83,25 +93,29 @@ class EventCalendar extends Component {
     render() {
         let { date } = this.state;
         return (
-            <section className="container">
-                <div className="col-4 col-sm-4 col-md-4 float-left">
-                    <Calendar onChange={this.onDateChange} value={date} minDate={new Date()} />
-                </div>
+            <div>
+                <section className="container row">
+                    <div className="col-6 col-sm-6 col-md-6 float-left">
+                        <Calendar onChange={this.onDateChange} value={date} minDate={new Date()} />
+                    </div>
+                    <div className="col-6 col-sm-6 col-md-6 float-left">
+                        {this.renderForm()}
+                    </div>
+                </section>
+                <hr />
                 <div className="row">{this.renderEvents()}</div>
-                <div className="col-4 col-sm-4 col-md-4 float-left">
-                    {this.renderForm()}
-                </div>
-            </section>
+            </div>
         )
     }
 }
 const mapStateToProps = (state, ownProps) => ({
     // ... computed data from state and optionally ownProps
-    user: state.user
+    user: state.user,
+    events: state.events
 })
 const mapDispatchToProps = dispatch => ({
     // ... normally is an object full of action creators
-    actions: bindActionCreators({ loadEvents }, dispatch)
+    actions: bindActionCreators({ loadEvents, addEvent, deleteEvent }, dispatch)
   })
 // `connect` returns a new function that accepts the component to wrap:
 const connectToStore = connect(
