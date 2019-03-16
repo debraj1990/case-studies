@@ -24,6 +24,10 @@ export const LOAD_PRODUCT_Detail = 'LOAD_PRODUCT_Detail';
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
 export const SEARCH_RESULTS = 'SEARCH_RESULTS';
 
+export const LOAD_EVENT = 'LOAD_EVENT';
+export const CREATE_EVENT = 'CREATE_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
+
 // Initialize Firebase (SECRET KEY)
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCXnQ52MZjL5g6PXqgxWLoUaHd_sLIGORU",

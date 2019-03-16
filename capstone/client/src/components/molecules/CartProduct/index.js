@@ -6,11 +6,12 @@ import RemoveFromCartBtn from '../../atoms/RemoveFromCartBtn';
 class CartProduct extends Component {
   render() {
     let { product } = this.props;
-    let tgtUrl = `/product/${product.id}`;
-    let variant = product.variants[0];
+    let productDetails = product.productDetails;
+    let tgtUrl = `/product/${productDetails.id}`;
+    let variant = productDetails.variants[0];
     let imgUrl = variant.thumbnail.split('/').pop();
     let prodObj = {
-      product: product.id,
+      product: productDetails.id,
       sku: variant.sku,
       qty: variant.qty
     }
@@ -18,14 +19,14 @@ class CartProduct extends Component {
       <div className="row cart-prod">
         <div className="col-3 col-sm-3">
           <a href={tgtUrl}>
-            <img src={images[imgUrl]} alt={product.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
+            <img src={images[imgUrl]} alt={productDetails.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
           </a>
         </div>
         <div className="col-6 col-sm-6">
           <a href={tgtUrl}>
-            <p className="prod-name font-weight-bold">{product.name}</p>
+            <p className="prod-name font-weight-bold">{productDetails.name}</p>
           </a>
-          <p className="prod-desc">{product.short_desc}</p>
+          <p className="prod-desc">{productDetails.short_desc}</p>
           <p className='prod-attrs'>
             {
               variant.attrs.map((attr, idx) => {
@@ -37,7 +38,7 @@ class CartProduct extends Component {
             }
             <span className='prod-attr'>
               <span className='prod-attr-name' > Qty:</span>
-              <span className='prod-attr-value' > {variant.qty}</span>
+              <span className='prod-attr-value' > {product.qty}</span>
             </span>
           </p>
 
