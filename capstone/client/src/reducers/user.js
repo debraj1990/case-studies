@@ -3,7 +3,7 @@ export function userReducer(state = {}, action) {
     //
     switch (action.type) {
         case GET_USER: {
-            // console.log(action);
+            // console.log("user action =>",action);
             let { userDataObjForState } = action;
             return Object.assign({}, userDataObjForState);
         }
