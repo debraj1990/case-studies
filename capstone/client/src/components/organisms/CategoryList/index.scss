@@ -1,13 +1,20 @@
 @import '../../../static/styles/base/imports';
 .category-list {
+  a {
+    position: relative;
+    border: 1px solid #d3d3d3;
+  }
   .carousel-caption {
-    right: 0;
+    background: #fff;
+    left: 0;
+    opacity: 0.8;
+    padding: 0 0 0 10px;
     bottom: 0;
-    left: convert-to-rem(25px);
-    text-align: left;
     @media #{$tablet} {
-      bottom: convert-to-rem(20px);
-      left: convert-to-rem(35px);
+      left: 0;
+      opacity: 0.8;
+      padding: 0 0 0 10px;
+      bottom: 0;
     }
     .cat-head {
       @include font-size(20px)
