@@ -28,6 +28,22 @@ const metaData = {
   
 
 class Login extends Component {
+  // Listen to the Firebase Auth state and set the local state.
+  componentDidMount() {
+      this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+          (user) => {
+              if (user) {
+                  // console.log(this.props.history)
+                  this.props.history.push(`/home`); //user logged in
+              }
+          }
+      );
+  }
+
+  // Make sure we un-register Firebase observers when the component unmounts.
+  componentWillUnmount() {
+      this.unregisterAuthObserver();
+  }
   render() {
     return (
       <div>
