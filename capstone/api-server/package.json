@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon .",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "build": "node ."
   },
   "dependencies": {
     "async": "^2.6.2",
