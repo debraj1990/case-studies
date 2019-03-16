@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EventCalendar from '../../organisms/EventCalendar';
-import store from '../../../store';
+// import store from '../../../store';
 
 
 // import AddToCartBtn from '../../atoms/AddToCartBtn';
@@ -16,7 +16,7 @@ const metaData = {
 class Calendar extends Component {
 
   render() {
-    console.log(store.getState(), " %%%%%%%%%%%%%%%%");
+    // console.log(store.getState(), " %%%%%%%%%%%%%%%%");
     return (
       <div>
         <EventCalendar />
