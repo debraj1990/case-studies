@@ -9,16 +9,13 @@ pipeline {
         DOCKER_IMAGE_NAME = "shashmca/clientapp"
     }
     // tools {nodejs "node"}
-    stages('Checkout') {
-
-      steps {
-
-        git branch: 'team-3', url: 'https://github.com/XT-training/case-studies.git'
-
-      }
-
-    }
+    
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'team-3', url: 'https://github.com/XT-training/case-studies.git'
+            }
+        }
         stage('Build') {
              steps {
               dir('capstone/client') {
