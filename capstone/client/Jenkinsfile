@@ -1,21 +1,31 @@
 pipeline {
-    agent any
-    environment {
-        DOCKER_IMAGE_NAME = "nagabhushanamn/client"
+    agent {
+    docker {
+      image 'node:6-alpine'
+      args '-p 3000:3000'
     }
-    tools {nodejs "node"}
+  }
+    environment {
+        DOCKER_IMAGE_NAME = "shashmca/clientapp"
+    }
+    // tools {nodejs "node"}
+    
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'team-3', url: 'https://github.com/XT-training/case-studies.git'
+            }
+        }
         stage('Build') {
              steps {
-              dir('client') {
+              dir('capstone/client') {
                 sh 'npm install'
-                sh 'npm test'
               }
             }
         }
         stage('Build Docker Image') {
             steps {
-              dir('client') {
+              dir('capstone/client') {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                 }
@@ -25,7 +35,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'Dockerhubcred') {
                         app.push("${env.BUILD_NUMBER}")
                         //app.push("latest")
                     }
