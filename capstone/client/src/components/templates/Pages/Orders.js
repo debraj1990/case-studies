@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import OrderDetails from '../../organisms/OrderDetails';
+import Header from '../../organisms/Header';
 
 const metaData = {
     title: 'Orders',
@@ -11,8 +12,7 @@ class Orders extends Component {
     render() {
         return (
             <div >
-                <h5>My Orders</h5>
-                <hr />
+                <Header heading="My orders" />
                 <OrderDetails />
             </div>
         )

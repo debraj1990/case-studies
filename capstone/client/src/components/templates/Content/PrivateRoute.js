@@ -12,7 +12,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getUser } from '../../../actions/user';
 
-
 class PrivateRoute extends Component {
     constructor(props) {
         super(props);

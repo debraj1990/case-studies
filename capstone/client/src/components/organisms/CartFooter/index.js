@@ -47,13 +47,14 @@ class CartFooter extends Component {
     render() {
         return (
             <div className="cart-footer row">
-                <div className="col-9">
+                <div className="col-4 col-sm-8">
 
                 </div>
-                <div className="col-1">
+                <div className="col-4 col-sm-2 text-center"><button onClick={(e) => this.createOrder()} className="btn btn-danger">Checkout</button></div>
+                <div className="col-4 col-sm-2">
                     <span className="cart-total-amnt">Total: &#x20b9;{this.calculateCartTotal()}</span>
                 </div>
-                <div className="col-2 text-center"><button onClick={(e) => this.createOrder()} className="btn btn-danger">Checkout</button></div>
+
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import OrderProduct from '../../molecules/OrderProduct';
+import Header from '../../organisms/Header';
 
 const metaData = {
     title: 'Checkout',
@@ -26,16 +27,17 @@ class Checkout extends Component {
     render() {
         let { location } = this.props;
         let orderData = location.state.orderData;
-        console.log(this.props);
         return (
-            <div className="container checkout-container">
-                <div className="alert alert-success ">Your order is successful</div>
-                <h3>Order Details</h3>
-                <p><span>Order Id: </span><span>{orderData.id}</span></p>
-                <p><span>Total Amount: </span><span>&#x20b9;{orderData.totalAmount}</span></p>
-                <hr />
-                <div className="order-products">
-                    {this.renderOrderProducts(orderData)}
+            <div>
+                <Header heading="Order Details" />
+                <div className="container checkout-container">
+                    <div className="alert alert-success ">Your order is successful</div>
+                    <p><span>Order Id: </span><span>{orderData.id}</span></p>
+                    <p><span>Total Amount: </span><span>&#x20b9;{orderData.totalAmount}</span></p>
+                    <hr />
+                    <div className="order-products">
+                        {this.renderOrderProducts(orderData)}
+                    </div>
                 </div>
             </div>
         )

@@ -22,8 +22,8 @@ class WishlistProduct extends Component {
           <Link to={tgtUrl}>
             <img src={images[imgUrl]} alt={product.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
           </Link>
-          <p>{product.name}</p>
-          <p>&#x20b9; {variant.sale_price}</p>
+          <p className="prod-name">{product.name}</p>
+          <p className="prod-price">&#x20b9; {variant.sale_price}</p>
         </div>
       </div>
     )
