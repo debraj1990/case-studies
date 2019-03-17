@@ -27,6 +27,7 @@ export const SEARCH_RESULTS = 'SEARCH_RESULTS';
 export const LOAD_EVENT = 'LOAD_EVENT';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
+export const GET_ORDERS = 'GET_ORDERS';
 
 // Initialize Firebase (SECRET KEY)
 export const FIREBASE_CONFIG = {

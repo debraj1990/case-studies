@@ -41,6 +41,12 @@ const Api = {
   },
   deleteEvent(eventId) {
     return axios.delete(`${apiHost}Events/${eventId}`);
+  },
+  createOrder(orderObj) {
+    return axios.post(`${apiHost}orders`, orderObj);
+  },
+  getOrders(userId) {
+    return axios.get(`${apiHost}users/${userId}/orders`);
   }
 }
 
