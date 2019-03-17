@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Login, { metaData as loginInfo } from '../Pages/Login';
 import ProfileSection, { metaData as profileInfo } from '../../molecules/ProfileSection';
@@ -14,10 +14,10 @@ import Searchpage, { metaData as searchInfo } from '../Pages/Searchpage';
 import Checkout, { metaData as checkoutInfo } from '../Pages/Checkout';
 import Orders, { metaData as ordersInfo } from '../Pages/Orders';
 
+
 const Content = () => (
     <div className="wwn-content">
         <div className="wwn-container">
-            {Productdetail.link}
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path={loginInfo.link} component={Login} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CartProducts from '../../organisms/CartProducts';
 import CartFooter from '../../organisms/CartFooter';
-
+import Header from '../../organisms/Header';
 
 const metaData = {
     title: 'Cart',
@@ -10,13 +10,13 @@ const metaData = {
 
 class Cart extends Component {
     render() {
-        // console.log("Render cart");
         return (
-            <div className="container cart-container">
-                <h3 className="cart-heading mb-3">Your Cart</h3>
-                <hr />
-                <CartProducts />
-                <CartFooter />
+            <div>
+                <Header heading="My Cart" />
+                <div className="container cart-container">
+                    <CartProducts />
+                    <CartFooter />
+                </div>
             </div>
         )
     }
