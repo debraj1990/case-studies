@@ -5,6 +5,7 @@ import Calendar from 'react-calendar'
 
 import { loadEvents } from '../../../actions/event'
 import { addEvent, deleteEvent } from '../../../actions/event'
+import Event from '../Event'
 
 import './index.scss';
 
@@ -18,6 +19,7 @@ class EventCalendar extends Component {
     }
     componentDidMount() {
         let { actions, user } = this.props;
+        console.log("user->",user)
         actions.loadEvents(user.id);
     }
     onDateChange = date => this.setState({ date })
@@ -42,6 +44,7 @@ class EventCalendar extends Component {
     }
     renderForm() {
         let { isOpen, date } = this.state;
+        let { categories } = this.props;
         if (!isOpen) return (<button onClick={e => this.toggleForm()} className="btn btn-info btn-sm"><span className="fa fa-plus"> Event</span></button>)
         else return (
             <div className="card card-default">
@@ -54,8 +57,7 @@ class EventCalendar extends Component {
                         <div className="form-group">
                             <select className="form-control" ref="type">
                                 <option key=''>Type of Event</option>
-                                <option key='birthday'>Birthday</option>
-                                <option key='wedding'>Wedding</option>
+                                {categories.map((category, idx) => <option key={category.id}>{category.name}</option>)}
                             </select>
                         </div>
                         <div className="form-group">
@@ -71,7 +73,7 @@ class EventCalendar extends Component {
             </div>
         )
     }
-    deleteEvent(eventId) {
+    onDelete(eventId) {
         let { actions } = this.props;
         actions.deleteEvent(eventId);
     }
@@ -79,14 +81,7 @@ class EventCalendar extends Component {
         let { events } = this.props;
         return events.map((event, idx) => {
             return (
-                <div className="col-8 col-sm-12 col-md-12" key={idx}>
-                    <div className="alert alert-info">
-                        <span className="badge">{event.type}</span> &mdash; <span>{event.date}</span>
-                        <i onClick={e => this.deleteEvent(event.id)} className="fa fa-times-circle float-right"></i>
-                        <hr />
-                        <p><span>{event.title}</span></p>
-                    </div>
-                </div>
+                <Event key={idx} event={event} onDelete={id => this.onDelete(id)} />
             )
         })
     }
@@ -111,7 +106,8 @@ class EventCalendar extends Component {
 const mapStateToProps = (state, ownProps) => ({
     // ... computed data from state and optionally ownProps
     user: state.user,
-    events: state.events
+    events: state.events,
+    categories: state.categories
 })
 const mapDispatchToProps = dispatch => ({
     // ... normally is an object full of action creators
