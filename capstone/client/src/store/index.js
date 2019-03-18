@@ -13,22 +13,30 @@ const intialState = {
   loader: false,
   categories: [],
   products: [],
-  search:[],
-  searchresult:[],
+  search: [],
+  searchresult: [],
   cart: {
     products: []
   },
   wishlist: {
     products: []
   },
+  // user: {
+  //   carts: {
+  //     products: []
+  //   },
+  //   wishlists: {
+  //     products: []
+  //   }
+  // }
   user: {
-    carts: {
-      products: []
-    },
-    wishlists: {
-      products: []
-    }
-  }
+    fullName: "",
+    email: "",
+    id: "",
+    carts: {},
+    wishlists: {}
+  },
+  orders: []
 }
 
 const sagaMiddleware = createSagaMiddleware()

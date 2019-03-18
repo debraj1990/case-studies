@@ -1,16 +1,27 @@
 @import '../../../static/styles/base/imports';
 .category-list {
-  .carousel-caption {
-    right: 0;
-    bottom: 0;
-    left: convert-to-rem(25px);
-    text-align: left;
-    @media #{$tablet} {
-      bottom: convert-to-rem(20px);
-      left: convert-to-rem(35px);
+    a {
+        position: relative;
+        border: 1px solid #d3d3d3;
+        &:hover {
+            text-decoration: none;
+        }
     }
+}
+
+.carousel-caption {
+    padding: 0;
+    background: none;
+    opacity: 1;
+    position: relative;
+    @include margin-top(8px);
+    @media #{$tablet} {}
     .cat-head {
-      @include font-size(20px)
+        @include font-size(16px);
+        margin: 0;
+        letter-spacing: 0.5px;
     }
-  }
+    .price {
+        @include font-size(14px);
+    }
 }

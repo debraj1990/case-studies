@@ -18,10 +18,10 @@ class RemoveFromCartBtn extends Component {
             }
             return product;
         });*/
+        
         cart.products = cart.products.filter(function (item) {
-            return item.product !== productObj.product;
+            return !(item.product === productObj.product && item.sku === productObj.sku);
         });
-        // console.log(cart);
         delete cart.id;
         actions.updateCart(cartId, cart);
     }

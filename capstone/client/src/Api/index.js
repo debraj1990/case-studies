@@ -24,10 +24,30 @@ const Api = {
   getUser(userId) {
     return axios.get(`${apiHost}users/${userId}`);
   },
+  getUserByEmail(userEmailId) {
+    return axios.get(`${apiHost}users/?filter[where][email]=${userEmailId}`);
+  },
+  addUser(userData) {
+    return axios.post(`${apiHost}users`, userData);
+  },
   loadProductById(pid) {
     return axios.get(`${apiHost}products/${pid}`);
+  },
+  loadEvents(userId) {
+    return axios.get(`${apiHost}users/${userId}/events`);
+  },
+  addEvent(userId, eventObj) {
+    return axios.post(`${apiHost}users/${userId}/events`, eventObj);
+  },
+  deleteEvent(eventId) {
+    return axios.delete(`${apiHost}Events/${eventId}`);
+  },
+  createOrder(orderObj) {
+    return axios.post(`${apiHost}orders`, orderObj);
+  },
+  getOrders(userId) {
+    return axios.get(`${apiHost}users/${userId}/orders`);
   }
-
 }
 
 export default Api;

@@ -3,8 +3,9 @@ export function userReducer(state = {}, action) {
     //
     switch (action.type) {
         case GET_USER: {
-            let { user } = action;
-            return Object.assign({}, user);
+            // console.log("user action =>",action);
+            let { userDataObjForState } = action;
+            return Object.assign({}, userDataObjForState);
         }
         case UPDATE_USER_CART: {
             let { cart } = action;

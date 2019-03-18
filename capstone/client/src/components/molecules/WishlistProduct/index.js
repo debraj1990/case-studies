@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { images } from '../../../utilities/imgimport'
 import AddToWishlist from '../../atoms/AddToWishlist';
 
 class WishlistProduct extends Component {
-  render() {
 
+  render() {
     let { product } = this.props;
     let tgtUrl = product ? `/product/${product.id}` : '/';
     let variant = product ? product.variants[0] : {};
@@ -18,11 +19,11 @@ class WishlistProduct extends Component {
       <div className="col-6 col-sm-3 wishlist-prod">
         <div className="wishlist-prod-container">
           <div className="float-right"><AddToWishlist wishlistObj={prodObj} /></div>
-          <a href={tgtUrl}>
+          <Link to={tgtUrl}>
             <img src={images[imgUrl]} alt={product.name} className="img-responsive" style={{ width: '100%', height: '100%' }} />
-          </a>
-          <p>{product.name}</p>
-          <p>&#x20b9; {variant.sale_price}</p>
+          </Link>
+          <p className="prod-name">{product.name}</p>
+          <p className="prod-price">&#x20b9; {variant.sale_price}</p>
         </div>
       </div>
     )

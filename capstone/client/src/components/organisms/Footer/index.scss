@@ -1,23 +1,24 @@
 @import '../../../static/styles/base/imports';
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
-  z-index: 10;
-  color: white;
-  text-align: center;
-  height: 80px;
-  border-top: 1px solid grey;
-  a {
-    color: grey;
-    &.active,
-    &:hover {
-      color: red;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    height: 75px;
+    border-top: 1px solid grey;
+    a {
+        color: grey;
+        &.active,
+        &:hover {
+            color: red;
+        }
     }
-  }
-  i {
-    @include font-size(30px);
-  }
+    i {
+        @include font-size(26px);
+    }
+    @include padding(5px 10px);
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import WishlistProducts from '../../organisms/WishlistProducts';
-
+import Header from '../../organisms/Header';
 
 
 const metaData = {
@@ -10,12 +10,12 @@ const metaData = {
 
 class Wishlist extends Component {
     render() {
-        // console.log("Render Wishlist");
         return (
-            <div className="container cart-container">
-                <h3 className="cart-heading">Liked</h3>
-                <WishlistProducts />
-
+            <div>
+                <Header heading="My Wishlist" />
+                <div className="container cart-container">
+                    <WishlistProducts />
+                </div>
             </div>
         )
     }

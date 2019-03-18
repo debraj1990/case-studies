@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import { loadProducts } from '../../../actions/products'
 import './index.scss'
@@ -8,6 +9,7 @@ import Carousel from '../Carousel';
 
 import { images } from '../../../utilities/imgimport';
 import AddToWishlist from '../../atoms/AddToWishlist';
+// import Link from '../../atoms/Link';
 class ProdForHim extends Component {
   constructor(props) {
     super(props);
@@ -49,12 +51,12 @@ class ProdForHim extends Component {
       return (
         <div key={idx} className=" prod-box">
           <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
-          <a href={'/product/' + val.id}><img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '60%' }} />
+          <Link to={'/product/' + val.id}><img src={images[imgName]} alt={val.name} className="img-responsive" style={{ maxWidth: '60%' }} />
             <div className="carousel-caption">
               <p className="cat-head">{val.name}</p>
               {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
             </div>
-          </a>
+          </Link>
         </div>
       )
     })

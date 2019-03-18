@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CategoryList from '../../organisms/CategoryList';
 import Header from '../../organisms/Header';
+// import store from '../../../store';
 
 
 // import AddToCartBtn from '../../atoms/AddToCartBtn';
@@ -16,15 +17,11 @@ const metaData = {
 class Home extends Component {
 
   render() {
-    // let prodObj = { product: "5c7bf86aa67be71fd06fabe4", sku: "buckle_bag_frey", qty: 1 };
-    // let wishlistProdObj = { product: "5c7bf75fa67be71fd06fabe3", sku: "snadals_blue" };
+
     return (
       <div>
-        <Header/>
+        <Header heading="Explore" />
         <CategoryList />
-        {/* <AddToCartBtn productObj={prodObj} />
-        <RemoveFromCartBtn productObj={prodObj} />
-        <AddToWishlist wishlistObj={wishlistProdObj} /> */}
       </div>
     )
   }

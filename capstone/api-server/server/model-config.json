@@ -36,5 +36,9 @@
   "orders": {
     "dataSource": "gifts",
     "public": true
+  },
+  "Event": {
+    "dataSource": "gifts",
+    "public": true
   }
 }

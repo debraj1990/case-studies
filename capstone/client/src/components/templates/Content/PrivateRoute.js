@@ -1,33 +1,51 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Route,
-    Link,
-    Redirect,
+    // Link,
+    // Redirect,
     withRouter
 } from 'react-router-dom';
-import OnBeforeLoad from '../../hoc/OnBeforeLoad';
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getUser } from '../../../actions/user';
+
 class PrivateRoute extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAuthenticated: false
+            isAuthenticated: false,
+            user: {}
         }
     }
     // Listen to the Firebase Auth state and set the local state.
     componentDidMount() {
-        console.log('cat');
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
             (user) => {
-                console.log(user); console.log('bat');
-                this.setState({ isAuthenticated: !!user });
-                if (!user) {
-                    console.log(this.props.history)
+                console.log(user);
+                if (user) {
+                    let { actions } = this.props;
+                    let userDataObj = {
+                        "fullName": user.displayName,
+                        "email": user.email
+                    };
+                    console.log('dispatching action');
+                    actions.getUser(user.email, userDataObj);
+                    this.setState(
+                        {
+                            isAuthenticated: !!user,
+                            user: userDataObj
+                        }
+                    );
+                }
+                else {
+                    // console.log(this.props.history)
                     this.props.history.push(`/login`); //user logged out
                 }
             }
-        ); console.log('mat');
+        );
     }
 
     // Make sure we un-register Firebase observers when the component unmounts.
@@ -37,24 +55,32 @@ class PrivateRoute extends Component {
 
     render() {
 
-        const { component: Component, ...rest } = this.props;
+        const { component: Component, user, ...rest } = this.props;
         console.log('===', this.props);
-        if (this.state.isAuthenticated) {
+        if (this.state.isAuthenticated && user.id) {
             return (
                 <Route {...rest} render={(props) => (
-                    <OnBeforeLoad {...props}><Component {...props} /></OnBeforeLoad>
+                    <Component {...props} />
                 )} />
             );
         }
         return (<div></div>)
-        // return (
-        //     <Route {...rest} render={(props) => (
-        //         true//this.state.isAuthenticated === true
-        //           ? <Component {...props} />
-        //           : <Redirect to='/login' />
-        //       )} />
-        // );
     }
 }
+
+const mapStateToProps = (state) => ({
+    // ... computed data from state and optionally ownProps
+    user: state.user
+})
+const mapDispatchToProps = dispatch => ({
+    // ... normally is an object full of action creators
+    actions: bindActionCreators({ getUser }, dispatch)
+})
+// `connect` returns a new function that accepts the component to wrap:
+const connectToStore = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
 //withRouter HOC used to include history as this was a custom Route & was not having history originally
-export default withRouter(PrivateRoute);
+export default connectToStore(withRouter(PrivateRoute));

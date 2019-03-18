@@ -20,7 +20,7 @@ export default class Carousel extends Component {
 
     return (
       <div className={"mt-2 " + classes}>
-        {heading ? <h2>{heading}</h2> : ''}
+        {heading ? <div className="carousel-heading">{heading}</div> : ''}
         <Slider {...settings}  >
           {carouselSlides}
         </Slider>

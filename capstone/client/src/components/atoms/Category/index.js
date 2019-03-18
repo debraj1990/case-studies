@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { images } from '../../../utilities/imgimport'
 
@@ -9,12 +10,12 @@ class Category extends Component {
     let imgUrl = category.image.split('/').pop();
 
     return (
-      <a href={tgtUrl} style={{ maxWidth: '100%' }}>
+      <Link to={{ pathname: tgtUrl, state: { categoryName: category.name } }} style={{ maxWidth: '100%' }}>
         <img src={images[imgUrl]} alt={category.imageAlt} className="img-responsive" style={{ maxWidth: '100%' }} />
         <div className="carousel-caption">
           <h2 className="cat-head">{category.name}</h2>
         </div>
-      </a>
+      </Link>
 
     )
   }

@@ -26,7 +26,6 @@ class CategoryList extends Component {
   render() {
     return (
       <section className="category-list">
-        <h1 className="mt-3 mb-3">All Categories</h1>
         <div className="row">{this.renderCategories()}
         </div>
       </section>
