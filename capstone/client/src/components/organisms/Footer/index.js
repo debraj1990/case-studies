@@ -30,11 +30,6 @@ class Footer extends Component {
         name: 'Profile',
         target: '/profile',
         classes: 'far fa-user-circle'
-      },
-      {
-        name: 'Orders',
-        target: '/orders',
-        classes: 'far fa-user-circle'
       }]
     }
   }

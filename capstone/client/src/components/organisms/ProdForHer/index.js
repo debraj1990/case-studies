@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import { bindActionCreators } from 'redux'
-
-//import { loadProducts } from '../../../actions/products'
 import './index.scss'
 import Carousel from '../Carousel';
 

@@ -1,0 +1,4 @@
+@import '../../../static/styles/base/imports';
+.cart-total-amnt {
+    @include margin-top(8px);
+}

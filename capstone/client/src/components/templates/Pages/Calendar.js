@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import EventCalendar from '../../organisms/EventCalendar';
-// import store from '../../../store';
-
-
-// import AddToCartBtn from '../../atoms/AddToCartBtn';
-// import AddToWishlist from '../../atoms/AddToWishlist';
-// import RemoveFromCartBtn from '../../atoms/RemoveFromCartBtn';
+import Header from '../../organisms/Header';
 
 const metaData = {
   title: 'Calendar-1',
@@ -16,9 +11,9 @@ const metaData = {
 class Calendar extends Component {
 
   render() {
-    // console.log(store.getState(), " %%%%%%%%%%%%%%%%");
     return (
       <div>
+        <Header heading="Events" />
         <EventCalendar />
       </div>
     )

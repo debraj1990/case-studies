@@ -50,7 +50,7 @@ class AddToWishlist extends Component {
     }
     render() {
         return (
-            <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right mr-3 " + (this.isProductInWishlist() ? 'fas' : 'far')}></i></button>
+            <button className="add-to-wishlist-btn" onClick={(e) => this.addToWishlist()}><i className={"fa-heart float-right " + (this.isProductInWishlist() ? 'fas' : 'far')}></i></button>
         );
     }
 }

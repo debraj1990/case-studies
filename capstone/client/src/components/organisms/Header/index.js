@@ -4,21 +4,28 @@ import BackButton from '../../atoms/Backbutton';
 import Search from '../Search';
 // import LogoutButton from '../../atoms/LogoutButton';
 import { images } from '../../../utilities/imgimport';
+import { withRouter } from 'react-router-dom';
+import './index.scss';
 
 class Header extends Component {
   render() {
-    let history = this.props;
+    let { history, heading, location } = this.props;
+    let pathname = location.pathname;
     return (
-      <div>
-        <div className="row w-100">
+      <div className="header">
+        <div className="row">
           <div className="col"><BackButton history={history} /></div>
-          <div className="col"><Link to="/home" className="float-right"><img src={images['logo.png']} alt="Capstone logo" style={{ width: '50px' }} /></Link></div>
+          <div className="main-heading">{heading}</div>
+          <div className="col logo"><Link to="/home" className="float-right"><img src={images['logo.png']} alt="Capstone logo" /></Link></div>
         </div>
-        <div className="row w-100">
-          <Search />
-        </div>
+        {
+          (pathname === '/home' || pathname === '/search') &&
+          <div className="row">
+            <Search />
+          </div>
+        }
       </div>
     )
   }
 }
-export default Header;
+export default withRouter(Header);

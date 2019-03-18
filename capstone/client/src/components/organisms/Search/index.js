@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import store from '../../../store';
 import { searchProducts } from '../../../actions/search';
-
+import './index.scss';
 
 const metaData = {
     title: 'Search Page',
@@ -110,10 +110,10 @@ class Search extends Component {
         // let { history } = this.props;
         // console.log(history);
         return (
-            <div className="col">
+            <div className="col search-container">
                 <div className="input-group input-group-mg">
                     <input id="searchInput" onChange={(e) => this.searchBoxKeyupHandler(e)}
-                        type="text" className="form-control w-50"
+                        type="text" className="form-control w-50 search-input"
                         aria-describedby="inputGroup-sizing-lg"
                         placeholder="Type here to search" aria-label="Type here to search" />
                     <div className="input-group-append">
