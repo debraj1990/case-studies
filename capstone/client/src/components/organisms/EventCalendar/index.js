@@ -85,13 +85,22 @@ class EventCalendar extends Component {
             )
         })
     }
+    highlightDay(date, view) {
+        let { events } = this.props;
+        return events.map((event, idx) => { 
+            var dateObj = new Date(event.date)
+            if(view === 'month' && dateObj.getDate() === date.getDate() && dateObj.getDay() === date.getDay() && dateObj.getMonth() === date.getMonth()) { 
+                return 'bg-primary';
+            }
+        })
+    }
     render() {
         let { date } = this.state;
         return (
             <div>
                 <section className="container row">
                     <div className="col-6 col-sm-6 col-md-6 float-left">
-                        <Calendar onChange={this.onDateChange} value={date} minDate={new Date()} />
+                        <Calendar onChange={this.onDateChange} value={date} minDate={new Date()} tileClassName={({ date, view }) => this.highlightDay(date, view)} />
                     </div>
                     <div className="col-6 col-sm-6 col-md-6 float-left">
                         {this.renderForm()}
