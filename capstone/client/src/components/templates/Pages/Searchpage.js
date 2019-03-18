@@ -65,7 +65,9 @@ class Searchpage extends Component {
     return (
       <div>
         <Header heading="Explore" />
-        {this.renderProductTiles()}
+        <div className="d-flex flex-row">
+          {this.renderProductTiles()}
+        </div>
       </div>
     )
   }
