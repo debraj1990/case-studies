@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 // import { FIREBASE_CONFIG } from '../../../constants';
@@ -17,52 +18,20 @@ const metaData = {
 };
 
 
-// const ProfileSection = ({ title, children }) => (
+// const ProfileSection = ({ title }) => (
 class ProfileSection extends Component {
     constructor(props) {
         super(props);
         this.onLoggedout = this.onLoggedout.bind(this);
     }
 
-    // // Listen to the Firebase Auth state and set the local state.
-    // componentDidMount() {
-    //   this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-    //       (user) => {console.log(user);
-    //                 if(!user)
-    //                 console.log(this.props.history); this.props.history.push(`/login`); //user logged out
-    //         //     } else {
-    //         //       this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
-    //             }
-    //   );
-    // }
-
-    // // Make sure we un-register Firebase observers when the component unmounts.
-    // componentWillUnmount() {
-    //   this.unregisterAuthObserver();
-    // }
-
-    // componentDidMount() {
-
-    //     // Get saved userAuthInfo from sessionStorage
-    //     if(sessionStorage.getItem('userAuthInfo') === undefined || sessionStorage.getItem('userAuthInfo') === null) {
-    //       console.log('is in Logged OUT state!!');
-    //       this.router.navigate(['login']);
-    //     } else {
-    //       this.currentUserEmail = JSON.parse(sessionStorage.getItem('userAuthInfo')).user.email;
-    //     }
-    // }
-
     onLoggedout(e) {
         firebase.auth().signOut();
-        // Remove saved sessionKey from sessionStorage
-        // sessionStorage.removeItem('userAuthInfo');
-        // Remove all saved data from sessionStorage
         sessionStorage.clear();
-        console.log('signOut called!');
         this.props.history.push(`/login`);
     }
     render() {
-        const { title, children } = this.props;
+        const { title, user } = this.props;
         return (
             <div className="wwn-profile-section">
                 <div className="wwn-profile-section-heading clearfix">
@@ -70,9 +39,8 @@ class ProfileSection extends Component {
                     <EditButton className="wwn-edit float-left float-md-right" />
                 </div>
                 <div className="wwn-profile-section-content">
-                    {children}
+                    <h3>{user.fullName}</h3>
                 </div>
-                {/* onClick={e => this.onLoggedout()} */}
                 <Link to="/" className="signout-btn" onClick={e => this.onLoggedout()}>
                     <i className="fa fa-fw fa-power-off"></i> Sign Out
             </Link>
@@ -82,5 +50,18 @@ class ProfileSection extends Component {
     }
 }
 
-export default ProfileSection;
+
 export { metaData };
+
+const mapStateToProps = (state, ownProps) => ({
+    // ... computed data from state and optionally ownProps
+    user: state.user
+})
+
+// `connect` returns a new function that accepts the component to wrap:
+const connectToStore = connect(
+    mapStateToProps,
+    null
+)
+
+export default connectToStore(ProfileSection);
