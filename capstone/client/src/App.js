@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <Router>
         <div className="wwn-app">
-          {/* <Header /> */}
           <Body />
           <Footer />
         </div>

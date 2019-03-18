@@ -12,12 +12,11 @@ const metaData = {
 
 class Productdetail extends Component {
   render() {
-    let { history } = this.props;
+    let { history, location } = this.props;
     let prodId = history.location.pathname.split('/').pop();
     return (
       <div>
-        <Header history={history} />
-        {/* <ProductSlider pid={prodId} /> */}
+        <Header />
         <ProdDetail pid={prodId}></ProdDetail>
       </div>
     )

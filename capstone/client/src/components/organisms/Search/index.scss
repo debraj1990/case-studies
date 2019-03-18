@@ -1,1 +1,8 @@
 @import '../../../static/styles/base/imports';
+input.search-input {
+    @include height(38px);
+}
+
+.search-container {
+    @include margin-top(5px);
+}
