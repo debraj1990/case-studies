@@ -32,8 +32,6 @@ class Searchpage extends Component {
 
     this.unsubscribe = store.subscribe(() => {
       let search = store.getState().searchresult;
-      console.log(store.getState(), " %%%%%%%%%%%%%%%%");
-
       this.setState({ searchdata: search });
     });
   }
@@ -47,14 +45,16 @@ class Searchpage extends Component {
       let listPrice = item.variants[0].list_price;
       let salePrice = item.variants[0].sale_price;
       return (
-        <div key={index} className=" prod-box">
-          <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
-          <Link to={'/product/' + item.id}><img src={images[imgName]} alt={item.name} className="img-responsive" style={{ maxWidth: '60%' }} />
-            <div className="carousel-caption">
-              <p className="cat-head">{item.name}</p>
-              {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
-            </div>
-          </Link>
+        <div>
+          <div key={index} className=" prod-box">
+            <div className="float-right"><AddToWishlist wishlistObj={wishlistProdObj} /></div>
+            <Link to={'/product/' + item.id}><img src={images[imgName]} alt={item.name} className="img-responsive" style={{ maxWidth: '60%' }} />
+              <div className="carousel-caption">
+                <p className="cat-head">{item.name}</p>
+                {listPrice !== salePrice ? <p className="price"><span>&#8377;{listPrice}</span><span className="sale">&#8377;{salePrice}</span></p> : <p className="price"><span>&#8377;{listPrice}</span></p>}
+              </div>
+            </Link>
+          </div>
         </div>
       )
     })
@@ -62,10 +62,9 @@ class Searchpage extends Component {
   }
 
   render() {
-    let { history } = this.props;
     return (
       <div>
-        <Header history={history} />
+        <Header heading="Explore" />
         {this.renderProductTiles()}
       </div>
     )

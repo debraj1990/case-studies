@@ -9,6 +9,7 @@ import './index.scss';
 class CartProducts extends Component {
     componentDidMount() {
         let { actions, user } = this.props;
+        console.log(user);
         actions.loadCart(user.carts.id);
     }
     renderCartProducts() {
