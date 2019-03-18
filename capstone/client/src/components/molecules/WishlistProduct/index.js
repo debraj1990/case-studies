@@ -29,7 +29,10 @@ class WishlistProduct extends Component {
         </div>
       )
     } else {
-      return (<div><h1>Your wish list is empty...</h1></div>)
+      return (
+        <div>
+          {product ? <h1>Wishlist is empty...</h1> : ''}
+        </div>)
     }
   }
 }
