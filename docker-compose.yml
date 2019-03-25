@@ -5,13 +5,13 @@ services:
    ports:
       - "27017:27017"
   api:
-    build: ./api-server
+    build: ./capstone/api-server
     ports:
     - "4000:4000"
     links:
       - dbconnect
   client: 
-    build: ./client
+    build: ./capstone/client
     ports:
      - "3000:80"
   
