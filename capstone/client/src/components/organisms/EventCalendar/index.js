@@ -19,7 +19,7 @@ class EventCalendar extends Component {
     }
     componentDidMount() {
         let { actions, user } = this.props;
-        console.log("user->",user)
+        console.log("user->", user)
         actions.loadEvents(user.id);
     }
     onDateChange = date => this.setState({ date })
@@ -87,9 +87,9 @@ class EventCalendar extends Component {
     }
     highlightDay(date, view) {
         let { events } = this.props;
-        return events.map((event, idx) => { 
+        return events.map((event, idx) => {
             var dateObj = new Date(event.date)
-            if(view === 'month' && dateObj.getDate() === date.getDate() && dateObj.getDay() === date.getDay() && dateObj.getMonth() === date.getMonth()) { 
+            if (view === 'month' && dateObj.getDate() === date.getDate() && dateObj.getDay() === date.getDay() && dateObj.getMonth() === date.getMonth()) {
                 return 'bg-primary';
             }
         })
@@ -99,10 +99,10 @@ class EventCalendar extends Component {
         return (
             <div>
                 <section className="container row">
-                    <div className="col-6 col-sm-6 col-md-6 float-left">
+                    <div className=" col-sm-6 col-md-6 mb-5">
                         <Calendar onChange={this.onDateChange} value={date} minDate={new Date()} tileClassName={({ date, view }) => this.highlightDay(date, view)} />
                     </div>
-                    <div className="col-6 col-sm-6 col-md-6 float-left">
+                    <div className=" col-sm-6 col-md-6">
                         {this.renderForm()}
                     </div>
                 </section>

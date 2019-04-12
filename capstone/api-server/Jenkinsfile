@@ -3,7 +3,7 @@ pipeline {
     environment {
       DOCKER_IMAGE_NAME = "shashmca/api-server"
     }
-    tools {nodejs "node"}
+    // tools {nodejs "node"}
     stages {
       stage('Checkout') {
         steps {

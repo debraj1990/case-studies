@@ -114,10 +114,9 @@ class Search extends Component {
                 <div className="input-group input-group-mg">
                     <input id="searchInput" onChange={(e) => this.searchBoxKeyupHandler(e)}
                         type="text" className="form-control w-50 search-input"
-                        aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Type here to search" aria-label="Type here to search" />
+                        placeholder="Type here to search" aria-label="search" style={{ height: '45px', lineHeight: '45px' }} />
                     <div className="input-group-append">
-                        <button onClick={() => this.searchButtonClickHandler()} className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                        <button onClick={() => this.searchButtonClickHandler()} className="btn btn-outline-secondary" type="button" id="button-addon2" style={{ height: '45px' }}>Search</button>
                     </div>
                 </div>
                 {this.getSearchItems()}
